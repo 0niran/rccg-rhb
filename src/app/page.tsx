@@ -1,0 +1,439 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { Calendar, Play, Users, BookOpen, Clock, Car, Home as HomeIcon, MessageSquare, ArrowUpRight } from "lucide-react";
+import HeroSlideshow from "@/components/HeroSlideshow";
+
+export default function Home() {
+  const upcomingEvents = [
+    {
+      title: "RHB Youth Week",
+      date: "September 19-21",
+      time: "Various Times",
+      image: "/Events/Fresh Oil, New Flame.jpeg",
+      description: "3-Day Youth and Young Adult Program: Fresh Oil, New Flame. Prayer & Fellowship, Outreach, Academic Talk & Barbecue, Youth Sunday."
+    },
+    {
+      title: "Marriage Weekend",
+      date: "November 7-9, 2025",
+      time: "Friday 7:00 PM - Sunday 4:00 PM",
+      image: "/Events/Marriage Weekend.jpeg",
+      description: "A special weekend retreat for married couples to strengthen their relationship, grow together in faith, and enjoy quality time with other couples in a beautiful setting."
+    },
+    {
+      title: "Sunday Service",
+      date: "Every Sunday",
+      time: "10:00 AM - 12:00 PM",
+      image: "/Events/Faith Clinic.jpeg",
+      description: "Join us for inspiring worship, powerful preaching, and fellowship with our church family."
+    }
+  ];
+
+  return (
+    <>
+      {/* Hero Section - Warm & Welcoming */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <HeroSlideshow />
+        
+        {/* Warm, Welcoming Hero Content */}
+        <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
+          {/* Gentle Welcome Message */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-2 mb-8"
+          >
+            <span className="text-sm font-medium tracking-wide">Welcome Home</span>
+          </motion.div>
+
+          {/* Gentle Church Identity */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          >
+            <span className="text-white">Restoration House</span>{" "}
+            <span className="text-amber-200">Brantford</span>
+          </motion.h1>
+
+          {/* Warm Mission Statement */}
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl font-light mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed"
+          >
+            Where Faith Meets Family and Love Never Fails
+          </motion.p>
+          
+          {/* Gentle Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mb-12"
+          >
+            <Link
+              href="/contact"
+              className="inline-flex items-center bg-white/90 hover:bg-white text-gray-800 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl"
+            >
+              <span>Join Us This Sunday</span>
+              <Calendar className="w-5 h-5 ml-2" />
+            </Link>
+          </motion.div>
+
+          {/* Warm Service Information */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="inline-flex items-center bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3"
+          >
+            <Clock className="w-4 h-4 mr-3 text-amber-200" />
+            <span className="text-sm font-medium">Sundays at 10:00 AM • 7 Burnley Ave</span>
+          </motion.div>
+        </div>
+
+        {/* Gentle Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        >
+          <div className="flex flex-col items-center text-white/60">
+            <span className="text-xs font-light tracking-wide mb-2">Discover More</span>
+            <div className="w-0.5 h-6 bg-white/40 rounded-full"></div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Upcoming Events Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-amber-50/30 dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-full px-6 py-2 mb-6">
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Join Us</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4 leading-relaxed">
+              Upcoming Events
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Come as you are and be part of our warm, welcoming community
+            </p>
+          </motion.div>
+          
+          <div className="grid lg:grid-cols-3 gap-8">
+            {upcomingEvents.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-amber-100/50 dark:border-gray-700/50"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1">
+                    <Calendar className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors duration-300">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-sm">
+                    {event.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      <span className="block font-medium">{event.date}</span>
+                      <span className="block text-xs">{event.time}</span>
+                    </div>
+                    
+                    <Link
+                      href="/events"
+                      className="text-amber-600 dark:text-amber-400 font-medium hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300 text-sm"
+                    >
+                      Learn More →
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link
+              href="/events"
+              className="inline-flex items-center bg-amber-100 hover:bg-amber-200 dark:bg-amber-900/30 dark:hover:bg-amber-900/50 text-amber-800 dark:text-amber-200 font-medium px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md"
+            >
+              <span>View All Events</span>
+              <Calendar className="w-4 h-4 ml-2" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Sermon Section */}
+      <section className="py-20 bg-gradient-to-b from-amber-50/30 to-white dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-full px-6 py-2 mb-6">
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-400">This Week</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+              Featured Message
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Experience God's love through inspiring messages of hope and grace
+            </p>
+          </motion.div>
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/Media/Testimony.png"
+                  alt="The Power of Forgiveness"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className="group/play relative w-20 h-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-500 hover:scale-110">
+                    <Play className="w-8 h-8 text-white ml-1 transition-transform duration-300 group-hover/play:scale-110" />
+                    <div className="absolute inset-0 rounded-full bg-white/5 scale-150 animate-pulse"></div>
+                  </button>
+                </div>
+                
+                {/* Duration Badge */}
+                <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-xl text-white px-3 py-1 rounded-full text-sm font-medium">
+                  45 min
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-4 leading-relaxed">
+                  The Power of Forgiveness
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  Discover the transformative power of forgiveness in this heartfelt message. Learn 
+                  how letting go of past hurts can set you free and open doors to healing, 
+                  restoration, and spiritual growth.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/events"
+                  className="inline-flex items-center bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg"
+                >
+                  <Play className="w-4 h-4 mr-2" />
+                  <span>Watch Message</span>
+                </Link>
+                
+                <Link
+                  href="/events"
+                  className="inline-flex items-center bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium px-6 py-3 rounded-full border border-gray-300 dark:border-gray-600 transition-all duration-300"
+                >
+                  <span>More Messages</span>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-amber-50/30 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-full px-6 py-2 mb-6">
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Quick Access</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4 leading-relaxed">
+              Quick Links
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Easy access to the services and programs you need
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-amber-100/50 dark:border-gray-700/50"
+            >
+              <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Car className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Ride Share</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                Can't make it to church? Our church bus ride share service is here to help! To arrange a pickup, just contact the church office.
+              </p>
+              <Link
+                href="/contact"
+                className="text-amber-600 dark:text-amber-400 font-medium hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300"
+              >
+                Contact Us →
+              </Link>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-amber-100/50 dark:border-gray-700/50"
+            >
+              <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <HomeIcon className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Join a House Fellowship</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                Community is at the heart of our faith, and our House Fellowships are where it comes to life. These small groups meet weekly to share, pray, and grow together. Find a fellowship near you and experience true connection.
+              </p>
+              <Link
+                href="/contact"
+                className="text-amber-600 dark:text-amber-400 font-medium hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300"
+              >
+                Find a Fellowship →
+              </Link>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-amber-100/50 dark:border-gray-700/50"
+            >
+              <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <MessageSquare className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Give a Testimony</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                Your story matters! Sharing your testimony is a powerful way to show God's faithfulness and encourage the body of Christ. Whether it's a big victory or a small moment of grace, your experience can be a light for someone else. Let us know if you'd like to share yours.
+              </p>
+              <Link
+                href="/contact"
+                className="text-amber-600 dark:text-amber-400 font-medium hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300"
+              >
+                Share Your Story →
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-32 bg-gradient-to-br from-amber-600 via-orange-600 to-amber-700 dark:from-amber-700 dark:via-orange-700 dark:to-amber-800 text-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-600/90 via-orange-600/90 to-amber-700/90"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-6xl mx-auto px-6 text-center relative">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 mb-8">
+              <span className="text-sm font-medium tracking-wide">Your Journey Starts Here</span>
+            </div>
+            
+            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+              Ready to Experience
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-white">
+                Restoration?
+              </span>
+            </h2>
+            
+            <p className="text-xl md:text-2xl font-light opacity-90 max-w-3xl mx-auto leading-relaxed">
+              Join our vibrant community this Sunday and discover a place where faith meets family, 
+              and love never fails. We can't wait to welcome you home.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center bg-white text-amber-600 font-bold px-12 py-5 rounded-full text-lg transition-all duration-500 hover:shadow-2xl hover:scale-105 active:scale-95"
+              >
+                <span className="relative z-10">Plan Your Visit</span>
+                <ArrowUpRight className="relative z-10 w-6 h-6 ml-3 transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2" />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-50 to-orange-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </Link>
+              
+              <div className="text-center">
+                <p className="text-sm font-medium opacity-80 mb-1">Join us Sundays</p>
+                <p className="text-lg font-semibold">10:00 AM - 12:00 PM</p>
+                <p className="text-sm opacity-60">7 Burnley Ave, Brantford</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
+}

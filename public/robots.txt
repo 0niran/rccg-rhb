@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://rccgbrantford.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /_next/static/
