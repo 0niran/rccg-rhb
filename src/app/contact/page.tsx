@@ -122,6 +122,8 @@ export default function Contact() {
                     <option>I need prayer support</option>
                     <option>I want to join a ministry</option>
                     <option>I'd like to volunteer</option>
+                    <option>Give a testimony</option>
+                    <option>Join a fellowship centre</option>
                     <option>Other</option>
                   </select>
                   

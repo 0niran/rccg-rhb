@@ -74,13 +74,13 @@ export default function About() {
                 </h2>
                 <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed">
                   <p className="text-lg">
-                    Restoration House Brantford began in <strong className="text-amber-600">2005</strong> as a small prayer group, founded by passionate families who believed God had a vision for their city.
+                    Our journey began on <strong className="text-amber-600">April 1, 2018</strong>, with the establishment of Restoration House Brantford by Pastor Oluwaseyi Akinbiyi and her husband, Dr. Tolulola Akinbiyi.
                   </p>
                   <p>
-                    Through faithful dedication and divine guidance, we grew from a handful of believers meeting in homes to a thriving church community. In <strong className="text-amber-600">2010</strong>, we moved into our current beautiful building at 7 Burnley Ave.
+                    We started in a conference room at the Best Western Brantford, but by God's grace, within the first year we received the keys to our own building and celebrated our very first anniversary there.
                   </p>
                   <p>
-                    Over the years, we've launched life-changing ministries, served countless individuals, and witnessed profound spiritual transformations. Today, we continue building on this legacy, reaching out with love and impacting lives for generations to come.
+                    Six years later, we continue to grow, guided by our motto: <strong className="text-amber-600">"Manifesting Power and Impacting Lives with the Enriching Word of God."</strong>
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function About() {
               {/* Church Stats */}
               <div className="grid grid-cols-2 gap-6">
                 <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 text-center border border-amber-200/50 dark:border-amber-800/50">
-                  <div className="text-3xl font-bold text-amber-600 mb-2">20+</div>
+                  <div className="text-3xl font-bold text-amber-600 mb-2">6+</div>
                   <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Years of Ministry</div>
                 </div>
                 <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 text-center border border-amber-200/50 dark:border-amber-800/50">
@@ -118,8 +118,8 @@ export default function About() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div className="absolute bottom-6 left-6 right-6">
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                        <h3 className="text-white text-xl font-bold mb-1">20 Years of Faithful Service</h3>
-                        <p className="text-white/80 text-sm">Building God's kingdom in Brantford since 2005</p>
+                        <h3 className="text-white text-xl font-bold mb-1">6 Years of Faithful Service</h3>
+                        <p className="text-white/80 text-sm">Building God's kingdom in Brantford since 2018</p>
                       </div>
                     </div>
                   </div>

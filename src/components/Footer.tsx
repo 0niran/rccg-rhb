@@ -13,8 +13,7 @@ const Footer = () => {
     { name: "Events", href: "/events" },
     { name: "Ministries", href: "/ministries" },
     { name: "About Us", href: "/about" },
-    { name: "Contact Us", href: "/contact" },
-    { name: "Give Online", href: "/give" }
+    { name: "Contact Us", href: "/contact" }
   ];
 
   return (
@@ -39,10 +38,10 @@ const Footer = () => {
             <div className="flex items-center space-x-4 mb-6">
               <div className="relative w-16 h-16 bg-amber-100/10 rounded-2xl p-3">
                 <Image
-                  src="/Media/RHB Logo.svg"
+                  src="/Media/RHB Logos/RCCG Restoration House Brantford-White.svg"
                   alt="Restoration House Brantford Logo"
                   fill
-                  className="object-contain brightness-0 invert p-1"
+                  className="object-contain p-1"
                 />
               </div>
               <div>

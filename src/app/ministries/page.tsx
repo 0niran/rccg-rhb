@@ -9,9 +9,9 @@ export default function Ministries() {
   const ministries = [
     {
       title: "Children Church",
-      subtitle: "Ages 0-12",
+      subtitle: "Ages 1-12",
       icon: Baby,
-      image: "/Media/Journey So Far.jpg",
+      image: "/Media/Image/Kids.jpg",
       description: "A vibrant, safe, and nurturing environment where children discover God's love through age-appropriate worship, interactive lessons, and fun activities that help them grow in faith.",
       features: [
         "Interactive Bible stories and lessons",
@@ -28,9 +28,9 @@ export default function Ministries() {
     },
     {
       title: "Youth & Young Adult Church",
-      subtitle: "Ages 13-35",
+      subtitle: "Ages 13-22",
       icon: GraduationCap,
-      image: "/Media/Journey So Far.jpg",
+      image: "/Media/Leadership/Youth.jpeg",
       description: "Empowering the next generation through dynamic worship, relevant teachings, and authentic community that helps young people navigate life's challenges with faith and purpose.",
       features: [
         "Contemporary worship and music",
@@ -39,15 +39,15 @@ export default function Ministries() {
         "Social events and outreach",
         "Mentorship opportunities"
       ],
-      schedule: "Special youth events & programs",
-      time: "Various times throughout the week",
+      schedule: "Main Sunday Service",
+      time: "10:00 AM - 12:00 PM",
       gradient: "from-orange-500 to-red-600",
       bgColor: "bg-orange-50",
       darkBgColor: "dark:bg-orange-900/20"
     },
     {
       title: "Adult Church",
-      subtitle: "Ages 36+",
+      subtitle: "Ages 23+",
       icon: Users,
       image: "/Media/Journey So Far.jpg",
       description: "A mature community focused on deepening faith, building meaningful relationships, and serving God through wisdom, experience, and spiritual maturity in all aspects of life.",
@@ -167,7 +167,7 @@ export default function Ministries() {
                           </div>
                           <div className="flex items-center space-x-3">
                             <MapPin className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                            <span className="text-gray-600 dark:text-gray-300">7 Burnley Ave, Brantford, ON</span>
+                            <span className="text-gray-600 dark:text-gray-300">{ministry.title === "Youth & Young Adult Church" ? "50 Market Street, Brantford, ON N3T 2Z5" : "7 Burnley Ave, Brantford, ON"}</span>
                           </div>
                         </div>
                       </div>
@@ -187,7 +187,7 @@ export default function Ministries() {
                     <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                       <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-amber-100/50 dark:border-gray-700/50">
-                        <div className="aspect-[4/3] relative">
+                        <div className="aspect-[16/15] relative">
                           <Image
                             src={ministry.image}
                             alt={ministry.title}

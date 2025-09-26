@@ -3,21 +3,23 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -36,7 +38,7 @@ const Navigation = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed w-full z-50 transition-all duration-700 ${
           scrolled
-            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-lg border-b border-gray-200/20 dark:border-gray-700/20 py-3"
+            ? "bg-gray-900/80 backdrop-blur-xl shadow-lg border-b border-gray-700/20 py-3"
             : "bg-transparent py-6"
         }`}
       >
@@ -44,9 +46,9 @@ const Navigation = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="group relative">
-              <div className={`relative transition-all duration-500 ${scrolled ? 'w-14 h-14' : 'w-18 h-18'}`}>
+              <div className={`relative transition-all duration-500 ${scrolled ? 'w-28 h-28' : 'w-32 h-32'}`}>
                 <Image
-                  src="/Media/RHB Logo.svg"
+                  src="/Media/RHB Logos/RCCG Restoration House Brantford-White.svg"
                   alt="Restoration House Brantford"
                   fill
                   priority
@@ -68,7 +70,7 @@ const Navigation = () => {
                     href={item.href}
                     className={`relative font-medium tracking-wide transition-all duration-300 group ${
                       scrolled 
-                        ? 'text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400' 
+                        ? 'text-gray-300 hover:text-amber-400' 
                         : 'text-white/90 hover:text-white'
                     }`}
                   >
@@ -79,19 +81,14 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* Theme Toggle */}
-            <div className="hidden lg:flex items-center">
-              <ThemeToggle />
-            </div>
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center space-x-4">
-              <ThemeToggle />
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`relative p-3 rounded-full transition-all duration-300 ${
                   scrolled
-                    ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    ? 'text-gray-300 hover:bg-gray-800'
                     : 'text-white hover:bg-white/10 backdrop-blur-xl'
                 }`}
               >
@@ -114,7 +111,7 @@ const Navigation = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="lg:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-t border-gray-200/20 dark:border-gray-700/20"
+              className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/20"
             >
               <div className="max-w-7xl mx-auto px-6 py-8">
                 <div className="space-y-6">
@@ -128,12 +125,13 @@ const Navigation = () => {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="block text-2xl font-medium text-gray-900 dark:text-gray-100 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300"
+                        className="block text-2xl font-medium text-gray-100 hover:text-amber-400 transition-colors duration-300"
                       >
                         {item.name}
                       </Link>
                     </motion.div>
                   ))}
+                  
                   
                 </div>
               </div>
