@@ -2,17 +2,10 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { IMAGES } from '@/lib/constants';
 
-const images = [
-  '/Media/Image/1.JPG?v=2024',
-  '/Media/Image/2.JPG?v=2024', 
-  '/Media/Image/3.JPG?v=2024',
-  '/Media/Image/4.JPG?v=2024',
-  '/Media/Image/5.JPG?v=2024',
-  '/Media/Image/6.JPG?v=2024',
-  '/Media/Image/7.JPG?v=2024'
-];
+const images = IMAGES.heroSlideshow;
 
 export default function HeroSlideshow() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -20,13 +13,9 @@ export default function HeroSlideshow() {
   const [isHovered, setIsHovered] = useState(false);
   const [progress, setProgress] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
-  const [mounted, setMounted] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const SLIDE_DURATION = 5000; // 5 seconds
   const PROGRESS_INTERVAL = 50; // Update progress every 50ms

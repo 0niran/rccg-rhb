@@ -3,16 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
