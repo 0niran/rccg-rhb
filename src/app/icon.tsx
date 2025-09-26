@@ -11,18 +11,27 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
-          background: '#f59e0b',
+          background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
-          borderRadius: 4,
+          borderRadius: 6,
+          border: '2px solid #92400e',
         }}
       >
-        RH
+        <div
+          style={{
+            fontSize: '18px',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            lineHeight: 1,
+          }}
+        >
+          🏛️
+        </div>
       </div>
     ),
     {
