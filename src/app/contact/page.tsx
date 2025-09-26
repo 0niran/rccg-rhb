@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Users, Heart, Calendar, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Users, Heart, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
   return (
@@ -86,61 +87,7 @@ export default function Contact() {
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-amber-100/50 dark:border-gray-700/50">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Send Us a Message</h3>
-                
-                <form className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
-                    />
-                  </div>
-                  
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
-                  />
-                  
-                  <input
-                    type="tel"
-                    placeholder="Phone Number (Optional)"
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
-                  />
-                  
-                  <select className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300">
-                    <option>How can we help you?</option>
-                    <option>I'm planning my first visit</option>
-                    <option>I have questions about faith</option>
-                    <option>I need prayer support</option>
-                    <option>I want to join a ministry</option>
-                    <option>I'd like to volunteer</option>
-                    <option>Give a testimony</option>
-                    <option>Join a fellowship centre</option>
-                    <option>Other</option>
-                  </select>
-                  
-                  <textarea
-                    rows={4}
-                    placeholder="Share your prayer requests, questions, or how we can support you..."
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 resize-none transition-all duration-300"
-                  ></textarea>
-                  
-                  <button
-                    type="submit"
-                    className="w-full bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:shadow-lg"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
+              <ContactForm />
             </motion.div>
 
             {/* Map */}

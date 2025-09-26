@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Clock, Heart, Calendar, Users, MessageSquare, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Heart, Users, MessageSquare, ArrowRight } from "lucide-react";
+import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -198,16 +199,7 @@ const Footer = () => {
               <p className="text-gray-300 mb-6">
                 Get updates on upcoming events, inspiring messages, and ways to get involved in our church family.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-sm"
-                />
-                <button className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105">
-                  Subscribe
-                </button>
-              </div>
+              <NewsletterForm />
             </div>
           </div>
         </motion.div>
