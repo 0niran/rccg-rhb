@@ -10,28 +10,35 @@ interface ContactFormData {
 }
 
 class ResendService {
-  private resend: Resend;
+  private resend: Resend | null = null;
   private fromEmail: string;
   private toEmail: string;
 
   constructor() {
     const apiKey = process.env.RESEND_API_KEY;
-    
-    if (!apiKey) {
-      throw new Error('RESEND_API_KEY is not configured');
+
+    // Only initialize Resend if API key is available (skip during build)
+    if (apiKey) {
+      this.resend = new Resend(apiKey);
     }
 
-    this.resend = new Resend(apiKey);
     this.fromEmail = process.env.FROM_EMAIL || 'noreply@rccgbrantford.com';
     this.toEmail = process.env.TO_EMAIL || 'hello@rccgbrantford.com';
   }
 
+  private ensureInitialized() {
+    if (!this.resend) {
+      throw new Error('RESEND_API_KEY is not configured');
+    }
+  }
+
   async sendContactForm(data: ContactFormData) {
+    this.ensureInitialized();
     const { firstName, lastName, email, phone, subject, message } = data;
 
     try {
       // 1. Send notification to church admin
-      const adminEmail = await this.resend.emails.send({
+      const adminEmail = await this.resend!.emails.send({
         from: this.fromEmail,
         to: this.toEmail,
         subject: `New Contact Form: ${subject}`,
@@ -60,7 +67,7 @@ class ResendService {
       });
 
       // 2. Send auto-response to user
-      const userEmail = await this.resend.emails.send({
+      const userEmail = await this.resend!.emails.send({
         from: this.fromEmail,
         to: email,
         subject: 'Thank you for contacting Restoration House Brantford',
@@ -108,9 +115,10 @@ class ResendService {
 
   // Health check method
   async testConnection() {
+    this.ensureInitialized();
     try {
       // Send a simple test email to verify configuration
-      const testEmail = await this.resend.emails.send({
+      const testEmail = await this.resend!.emails.send({
         from: this.fromEmail,
         to: this.toEmail,
         subject: 'Resend Integration Test',
