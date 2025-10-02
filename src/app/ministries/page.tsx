@@ -9,7 +9,7 @@ export default function Ministries() {
   const ministries = [
     {
       title: "Children Church",
-      subtitle: "Ages 1-12",
+      subtitle: "Ages 18 months - 12 years",
       icon: Baby,
       image: "/Media/Image/Kids.jpg",
       description: "A vibrant, safe, and nurturing environment where children discover God's love through age-appropriate worship, interactive lessons, and fun activities that help them grow in faith.",
@@ -28,7 +28,7 @@ export default function Ministries() {
     },
     {
       title: "Youth & Young Adult Church",
-      subtitle: "Ages 13-22",
+      subtitle: "Ages 13-25",
       icon: GraduationCap,
       image: "/Media/Leadership/Youth.jpeg",
       description: "Empowering the next generation through dynamic worship, relevant teachings, and authentic community that helps young people navigate life's challenges with faith and purpose.",
@@ -47,9 +47,8 @@ export default function Ministries() {
     },
     {
       title: "Adult Church",
-      subtitle: "Ages 23+",
       icon: Users,
-      image: "/Media/Journey So Far.jpg",
+      image: "/Media/Leadership/AdultChurch.JPG",
       description: "A mature community focused on deepening faith, building meaningful relationships, and serving God through wisdom, experience, and spiritual maturity in all aspects of life.",
       features: [
         "In-depth Bible study and teaching",

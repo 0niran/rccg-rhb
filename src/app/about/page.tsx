@@ -6,24 +6,94 @@ import Link from "next/link";
 import { Building, Eye, Heart, Users, Calendar, MapPin, Star, Award, BookOpen, Compass } from "lucide-react";
 
 export default function About() {
-  const leaders = [
+  // Executive Leadership
+  const executiveLeaders = [
     {
-      name: "Senior Pastor",
-      role: "Lead Pastor & Overseer",
-      image: "/Media/Journey So Far.jpg",
-      description: "Providing spiritual leadership and vision for our church family, with a heart for transformation and community building."
+      name: "Pastor Oluwaseyi Akinbiyi",
+      role: "Lead Pastor",
+      image: "/Media/Leadership/NewSeyi.jpg",
+      description: "Providing spiritual leadership and vision for our church family, with a heart for transformation and community building.",
+      tier: "executive"
     },
     {
-      name: "Associate Pastor",
-      role: "Ministry Coordinator",
-      image: "/Media/Journey So Far.jpg", 
-      description: "Supporting pastoral care and overseeing various ministries to ensure our church family is well cared for."
+      name: "Dr. Tolulola Akinbiyi",
+      role: "Co-Pastor & Head of Operations",
+      image: "/Media/Leadership/DR. Akinbiyi.png",
+      description: "Supporting pastoral care and overseeing church operations to ensure our church family is well cared for.",
+      tier: "executive"
     },
     {
-      name: "Ministry Team Leader",
-      role: "Worship & Programs",
-      image: "/Media/Journey So Far.jpg",
-      description: "Leading our worship experience and coordinating programs that help our community grow in faith together."
+      name: "Pastor Taiwo Sodipo",
+      role: "Chief of Staff",
+      image: "/Media/Leadership/Pst. Taiwo Sodipo.png",
+      description: "Coordinating ministry activities and ensuring smooth operation of church programs and initiatives.",
+      tier: "executive"
+    }
+  ];
+
+  // Operations & Management
+  const operationsTeam = [
+    {
+      name: "Sis. Temitope Kagho",
+      role: "Finance Manager",
+      image: "/Media/Leadership/Temi Kagho.png",
+      description: "Managing church finances with integrity and ensuring proper stewardship of God's resources."
+    },
+    {
+      name: "Akinlolu Oladosu",
+      role: "Director of Programs",
+      image: "/Media/Leadership/Akinlolu.png",
+      description: "Overseeing church programs and events to foster spiritual growth and community engagement."
+    }
+  ];
+
+  // Ministry Leaders
+  const ministryLeaders = [
+    {
+      name: "Pastor Dipo Ajayi",
+      role: "Minister in Charge, Choir & Media",
+      image: "/Media/Leadership/Pst. Dipo.jpg",
+      description: "Leading worship through music and overseeing media ministry to enhance our worship experience."
+    },
+    {
+      name: "Deaconess Yetunde Ajayi",
+      role: "Minister in Charge, Children & Youth",
+      image: "/Media/Leadership/Deaconess Yetunde Ajayi.jpg",
+      description: "Nurturing the next generation through dedicated ministry to children, teenagers, and youth."
+    },
+    {
+      name: "Pastor Johnson Oluwaleke",
+      role: "Minister in Charge, Ushering & Logistics",
+      image: "/Media/Leadership/Pst. Johnson Oluwaleke.jpg",
+      description: "Overseeing ushering, protocol, security, transport, and logistics to ensure smooth church operations."
+    },
+    {
+      name: "Pastor Kwadwo Adjei",
+      role: "Minister in Charge, Fellowship & Welfare",
+      image: "/Media/Leadership/Pst. Kwadwo Adjei.png",
+      description: "Managing fellowship programs, follow-up ministry, and welfare initiatives for church members."
+    }
+  ];
+
+  // Fellowship Leaders
+  const fellowshipLeaders = [
+    {
+      name: "Bro. Ladi Ogunsuilire",
+      role: "Men Fellowship Leader",
+      image: "/Media/Leadership/Ladi.JPG",
+      description: "Leading the men's fellowship and encouraging spiritual growth among the brothers in our church."
+    },
+    {
+      name: "Sis. Hope Didi",
+      role: "Women's Fellowship Leader",
+      image: "/Media/Leadership/Hope Didi.png",
+      description: "Leading the women's fellowship and nurturing spiritual growth among the sisters in our church."
+    },
+    {
+      name: "Bro. Basil Akinbinu",
+      role: "Elder's Fellowship",
+      image: "/Media/Leadership/Elder Basil.jpg",
+      description: "Providing wisdom and guidance as part of the elder's fellowship, supporting church leadership."
     }
   ];
 
@@ -110,8 +180,8 @@ export default function About() {
                 <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-amber-100/50 dark:border-gray-700/50">
                   <div className="aspect-[4/3] relative">
                     <Image
-                      src="/Media/Journey So Far.jpg"
-                      alt="Our Journey of Faith - Restoration House Brantford"
+                      src="/Media/Leadership/Pastor & Dr.jpg"
+                      alt="Pastor Oluwaseyi and Dr. Tolulola Akinbiyi - Restoration House Brantford Leaders"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -130,107 +200,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Beliefs Section - Moved to third position */}
-      <section className="py-20 bg-gradient-to-b from-amber-50/30 to-white dark:from-gray-800 dark:to-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-              What We Believe
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Our faith is built on the solid foundation of God's Word
-            </p>
-          </motion.div>
-          
-          <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-amber-100/50 dark:border-gray-700/50">
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">The Bible</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">We believe the Bible is God's inspired Word, our guide for life and faith.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <Heart className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Salvation</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">Salvation comes through faith in Jesus Christ, not by works but by grace.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <Users className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Community</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">We are called to love and support one another as the body of Christ.</p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <Star className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Holy Spirit</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">The Holy Spirit guides, empowers, and transforms our lives daily.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <Award className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Eternal Life</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">We have hope of eternal life with God through Jesus Christ our Lord.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <MapPin className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Mission</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">We are commissioned to share the Gospel and make disciples of all nations.</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission, Vision, Values Section - Moved to fourth position */}
+      {/* Mission, Vision, Values Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
@@ -302,13 +272,13 @@ export default function About() {
 
       {/* Leadership Team Section */}
       <section className="py-20 bg-gradient-to-b from-white to-amber-50/30 dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
               Meet Our Leadership
@@ -317,42 +287,206 @@ export default function About() {
               Passionate servants called to guide, support, and care for our church family
             </p>
           </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {leaders.map((leader, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-amber-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={leader.image}
-                      alt={leader.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                        <h3 className="text-white text-lg font-bold">{leader.name}</h3>
-                        <p className="text-amber-200 text-sm font-medium">{leader.role}</p>
+
+          {/* Executive Leadership */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Executive Leadership</h3>
+              <div className="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {executiveLeaders.map((leader, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-gradient-to-br from-white to-amber-50/50 dark:from-gray-800 dark:to-gray-800/50 rounded-3xl overflow-hidden shadow-xl border border-amber-200/30 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
+                    <div className="relative h-80 overflow-hidden">
+                      <Image
+                        src={leader.image}
+                        alt={leader.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <div className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                          <h3 className="text-white text-xl font-bold mb-1">{leader.name}</h3>
+                          <p className="text-amber-200 text-base font-semibold">{leader.role}</p>
+                        </div>
                       </div>
                     </div>
+                    <div className="p-8">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {leader.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                      {leader.description}
-                    </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Operations & Management */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Operations & Management</h3>
+              <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {operationsTeam.map((leader, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-orange-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div className="relative h-72 overflow-hidden">
+                      <Image
+                        src={leader.image}
+                        alt={leader.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                          <h3 className="text-white text-lg font-bold">{leader.name}</h3>
+                          <p className="text-orange-200 text-sm font-medium">{leader.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        {leader.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Ministry Leaders */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Ministry Leaders</h3>
+              <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {ministryLeaders.map((leader, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-blue-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div className="relative h-64 overflow-hidden">
+                      <Image
+                        src={leader.image}
+                        alt={leader.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                          <h3 className="text-white text-base font-bold leading-tight">{leader.name}</h3>
+                          <p className="text-blue-200 text-xs font-medium">{leader.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-xs">
+                        {leader.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Fellowship Leaders */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Fellowship Leaders</h3>
+              <div className="w-20 h-1 bg-green-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {fellowshipLeaders.map((leader, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-green-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div className="relative h-72 overflow-hidden">
+                      <Image
+                        src={leader.image}
+                        alt={leader.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                          <h3 className="text-white text-lg font-bold">{leader.name}</h3>
+                          <p className="text-green-200 text-sm font-medium">{leader.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        {leader.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
           
           {/* Team Message */}
           <motion.div
@@ -360,13 +494,16 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="text-center"
           >
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-8 border border-amber-200/50 dark:border-amber-800/50">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                Serving Together
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-3xl p-12 border border-amber-200/50 dark:border-amber-800/50 max-w-4xl mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
+                Serving Together in Unity
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
                 Our leadership team works hand-in-hand with dedicated volunteers and ministry leaders 
                 who serve faithfully in various capacities. Together, we're committed to creating an 
                 environment where everyone can grow in their relationship with God and one another.

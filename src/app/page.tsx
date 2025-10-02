@@ -5,31 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Play, Users, BookOpen, Clock, Car, Home as HomeIcon, MessageSquare, ArrowUpRight, Building, Heart, Target } from "lucide-react";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import { getUpcomingEvents } from "@/lib/events";
 
 export default function Home() {
-  const upcomingEvents = [
-    {
-      title: "RHB Youth Week",
-      date: "September 19-21",
-      time: "Various Times",
-      image: "/Events/Fresh Oil, New Flame.jpeg",
-      description: "3-Day Youth and Young Adult Program: Fresh Oil, New Flame. Prayer & Fellowship, Outreach, Academic Talk & Barbecue, Youth Sunday."
-    },
-    {
-      title: "Marriage Weekend",
-      date: "November 7-9, 2025",
-      time: "Friday 7:00 PM - Sunday 4:00 PM",
-      image: "/Events/Marriage Weekend.jpeg",
-      description: "A special weekend retreat for married couples to strengthen their relationship, grow together in faith, and enjoy quality time with other couples in a beautiful setting."
-    },
-    {
-      title: "Sunday Service",
-      date: "Every Sunday",
-      time: "10:00 AM - 12:00 PM",
-      image: "/Events/Faith Clinic.jpeg",
-      description: "Join us for inspiring worship, powerful preaching, and fellowship with our church family."
-    }
-  ];
+  const upcomingEvents = getUpcomingEvents(3); // Get top 3 upcoming events
 
   return (
     <>
@@ -50,22 +29,22 @@ export default function Home() {
           </motion.div>
 
           {/* Gentle Church Identity */}
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight px-4"
           >
             <span className="text-white">Restoration House</span>{" "}
             <span className="text-stone-200">Brantford</span>
           </motion.h1>
 
           {/* Warm Mission Statement */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl font-light mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl font-light mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed px-4"
           >
             Where Faith Meets Family and Love Never Fails
           </motion.p>
@@ -91,10 +70,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="inline-flex items-center bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3"
+            className="inline-flex flex-col sm:flex-row items-center bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-4 sm:px-6 py-3 gap-2 sm:gap-0 mx-4"
           >
-            <Clock className="w-4 h-4 mr-3 text-amber-200" />
-            <span className="text-sm font-medium">Sundays at 10:00 AM • 7 Burnley Ave</span>
+            <Clock className="w-4 h-4 sm:mr-3 text-amber-200" />
+            <span className="text-xs sm:text-sm font-medium text-center">Sundays at 10:00 AM • 7 Burnley Ave</span>
           </motion.div>
         </div>
 
@@ -128,7 +107,7 @@ export default function Home() {
                 <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-stone-200/50 dark:border-gray-700/50">
                   <div className="aspect-[3/4] relative">
                     <Image
-                      src="/Media/Leadership/Pst Seyi.png"
+                      src="/Media/Leadership/NewSeyi.jpg"
                       alt="Pastor Oluwaseyi Akinbiyi - Restoration House Brantford"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"

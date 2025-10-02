@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Users, Heart, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Users, Heart, MessageSquare, Calendar } from "lucide-react";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 

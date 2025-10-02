@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -16,7 +17,6 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -78,7 +78,6 @@ const Navigation = () => {
               ))}
             </div>
 
-
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center space-x-4">
               <button
@@ -128,8 +127,6 @@ const Navigation = () => {
                       </Link>
                     </motion.div>
                   ))}
-                  
-                  
                 </div>
               </div>
             </motion.div>

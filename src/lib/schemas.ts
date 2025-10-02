@@ -6,7 +6,11 @@ export const newsletterSchema = z.object({
     .string()
     .email('Please enter a valid email address')
     .min(1, 'Email is required'),
-  firstName: z.string().optional(),
+  firstName: z
+    .string()
+    .max(50, 'Name must be less than 50 characters')
+    .optional()
+    .or(z.literal('')),
 });
 
 // Contact form schema

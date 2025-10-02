@@ -2,68 +2,30 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Calendar, Clock, MapPin, Users, Heart, MessageSquare } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, Heart, MessageSquare, X, Phone, Mail, Globe } from "lucide-react";
 import { useState } from "react";
+import { getEventsByCategory, getUpcomingEvents, getPastEvents, Event, parseEventDate } from "@/lib/events";
 
 export default function Events() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const eventCategories = ["All", "Weekly", "Monthly", "Youth & Young Adult", "Special Events"];
   
-  const upcomingEvents = [
-    {
-      title: "Sunday Service",
-      date: "Every Sunday",
-      time: "10:00 AM - 12:00 PM",
-      image: "/Events/Fresh Oil, New Flame.jpeg",
-      category: "Weekly",
-      description: "Join us for inspiring worship, powerful preaching, and fellowship with our church family at 7 Burnley Ave, Brantford, Ontario."
-    },
-    {
-      title: "Digging Deep",
-      date: "Every Tuesday", 
-      time: "7:00 PM - 8:00 PM",
-      image: "/Events/Digging Deep.jpeg",
-      category: "Weekly",
-      description: "Join us as we explore Scripture, ask questions, and learn how to apply biblical truths in everyday life at 7 Burnley Ave, Brantford, Ontario."
-    },
-    {
-      title: "Faith Clinic",
-      date: "Every Thursday",
-      time: "7:00 PM - 8:00 PM", 
-      image: "/Events/Faith Clinic.jpeg",
-      category: "Weekly",
-      description: "An hour dedicated to prayer and intercession. Come and strengthen your faith as we pray for personal needs, families, the church, and our community at 7 Burnley Ave, Brantford, Ontario."
-    },
-    {
-      title: "RHB Youth Week",
-      date: "September 19-21, 2025",
-      time: "Various Times",
-      image: "/Events/Faith Clinic.jpeg",
-      category: "Youth & Young Adult",
-      description: "3-Day Youth and Young Adult Program - Fresh Oil, New Flame. Friday 10 PM-2 AM: Prayer & Fellowship, Saturday 10 AM-3 PM: Outreach & Academic Talk, Sunday 10 AM: Youth Sunday."
-    },
-    {
-      title: "Night Vigil",
-      date: "Third Friday Monthly",
-      time: "10:00 PM - 2:00 AM",
-      image: "/Media/Testimony.png",
-      category: "Monthly", 
-      description: "Monthly All-Night Vigil - a powerful time of prayer and worship. Come ready to pray, listen, and encounter God's presence in a unique and intimate way."
-    },
-    {
-      title: "Community Outreach BBQ",
-      date: "October 12, 2025",
-      time: "12:00 PM - 6:00 PM",
-      image: "/Events/Digging Deep.jpeg",
-      category: "Special Events",
-      description: "Join us as we serve our local community with free food, music, and support services. All welcome to attend or volunteer."
-    }
-  ];
+  const upcomingEvents = getUpcomingEvents(); // Get all upcoming events sorted by priority
+  const pastEvents = getPastEvents(); // Get past events
+  const allEvents = [...upcomingEvents, ...pastEvents]; // Combine with upcoming first
 
   // Filter events based on selected category
   const filteredEvents = selectedCategory === "All" 
-    ? upcomingEvents 
-    : upcomingEvents.filter(event => event.category === selectedCategory);
+    ? allEvents 
+    : allEvents.filter(event => event.category === selectedCategory);
+
+  // Helper function to check if event is past
+  const isPastEvent = (event: Event): boolean => {
+    if (event.isRecurring) return false;
+    const eventDate = parseEventDate(event);
+    return eventDate < new Date();
+  };
 
   return (
     <>
@@ -160,7 +122,11 @@ export default function Events() {
                   type: "spring",
                   stiffness: 100
                 }}
-                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-amber-100/50 dark:border-gray-700/50 hover:-translate-y-2"
+                className={`group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border hover:-translate-y-2 ${
+                  isPastEvent(event) 
+                    ? 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-75' 
+                    : 'bg-white dark:bg-gray-800 border-amber-100/50 dark:border-gray-700/50'
+                }`}
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
@@ -170,10 +136,15 @@ export default function Events() {
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 flex gap-2">
                     <span className="inline-block bg-amber-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">
                       {event.category}
                     </span>
+                    {isPastEvent(event) && (
+                      <span className="inline-block bg-gray-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Past Event
+                      </span>
+                    )}
                   </div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-white text-xl font-bold drop-shadow-lg">{event.title}</h3>
@@ -192,11 +163,18 @@ export default function Events() {
                     </div>
                     <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                       <MapPin className="w-4 h-4 mr-3 text-amber-600 dark:text-amber-400 flex-shrink-0" />
-                      <span>7 Burnley Ave, Brantford, ON</span>
+                      <span>{event.location || "7 Burnley Ave, Brantford, ON"}</span>
                     </div>
                   </div>
-                  <button className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105">
-                    Learn More
+                  <button 
+                    onClick={() => setSelectedEvent(event)}
+                    className={`w-full font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105 ${
+                      isPastEvent(event)
+                        ? 'bg-gray-500 hover:bg-gray-600 text-white cursor-default'
+                        : 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white'
+                    }`}
+                  >
+                    {isPastEvent(event) ? 'Past Event' : 'Learn More'}
                   </button>
                 </div>
               </motion.div>
@@ -205,7 +183,191 @@ export default function Events() {
         </div>
       </section>
 
+      {/* Event Details Modal */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedEvent(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="absolute top-4 right-4 p-2 bg-black/20 backdrop-blur-sm rounded-full text-white hover:bg-black/40 transition-all duration-300"
+                >
+                  <X className="w-5 h-5" />
+                </button>
 
+                {/* Event Category & Status */}
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className="inline-block bg-amber-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {selectedEvent.category}
+                  </span>
+                  {isPastEvent(selectedEvent) && (
+                    <span className="inline-block bg-gray-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      Past Event
+                    </span>
+                  )}
+                </div>
+
+                {/* Event Title */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
+                    {selectedEvent.title}
+                  </h2>
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 max-h-[calc(90vh-16rem)] overflow-y-auto">
+                {/* Event Details */}
+                <div className="grid gap-4 mb-6">
+                  <div className="flex items-center text-gray-600 dark:text-gray-300">
+                    <Calendar className="w-5 h-5 mr-3 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                    <span className="font-medium">{selectedEvent.date}</span>
+                  </div>
+                  <div className="flex items-center text-gray-600 dark:text-gray-300">
+                    <Clock className="w-5 h-5 mr-3 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                    <span>{selectedEvent.time}</span>
+                  </div>
+                  <div className="flex items-start text-gray-600 dark:text-gray-300">
+                    <MapPin className="w-5 h-5 mr-3 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                    <span>{selectedEvent.location || "7 Burnley Ave, Brantford, ON"}</span>
+                  </div>
+                </div>
+
+                {/* Event Description */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                    About This Event
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {selectedEvent.description}
+                  </p>
+                </div>
+
+                {/* Additional Details for Different Event Types */}
+                {selectedEvent.category === "Weekly" && (
+                  <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
+                    <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
+                      Weekly Schedule
+                    </h4>
+                    <p className="text-amber-700 dark:text-amber-300 text-sm">
+                      This is a recurring weekly event. Join us every week for consistent spiritual growth and community fellowship.
+                    </p>
+                  </div>
+                )}
+
+                {selectedEvent.category === "Special Events" && !isPastEvent(selectedEvent) && (
+                  <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                    <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                      Special Event Details
+                    </h4>
+                    <p className="text-green-700 dark:text-green-300 text-sm">
+                      This is a special one-time event. Don't miss this unique opportunity to connect and grow with our community.
+                    </p>
+                  </div>
+                )}
+
+                {selectedEvent.category === "Youth & Young Adult" && (
+                  <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                    <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                      Youth & Young Adult Focus
+                    </h4>
+                    <p className="text-blue-700 dark:text-blue-300 text-sm">
+                      Designed specifically for young people to connect, learn, and grow together in faith and fellowship.
+                    </p>
+                  </div>
+                )}
+
+                {/* Contact Information */}
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-4">
+                    Need More Information?
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center text-gray-600 dark:text-gray-300">
+                      <Phone className="w-4 h-4 mr-3 text-amber-600 dark:text-amber-400" />
+                      <span className="text-sm">+1 (519) 304-3600</span>
+                    </div>
+                    <div className="flex items-center text-gray-600 dark:text-gray-300">
+                      <Mail className="w-4 h-4 mr-3 text-amber-600 dark:text-amber-400" />
+                      <span className="text-sm">hello@rccgbrantford.com</span>
+                    </div>
+                    <div className="flex items-center text-gray-600 dark:text-gray-300">
+                      <Globe className="w-4 h-4 mr-3 text-amber-600 dark:text-amber-400" />
+                      <span className="text-sm">rccgbrantford.com</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                {!isPastEvent(selectedEvent) && selectedEvent.id === "marriage-weekend-2025" && (
+                  <div className="flex gap-3 mt-6">
+                    <a
+                      href="https://www.restorationhouse.ca/event-details/mw2025"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg text-center"
+                    >
+                      Register Now
+                    </a>
+                    <button
+                      onClick={() => setSelectedEvent(null)}
+                      className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+
+                {!isPastEvent(selectedEvent) && selectedEvent.id !== "marriage-weekend-2025" && (
+                  <div className="mt-6">
+                    <button
+                      onClick={() => setSelectedEvent(null)}
+                      className="w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+
+                {isPastEvent(selectedEvent) && (
+                  <div className="mt-6">
+                    <button 
+                      onClick={() => setSelectedEvent(null)}
+                      className="w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

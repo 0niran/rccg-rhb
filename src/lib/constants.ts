@@ -1,27 +1,39 @@
 // Site Configuration
 export const SITE_CONFIG = {
   name: "Restoration House Brantford",
-  description: "A vibrant community of faith committed to spiritual growth, worship, and service in Brantford, Ontario",
+  description: "RCCG Restoration House Brantford - A welcoming Christian church serving Brantford, Paris, Cambridge, and surrounding communities. Join us for Sunday worship, Bible study, prayer meetings, and family ministries.",
   url: "https://rccgbrantford.com",
   ogImage: "/Media/RHB Logos/RCCG Restoration House Brantford-White.svg",
   keywords: [
     "church brantford",
-    "RCCG",
-    "Restoration House",
-    "christian church",
-    "worship",
-    "community",
-    "faith",
-    "sunday service",
-    "brantford ontario",
-    "church ministries"
+    "churches near me brantford",
+    "RCCG Brantford",
+    "Restoration House Brantford",
+    "christian church brantford ontario",
+    "sunday service brantford",
+    "church in brantford",
+    "churches in brantford ontario",
+    "brantford church",
+    "church near me",
+    "redeemed christian church brantford",
+    "RCCG Ontario",
+    "worship brantford",
+    "bible study brantford",
+    "family church brantford",
+    "church ministries brantford",
+    "church paris ontario",
+    "church cambridge ontario",
+    "faith community brantford",
+    "prayer meeting brantford",
+    "youth church brantford",
+    "7 burnley ave brantford"
   ],
   author: "Restoration House Brantford"
 } as const;
 
 // Contact Information
 export const CONTACT_INFO = {
-  phone: "(519) 304-3600",
+  phone: "+1 (519) 304-3600",
   email: "hello@rccgbrantford.com",
   address: {
     main: "7 Burnley Ave, Brantford, ON N3T 1T5",

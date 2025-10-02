@@ -62,12 +62,26 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
   return (
     <div className={className}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        {/* Name, Email and Submit on same line */}
+        <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
+          <div className="flex-1">
+            <input
+              {...register('firstName')}
+              type="text"
+              placeholder="Your Name (Optional)"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-sm"
+              disabled={isSubmitting}
+            />
+            {errors.firstName && (
+              <p className="text-red-300 text-sm mt-1">{errors.firstName.message}</p>
+            )}
+          </div>
+          
           <div className="flex-1">
             <input
               {...register('email')}
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your email *"
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-sm"
               disabled={isSubmitting}
             />
@@ -79,7 +93,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-amber-600 hover:bg-amber-700 disabled:bg-amber-600/50 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            className="bg-amber-600 hover:bg-amber-700 disabled:bg-amber-600/50 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 disabled:hover:scale-100 disabled:cursor-not-allowed whitespace-nowrap"
           >
             {isSubmitting ? (
               <div className="flex items-center space-x-2">

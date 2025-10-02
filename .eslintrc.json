@@ -9,17 +9,20 @@
     "no-implied-eval": "error",
     "no-new-func": "error",
     "no-script-url": "error",
-    
+
     // Performance rules
     "@next/next/no-img-element": "error",
     "@next/next/no-page-custom-font": "warn",
-    
+
     // Code quality
     "prefer-const": "error",
     "no-var": "error",
     "no-unused-vars": "warn",
     "no-console": "warn",
-    
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-require-imports": "warn",
+
     // React best practices
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off"

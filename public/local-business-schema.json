@@ -1,0 +1,114 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "@id": "https://rccgbrantford.com/#church",
+  "name": "RCCG Restoration House Brantford",
+  "alternateName": ["Restoration House Brantford", "RCCG Brantford"],
+  "description": "A welcoming Christian church serving Brantford, Paris, Cambridge, and surrounding communities. Join us for Sunday worship, Bible study, prayer meetings, and family ministries.",
+  "url": "https://rccgbrantford.com",
+  "logo": "https://rccgbrantford.com/Media/RHB Logos/RCCG Restoration House Brantford-White.svg",
+  "image": "https://rccgbrantford.com/Media/Image/1.JPG",
+  "telephone": "+1-519-304-3600",
+  "email": "hello@rccgbrantford.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "7 Burnley Ave",
+    "addressLocality": "Brantford",
+    "addressRegion": "ON",
+    "postalCode": "N3T 1T5",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "43.1334",
+    "longitude": "-80.2644"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Brantford",
+      "containedInPlace": {
+        "@type": "AdministrativeArea",
+        "name": "Ontario"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Paris",
+      "containedInPlace": {
+        "@type": "AdministrativeArea",
+        "name": "Ontario"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Cambridge",
+      "containedInPlace": {
+        "@type": "AdministrativeArea",
+        "name": "Ontario"
+      }
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "10:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "19:00",
+      "closes": "20:00",
+      "description": "Digging Deep Bible Study"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "19:00",
+      "closes": "20:00",
+      "description": "Faith Clinic Prayer Meeting"
+    }
+  ],
+  "sameAs": [
+    "https://facebook.com/rccgbrantford",
+    "https://instagram.com/rccgbrantford",
+    "https://youtube.com/@rccgbrantford",
+    "https://twitter.com/rccgbrantford"
+  ],
+  "hasMap": "https://maps.google.com/?q=7+Burnley+Ave,+Brantford,+ON+N3T+1T5",
+  "priceRange": "Free",
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Sunday Worship Service",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Bible Study",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Prayer Meetings",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Youth Ministry",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Children's Ministry",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Family Ministry",
+      "value": true
+    }
+  ]
+}
