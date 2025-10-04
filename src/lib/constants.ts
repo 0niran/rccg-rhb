@@ -66,13 +66,13 @@ export const EXTERNAL_LINKS = {
 export const IMAGES = {
   logo: "/Media/RHB Logos/RCCG Restoration House Brantford-White.svg",
   heroSlideshow: [
-    "/Media/Image/1.JPG?v=2024",
-    "/Media/Image/2.JPG?v=2024", 
-    "/Media/Image/3.JPG?v=2024",
     "/Media/Image/4.JPG?v=2024",
+    "/Media/Image/2.JPG?v=2024",
     "/Media/Image/5.JPG?v=2024",
-    "/Media/Image/6.JPG?v=2024",
-    "/Media/Image/7.JPG?v=2024"
+    "/Media/Image/1.JPG?v=2024",
+    "/Media/Image/7.JPG?v=2024",
+    "/Media/Image/3.JPG?v=2024",
+    "/Media/Image/6.JPG?v=2024"
   ],
   leadership: {
     pastor: "/Media/Leadership/Pst Seyi.png",

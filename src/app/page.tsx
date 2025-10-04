@@ -116,7 +116,7 @@ export default function Home() {
                     <div className="absolute bottom-6 left-6 right-6">
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                         <h3 className="text-white text-xl font-bold mb-1">Pastor Oluwaseyi Akinbiyi</h3>
-                        <p className="text-white/80 text-sm">Senior Pastor & Founder</p>
+                        <p className="text-white/80 text-sm">Lead Pastor</p>
                       </div>
                     </div>
                   </div>

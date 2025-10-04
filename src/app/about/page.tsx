@@ -25,7 +25,7 @@ export default function About() {
     {
       name: "Pastor Taiwo Sodipo",
       role: "Chief of Staff",
-      image: "/Media/Leadership/Pst. Taiwo Sodipo.png",
+      image: "/Media/Leadership/Taiwo.png",
       description: "Coordinating ministry activities and ensuring smooth operation of church programs and initiatives.",
       tier: "executive"
     }
@@ -36,13 +36,13 @@ export default function About() {
     {
       name: "Sis. Temitope Kagho",
       role: "Finance Manager",
-      image: "/Media/Leadership/Temi Kagho.png",
+      image: "/Media/Leadership/Temi.png",
       description: "Managing church finances with integrity and ensuring proper stewardship of God's resources."
     },
     {
       name: "Akinlolu Oladosu",
       role: "Director of Programs",
-      image: "/Media/Leadership/Akinlolu.png",
+      image: "/Media/Leadership/Oladosu.png",
       description: "Overseeing church programs and events to foster spiritual growth and community engagement."
     }
   ];
@@ -50,9 +50,21 @@ export default function About() {
   // Ministry Leaders
   const ministryLeaders = [
     {
+      name: "Pastor Kwadwo Adjei",
+      role: "Minister in Charge, Fellowship & Welfare",
+      image: "/Media/Leadership/Kwado.png",
+      description: "Managing fellowship programs, follow-up ministry, and welfare initiatives for church members."
+    },
+    {
+      name: "Pastor Godstime Iwenekhai",
+      role: "Minister in Charge, Sunday School, Workers in Training, Digging Deep & Believers Class",
+      image: "/Media/Leadership/Godstime.png",
+      description: "Leading spiritual development through Sunday School, Workers in Training, Digging Deep, and Believers Class programs."
+    },
+    {
       name: "Pastor Dipo Ajayi",
       role: "Minister in Charge, Choir & Media",
-      image: "/Media/Leadership/Pst. Dipo.jpg",
+      image: "/Media/Leadership/Dipo.jpg",
       description: "Leading worship through music and overseeing media ministry to enhance our worship experience."
     },
     {
@@ -62,16 +74,28 @@ export default function About() {
       description: "Nurturing the next generation through dedicated ministry to children, teenagers, and youth."
     },
     {
-      name: "Pastor Johnson Oluwaleke",
-      role: "Minister in Charge, Ushering & Logistics",
-      image: "/Media/Leadership/Pst. Johnson Oluwaleke.jpg",
-      description: "Overseeing ushering, protocol, security, transport, and logistics to ensure smooth church operations."
+      name: "Pastor David Ojeyinka",
+      role: "Lead Pastor, Youth and Young Adult Church",
+      image: "/Media/Leadership/David Ojeyinka.jpg",
+      description: "Providing spiritual leadership and guidance to the youth and young adult congregation."
     },
     {
-      name: "Pastor Kwadwo Adjei",
-      role: "Minister in Charge, Fellowship & Welfare",
-      image: "/Media/Leadership/Pst. Kwadwo Adjei.png",
-      description: "Managing fellowship programs, follow-up ministry, and welfare initiatives for church members."
+      name: "Pastor Johnson Oluwaleke",
+      role: "Minister in Charge, Prayer",
+      image: "/Media/Leadership/Pst. Johnson Oluwaleke.jpg",
+      description: "Leading the prayer ministry and intercession for our church family and community."
+    },
+    {
+      name: "Deaconess Oluwadamilola Sodipo",
+      role: "Minister in Charge, Decoration, Sanitation & Hospitality",
+      image: "/Media/Leadership/Sodipo2.jpg",
+      description: "Overseeing church decoration, sanitation, and hospitality to create a welcoming and beautiful worship environment."
+    },
+    {
+      name: "Deaconess Folake Olukinni",
+      role: "Minister in Charge, Evangelism & Mission",
+      image: "/Media/Leadership/Folake.png",
+      description: "Leading evangelism efforts and mission outreach to spread the Gospel and reach our community with God's love."
     }
   ];
 
@@ -86,7 +110,7 @@ export default function About() {
     {
       name: "Sis. Hope Didi",
       role: "Women's Fellowship Leader",
-      image: "/Media/Leadership/Hope Didi.png",
+      image: "/Media/Leadership/Hope.png",
       description: "Leading the women's fellowship and nurturing spiritual growth among the sisters in our church."
     },
     {
@@ -362,12 +386,12 @@ export default function About() {
                   className="group"
                 >
                   <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-orange-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                    <div className="relative h-72 overflow-hidden">
+                    <div className="relative h-72 overflow-hidden bg-gray-50 dark:bg-gray-900">
                       <Image
                         src={leader.image}
                         alt={leader.name}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="object-contain group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                       <div className="absolute bottom-4 left-4 right-4">
@@ -401,7 +425,7 @@ export default function About() {
               <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {ministryLeaders.map((leader, index) => (
                 <motion.div
                   key={index}
@@ -450,7 +474,7 @@ export default function About() {
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Fellowship Leaders</h3>
               <div className="w-20 h-1 bg-green-500 mx-auto rounded-full"></div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {fellowshipLeaders.map((leader, index) => (
                 <motion.div
