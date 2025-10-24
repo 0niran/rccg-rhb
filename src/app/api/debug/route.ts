@@ -16,15 +16,11 @@ export async function GET() {
     const { Resend } = await import('resend');
     console.log('Resend imported successfully');
 
-    // Test 3: Try importing JSDOM
-    console.log('Testing JSDOM import...');
-    const { JSDOM } = await import('jsdom');
-    console.log('JSDOM imported successfully');
-
-    // Test 4: Try importing DOMPurify
-    console.log('Testing DOMPurify import...');
-    const createDOMPurify = await import('isomorphic-dompurify');
-    console.log('DOMPurify imported successfully');
+    // Test 3: Basic JavaScript functionality
+    console.log('Testing JavaScript functionality...');
+    const testHtml = '<script>alert("test")</script>Hello';
+    const escaped = testHtml.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    console.log('HTML escaping working:', escaped);
 
     // Test 5: Try initializing Resend client
     console.log('Testing Resend initialization...');
@@ -39,8 +35,7 @@ export async function GET() {
       envTest,
       imports: {
         resend: true,
-        jsdom: true,
-        dompurify: true,
+        htmlEscaping: true,
       },
       timestamp: new Date().toISOString(),
     });

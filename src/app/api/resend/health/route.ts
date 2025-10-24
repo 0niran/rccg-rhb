@@ -18,7 +18,8 @@ export async function GET() {
         success: true,
         message: healthCheck.message,
         data: {
-          emailId: healthCheck.emailId,
+          fromEmail: healthCheck.fromEmail,
+          toEmail: healthCheck.toEmail,
           timestamp: new Date().toISOString(),
         },
       });
