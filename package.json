@@ -26,6 +26,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@types/jsdom": "^27.0.0",
     "@types/mailchimp__mailchimp_marketing": "^3.0.21",
     "@types/node": "^20.19.17",
     "@types/react": "^18",
