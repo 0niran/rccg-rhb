@@ -1,8 +1,8 @@
 declare global {
   interface Window {
     grecaptcha: {
-      ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      ready: (_callback: () => void) => void;
+      execute: (_siteKey: string, _options: { action: string }) => Promise<string>;
     };
   }
 }

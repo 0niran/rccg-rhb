@@ -11,7 +11,6 @@ const ReCAPTCHAProvider: React.FC<ReCAPTCHAProviderProps> = ({ children }) => {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   if (!siteKey) {
-    console.warn('reCAPTCHA v3 site key not configured');
     return <>{children}</>;
   }
 
@@ -22,7 +21,6 @@ const ReCAPTCHAProvider: React.FC<ReCAPTCHAProviderProps> = ({ children }) => {
         async: false,
         defer: false,
         appendTo: "head",
-        src: `https://www.google.com/recaptcha/api.js?render=${siteKey}`,
       }}
     >
       {children}

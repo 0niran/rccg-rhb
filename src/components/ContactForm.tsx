@@ -80,8 +80,7 @@ export default function ContactForm() {
         // Fallback to native API
         recaptchaToken = await executeRecaptchaFallback('contact_form');
       }
-    } catch (error) {
-      console.error('reCAPTCHA execution failed:', error);
+    } catch {
       setSubmitMessage({
         type: 'error',
         text: 'Security verification failed. Please try again.',
