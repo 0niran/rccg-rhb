@@ -1,6 +1,4 @@
 import { Resend } from 'resend';
-import createDOMPurify from 'isomorphic-dompurify';
-import { JSDOM } from 'jsdom';
 
 interface ContactFormData {
   firstName: string;
@@ -48,18 +46,25 @@ class ResendService {
     this.ensureInitialized();
     const { firstName, lastName, email, phone, subject, message } = data;
 
-    // Initialize DOMPurify for content sanitization (server-side)
-    const window = new JSDOM('').window;
-    const DOMPurify = createDOMPurify(window as any);
+    // Basic sanitization - escape HTML characters and remove script tags
+    // Note: Zod validation already handles input validation at the API level
+    const escapeHtml = (str: string) => {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ''); // Remove script tags
+    };
 
-    // Sanitize all user inputs to prevent HTML injection
     const sanitizedData = {
-      firstName: DOMPurify.sanitize(firstName, { ALLOWED_TAGS: [] }),
-      lastName: DOMPurify.sanitize(lastName, { ALLOWED_TAGS: [] }),
-      email: DOMPurify.sanitize(email, { ALLOWED_TAGS: [] }),
-      phone: phone ? DOMPurify.sanitize(phone, { ALLOWED_TAGS: [] }) : '',
-      subject: DOMPurify.sanitize(subject, { ALLOWED_TAGS: [] }),
-      message: DOMPurify.sanitize(message, { ALLOWED_TAGS: ['br'], ALLOWED_ATTR: [] }),
+      firstName: escapeHtml(firstName.trim()),
+      lastName: escapeHtml(lastName.trim()),
+      email: escapeHtml(email.trim()),
+      phone: phone ? escapeHtml(phone.trim()) : '',
+      subject: escapeHtml(subject.trim()),
+      message: escapeHtml(message.trim()).replace(/\n/g, '<br>'),
     };
 
     try {
