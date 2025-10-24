@@ -49,6 +49,7 @@ const Navigation = () => {
                   alt="Restoration House Brantford"
                   fill
                   priority
+                  sizes="(max-width: 768px) 112px, 128px"
                   className="object-contain transition-all duration-500 group-hover:scale-110"
                 />
               </div>

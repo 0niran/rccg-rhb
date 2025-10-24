@@ -80,7 +80,8 @@ export default function RootLayout({
         className="font-sans antialiased bg-gray-900 text-gray-100"
         suppressHydrationWarning={true}
       >
-        {/* Google Analytics */}
+        {/* Google Analytics - Temporarily disabled due to CSP conflicts with reCAPTCHA */}
+        {/*
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NJCCMW82GC"
           strategy="afterInteractive"
@@ -93,6 +94,7 @@ export default function RootLayout({
             gtag('config', 'G-NJCCMW82GC');
           `}
         </Script>
+        */}
 
         {/* Structured Data for SEO */}
         <Script

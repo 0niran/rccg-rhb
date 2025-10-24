@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -21,8 +21,41 @@ const subjectOptions = [
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+
+  // Fallback reCAPTCHA execution using native API
+  const executeRecaptchaFallback = useCallback(async (action: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (typeof window !== 'undefined' && window.grecaptcha) {
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, { action })
+            .then(resolve)
+            .catch(reject);
+        });
+      } else {
+        reject(new Error('reCAPTCHA not available'));
+      }
+    });
+  }, []);
+
+  // Check if reCAPTCHA is ready
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      if (typeof window !== 'undefined' && window.grecaptcha) {
+        window.grecaptcha.ready(() => {
+          setRecaptchaReady(true);
+        });
+      }
+    };
+
+    checkRecaptcha();
+
+    // Fallback check after a delay
+    const timeout = setTimeout(checkRecaptcha, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const {
     register,
@@ -39,18 +72,22 @@ export default function ContactForm() {
 
     // Execute reCAPTCHA v3 before form submission
     let recaptchaToken = '';
-    if (executeRecaptcha) {
-      try {
+    try {
+      if (executeRecaptcha) {
+        // Try the library method first
         recaptchaToken = await executeRecaptcha('contact_form');
-      } catch (error) {
-        console.error('reCAPTCHA execution failed:', error);
-        setSubmitMessage({
-          type: 'error',
-          text: 'Security verification failed. Please try again.',
-        });
-        setIsSubmitting(false);
-        return;
+      } else if (recaptchaReady) {
+        // Fallback to native API
+        recaptchaToken = await executeRecaptchaFallback('contact_form');
       }
+    } catch (error) {
+      console.error('reCAPTCHA execution failed:', error);
+      setSubmitMessage({
+        type: 'error',
+        text: 'Security verification failed. Please try again.',
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     try {

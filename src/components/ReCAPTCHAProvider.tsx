@@ -22,6 +22,7 @@ const ReCAPTCHAProvider: React.FC<ReCAPTCHAProviderProps> = ({ children }) => {
         async: false,
         defer: false,
         appendTo: "head",
+        src: `https://www.google.com/recaptcha/api.js?render=${siteKey}`,
       }}
     >
       {children}

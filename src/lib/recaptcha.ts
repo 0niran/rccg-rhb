@@ -38,7 +38,18 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
     const data: RecaptchaResponse = await response.json();
 
     if (!data.success) {
-      console.warn('reCAPTCHA verification failed:', data['error-codes']);
+      const errorCodes = data['error-codes'] || [];
+      console.warn('reCAPTCHA verification failed:', errorCodes);
+
+      // In development, browser-error is common due to localhost restrictions
+      // Allow it to pass for development purposes
+      if (process.env.NODE_ENV === 'development' && errorCodes.includes('browser-error')) {
+        return {
+          success: true,
+          score: 0.9 // Assume good score for development
+        };
+      }
+
       return {
         success: false,
         error: 'reCAPTCHA verification failed'

@@ -53,6 +53,7 @@ const Footer = () => {
                   src="/Media/RHB Logos/RCCG Restoration House Brantford-White.svg"
                   alt="Restoration House Brantford Logo"
                   fill
+                  sizes="64px"
                   className="object-contain p-1"
                 />
               </div>
