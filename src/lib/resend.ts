@@ -24,8 +24,8 @@ class ResendService {
       this.resend = new Resend(apiKey);
     }
 
-    this.fromEmail = process.env.FROM_EMAIL || 'noreply@rccgbrantford.com';
-    this.toEmail = process.env.TO_EMAIL || 'hello@rccgbrantford.com';
+    this.fromEmail = process.env.FROM_EMAIL || '';
+    this.toEmail = process.env.TO_EMAIL || '';
   }
 
   private ensureInitialized() {
