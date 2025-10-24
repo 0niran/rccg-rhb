@@ -24,13 +24,19 @@ class ResendService {
       this.resend = new Resend(apiKey);
     }
 
-    this.fromEmail = process.env.FROM_EMAIL || '';
-    this.toEmail = process.env.TO_EMAIL || '';
+    this.fromEmail = process.env.FROM_EMAIL;
+    this.toEmail = process.env.TO_EMAIL;
   }
 
   private ensureInitialized() {
     if (!this.resend) {
       throw new Error('RESEND_API_KEY is not configured');
+    }
+    if (!this.fromEmail) {
+      throw new Error('FROM_EMAIL is not configured');
+    }
+    if (!this.toEmail) {
+      throw new Error('TO_EMAIL is not configured');
     }
   }
 
