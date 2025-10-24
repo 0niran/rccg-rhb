@@ -1,4 +1,6 @@
 import { Resend } from 'resend';
+import createDOMPurify from 'isomorphic-dompurify';
+import { JSDOM } from 'jsdom';
 
 interface ContactFormData {
   firstName: string;
@@ -36,28 +38,42 @@ class ResendService {
     this.ensureInitialized();
     const { firstName, lastName, email, phone, subject, message } = data;
 
+    // Initialize DOMPurify for content sanitization (server-side)
+    const window = new JSDOM('').window;
+    const DOMPurify = createDOMPurify(window as any);
+
+    // Sanitize all user inputs to prevent HTML injection
+    const sanitizedData = {
+      firstName: DOMPurify.sanitize(firstName, { ALLOWED_TAGS: [] }),
+      lastName: DOMPurify.sanitize(lastName, { ALLOWED_TAGS: [] }),
+      email: DOMPurify.sanitize(email, { ALLOWED_TAGS: [] }),
+      phone: phone ? DOMPurify.sanitize(phone, { ALLOWED_TAGS: [] }) : '',
+      subject: DOMPurify.sanitize(subject, { ALLOWED_TAGS: [] }),
+      message: DOMPurify.sanitize(message, { ALLOWED_TAGS: ['br'], ALLOWED_ATTR: [] }),
+    };
+
     try {
-      // 1. Send notification to church admin
+      // 1. Send notification to church admin using sanitized data
       const adminEmail = await this.resend!.emails.send({
         from: this.fromEmail,
         to: this.toEmail,
-        subject: `New Contact Form: ${subject}`,
+        subject: `New Contact Form: ${sanitizedData.subject}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          
+
           <h3>Contact Information:</h3>
           <ul>
-            <li><strong>Name:</strong> ${firstName} ${lastName}</li>
-            <li><strong>Email:</strong> ${email}</li>
-            <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
+            <li><strong>Name:</strong> ${sanitizedData.firstName} ${sanitizedData.lastName}</li>
+            <li><strong>Email:</strong> ${sanitizedData.email}</li>
+            <li><strong>Phone:</strong> ${sanitizedData.phone || 'Not provided'}</li>
           </ul>
-          
+
           <h3>Subject:</h3>
-          <p><strong>${subject}</strong></p>
-          
+          <p><strong>${sanitizedData.subject}</strong></p>
+
           <h3>Message:</h3>
-          <p style="white-space: pre-wrap; background: #f5f5f5; padding: 15px; border-radius: 5px;">${message}</p>
-          
+          <p style="white-space: pre-wrap; background: #f5f5f5; padding: 15px; border-radius: 5px;">${sanitizedData.message}</p>
+
           <hr style="margin: 20px 0;">
           <p style="color: #666; font-size: 12px;">
             Submitted: ${new Date().toLocaleString()}<br>
@@ -66,25 +82,25 @@ class ResendService {
         `,
       });
 
-      // 2. Send auto-response to user
+      // 2. Send auto-response to user using sanitized data
       const userEmail = await this.resend!.emails.send({
         from: this.fromEmail,
-        to: email,
+        to: sanitizedData.email,
         subject: 'Thank you for contacting Restoration House Brantford',
         html: `
           <h2>Thank you for reaching out!</h2>
-          
-          <p>Dear ${firstName},</p>
-          
-          <p>Thank you for contacting Restoration House Brantford! We have received your message regarding "<strong>${subject}</strong>" and will get back to you as soon as possible.</p>
-          
+
+          <p>Dear ${sanitizedData.firstName},</p>
+
+          <p>Thank you for contacting Restoration House Brantford! We have received your message regarding "<strong>${sanitizedData.subject}</strong>" and will get back to you as soon as possible.</p>
+
           <p>Our team typically responds within 24-48 hours. If you need immediate assistance, please feel free to call us at <strong>(519) 304-3600</strong>.</p>
-          
+
           <p>We look forward to connecting with you!</p>
-          
+
           <p>Blessings,<br>
           <strong>The RHB Team</strong></p>
-          
+
           <hr style="margin: 20px 0;">
           <p style="color: #666; font-size: 12px;">
             <strong>Restoration House Brantford</strong><br>

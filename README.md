@@ -38,7 +38,7 @@ TO_EMAIL=hello@rccgbrantford.com
 
 ## Deployment
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment instructions.
+Deploy to your preferred hosting platform. The application builds as a static site.
 
 ## Contact
 

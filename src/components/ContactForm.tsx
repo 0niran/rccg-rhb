@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { contactSchema, type ContactForm as ContactFormType, type FormResponse } from '@/lib/schemas';
 
 const subjectOptions = [
@@ -21,6 +22,8 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {
     register,
     handleSubmit,
@@ -34,13 +37,32 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setSubmitMessage(null);
 
+    // Execute reCAPTCHA v3 before form submission
+    let recaptchaToken = '';
+    if (executeRecaptcha) {
+      try {
+        recaptchaToken = await executeRecaptcha('contact_form');
+      } catch (error) {
+        console.error('reCAPTCHA execution failed:', error);
+        setSubmitMessage({
+          type: 'error',
+          text: 'Security verification failed. Please try again.',
+        });
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          recaptchaToken,
+        }),
       });
 
       const result: FormResponse = await response.json();
@@ -159,7 +181,24 @@ export default function ContactForm() {
             <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
           )}
         </div>
-        
+
+        {/* Honeypot field - hidden from users but visible to bots */}
+        <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+          <label htmlFor="website">Website (leave blank):</label>
+          <input
+            {...register('website')}
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            placeholder="Leave this field empty"
+            disabled={isSubmitting}
+          />
+        </div>
+
+        {/* reCAPTCHA v3 - Invisible, executes automatically on form submission */}
+
         {/* Submit Button */}
         <button
           type="submit"

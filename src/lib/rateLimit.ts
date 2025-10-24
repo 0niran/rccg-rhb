@@ -52,15 +52,27 @@ export function getRateLimitIdentifier(request: Request): string {
   // Try to get IP from headers (works with most reverse proxies)
   const forwarded = request.headers.get('x-forwarded-for');
   const realIp = request.headers.get('x-real-ip');
+  const cfConnectingIp = request.headers.get('cf-connecting-ip'); // Cloudflare
+  const xClientIp = request.headers.get('x-client-ip');
 
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
+  // Try Cloudflare first, then other headers
+  const ip = cfConnectingIp || forwarded?.split(',')[0].trim() || realIp || xClientIp;
+
+  // Validate IP format (basic IPv4/IPv6 check)
+  if (ip) {
+    const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+    const ipv6Regex = /^([a-f0-9:]+:+)+[a-f0-9]+$/i;
+
+    if (ipv4Regex.test(ip) || ipv6Regex.test(ip)) {
+      return ip;
+    }
   }
 
-  if (realIp) {
-    return realIp;
-  }
+  // If no valid IP found, create a fallback based on user agent and other headers
+  const userAgent = request.headers.get('user-agent') || '';
+  const acceptLanguage = request.headers.get('accept-language') || '';
 
-  // Fallback to a default identifier (not ideal for production)
-  return 'unknown';
+  // Create a fingerprint from available headers (less ideal but better than 'unknown')
+  const fingerprint = Buffer.from(userAgent + acceptLanguage).toString('base64').slice(0, 16);
+  return `fallback-${fingerprint}`;
 }

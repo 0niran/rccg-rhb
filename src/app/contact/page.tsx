@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Users, Heart, MessageSquare, Calendar } from "lucide-react";
+import { MapPinIcon, PhoneIcon, EnvelopeIcon, UserGroupIcon, HeartIcon, ChatBubbleLeftRightIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
+import ReCAPTCHAProvider from "@/components/ReCAPTCHAProvider";
 
 export default function Contact() {
   return (
-    <>
+    <ReCAPTCHAProvider>
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
         {/* Background Elements */}
@@ -55,7 +56,7 @@ export default function Contact() {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                      <MapPinIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800 dark:text-gray-100">Visit Us</p>
@@ -63,20 +64,20 @@ export default function Contact() {
                       <p className="text-gray-600 dark:text-gray-300">Brantford, ON N3T 1T5, Canada</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                      <PhoneIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800 dark:text-gray-100">Call Us</p>
                       <p className="text-gray-600 dark:text-gray-300">(519) 304-3600</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                      <EnvelopeIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800 dark:text-gray-100">Email Us</p>
@@ -160,7 +161,7 @@ export default function Contact() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <CalendarIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Sunday Service</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">10:00 AM - 12:00 PM</p>
@@ -175,7 +176,7 @@ export default function Contact() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Users className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <UserGroupIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Digging Deep</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Tue 7:00 PM - 8:00 PM</p>
@@ -190,7 +191,7 @@ export default function Contact() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <HeartIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Faith Clinic</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Thu 7:00 PM - 8:00 PM</p>
@@ -205,7 +206,7 @@ export default function Contact() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <ChatBubbleLeftRightIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">House Fellowship</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Various Times</p>
@@ -215,6 +216,6 @@ export default function Contact() {
         </div>
       </section>
 
-    </>
+    </ReCAPTCHAProvider>
   );
 }

@@ -3,67 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Heart, Baby, GraduationCap, Calendar, MapPin, Clock } from "lucide-react";
+import { HeartIcon, CalendarIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
+import { ministries } from "@/data/ministries";
 
 export default function Ministries() {
-  const ministries = [
-    {
-      title: "Children Church",
-      subtitle: "Ages 18 months - 12 years",
-      icon: Baby,
-      image: "/Media/Image/Kids.jpg",
-      description: "A vibrant, safe, and nurturing environment where children discover God's love through age-appropriate worship, interactive lessons, and fun activities that help them grow in faith.",
-      features: [
-        "Interactive Bible stories and lessons",
-        "Creative worship and praise",
-        "Fun games and activities",
-        "Safe and supervised environment",
-        "Age-appropriate spiritual growth"
-      ],
-      schedule: "Sundays during main service",
-      time: "10:00 AM - 12:00 PM",
-      gradient: "from-amber-500 to-orange-600",
-      bgColor: "bg-amber-50",
-      darkBgColor: "dark:bg-amber-900/20"
-    },
-    {
-      title: "Youth & Young Adult Church",
-      subtitle: "Ages 13-25",
-      icon: GraduationCap,
-      image: "/Media/Leadership/Youth.jpeg",
-      description: "Empowering the next generation through dynamic worship, relevant teachings, and authentic community that helps young people navigate life's challenges with faith and purpose.",
-      features: [
-        "Contemporary worship and music",
-        "Relevant biblical teachings",
-        "Leadership development programs",
-        "Social events and outreach",
-        "Mentorship opportunities"
-      ],
-      schedule: "Main Sunday Service",
-      time: "10:00 AM - 12:00 PM",
-      gradient: "from-orange-500 to-red-600",
-      bgColor: "bg-orange-50",
-      darkBgColor: "dark:bg-orange-900/20"
-    },
-    {
-      title: "Adult Church",
-      icon: Users,
-      image: "/Media/Leadership/AdultChurch.JPG",
-      description: "A mature community focused on deepening faith, building meaningful relationships, and serving God through wisdom, experience, and spiritual maturity in all aspects of life.",
-      features: [
-        "In-depth Bible study and teaching",
-        "Fellowship and community building",
-        "Prayer and intercession ministry",
-        "Service and outreach opportunities",
-        "Spiritual mentoring and discipleship"
-      ],
-      schedule: "Main Sunday service",
-      time: "10:00 AM - 12:00 PM",
-      gradient: "from-amber-500 to-orange-600",
-      bgColor: "bg-amber-50",
-      darkBgColor: "dark:bg-amber-900/20"
-    }
-  ];
 
   return (
     <>
@@ -146,7 +89,7 @@ export default function Ministries() {
                         <ul className="space-y-2">
                           {ministry.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-center space-x-3">
-                              <Heart className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                              <HeartIcon className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
                               <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                             </li>
                           ))}
@@ -157,15 +100,15 @@ export default function Ministries() {
                       <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3">
-                            <Calendar className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                            <CalendarIcon className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             <span className="font-medium text-gray-800 dark:text-gray-100">{ministry.schedule}</span>
                           </div>
                           <div className="flex items-center space-x-3">
-                            <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                            <ClockIcon className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             <span className="text-gray-600 dark:text-gray-300">{ministry.time}</span>
                           </div>
                           <div className="flex items-center space-x-3">
-                            <MapPin className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                            <MapPinIcon className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             <span className="text-gray-600 dark:text-gray-300">{ministry.title === "Youth & Young Adult Church" ? "50 Market Street, Brantford, ON N3T 2Z5" : "7 Burnley Ave, Brantford, ON"}</span>
                           </div>
                         </div>

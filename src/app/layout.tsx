@@ -103,6 +103,24 @@ export default function RootLayout({
           }}
         />
 
+        {/* Security Monitoring */}
+        <Script
+          id="security-monitoring"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Import and initialize security monitoring
+              if (typeof window !== 'undefined') {
+                import('/src/lib/security').then(({ securityMonitor }) => {
+                  console.log('Security monitoring initialized');
+                }).catch(err => {
+                  console.warn('Security monitoring failed to initialize:', err);
+                });
+              }
+            `
+          }}
+        />
+
         <Navigation />
         <main className="min-h-screen">
           {children}

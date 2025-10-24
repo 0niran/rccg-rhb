@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { IMAGES } from '@/lib/constants';
 
 const images = IMAGES.heroSlideshow;
@@ -148,15 +148,15 @@ export default function HeroSlideshow() {
         className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
         aria-label="Previous image"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeftIcon className="w-6 h-6" />
       </button>
-      
+
       <button
         onClick={goToNext}
         className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
         aria-label="Next image"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRightIcon className="w-6 h-6" />
       </button>
       
       {/* Elegant dots indicator */}

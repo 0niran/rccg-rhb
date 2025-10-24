@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
@@ -92,7 +92,7 @@ const Navigation = () => {
                   animate={{ rotate: isOpen ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                  {isOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
                 </motion.div>
               </button>
             </div>

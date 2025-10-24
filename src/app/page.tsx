@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Play, Users, BookOpen, Clock, Car, Home as HomeIcon, MessageSquare, ArrowUpRight, Building, Heart, Target } from "lucide-react";
+import { CalendarIcon, UserGroupIcon, BookOpenIcon, ClockIcon, TruckIcon, HomeIcon, ChatBubbleLeftRightIcon, ArrowTopRightOnSquareIcon, BuildingOfficeIcon, HeartIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import { getUpcomingEvents } from "@/lib/events";
 
@@ -61,7 +61,7 @@ export default function Home() {
               className="inline-flex items-center bg-white/90 hover:bg-white text-gray-800 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl"
             >
               <span>Join Us This Sunday</span>
-              <Calendar className="w-5 h-5 ml-2" />
+              <CalendarIcon className="w-5 h-5 ml-2" />
             </Link>
           </motion.div>
 
@@ -72,7 +72,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="inline-flex flex-col sm:flex-row items-center bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-4 sm:px-6 py-3 gap-2 sm:gap-0 mx-4"
           >
-            <Clock className="w-4 h-4 sm:mr-3 text-amber-200" />
+            <ClockIcon className="w-4 h-4 sm:mr-3 text-amber-200" />
             <span className="text-xs sm:text-sm font-medium text-center">Sundays at 10:00 AM • 7 Burnley Ave</span>
           </motion.div>
         </div>
@@ -133,7 +133,7 @@ export default function Home() {
             >
               <div>
                 <div className="inline-flex items-center bg-stone-100 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700 rounded-full px-6 py-3 mb-6">
-                  <Heart className="w-4 h-4 mr-2 text-stone-600 dark:text-stone-400" />
+                  <HeartIcon className="w-4 h-4 mr-2 text-stone-600 dark:text-stone-400" />
                   <span className="text-sm font-medium text-stone-700 dark:text-stone-300 tracking-wide">From Our Pastor</span>
                 </div>
                 
@@ -166,7 +166,7 @@ export default function Home() {
                   className="inline-flex items-center bg-slate-600 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg"
                 >
                   <span>Plan Your Visit</span>
-                  <ArrowUpRight className="w-4 h-4 ml-2" />
+                  <ArrowTopRightOnSquareIcon className="w-4 h-4 ml-2" />
                 </Link>
                 
                 <Link
@@ -221,7 +221,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1">
-                    <Calendar className="w-4 h-4 text-white" />
+                    <CalendarIcon className="w-4 h-4 text-white" />
                   </div>
                 </div>
                 
@@ -263,7 +263,7 @@ export default function Home() {
               className="inline-flex items-center bg-amber-100 hover:bg-amber-200 dark:bg-amber-900/30 dark:hover:bg-amber-900/50 text-amber-800 dark:text-amber-200 font-medium px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md"
             >
               <span>View All Events</span>
-              <Calendar className="w-4 h-4 ml-2" />
+              <CalendarIcon className="w-4 h-4 ml-2" />
             </Link>
           </motion.div>
         </div>
@@ -284,7 +284,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center bg-stone-100 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700 rounded-full px-6 py-3 mb-8">
-              <Building className="w-4 h-4 mr-2 text-stone-600 dark:text-stone-400" />
+              <BuildingOfficeIcon className="w-4 h-4 mr-2 text-stone-600 dark:text-stone-400" />
               <span className="text-sm font-medium text-stone-700 dark:text-stone-300 tracking-wide">Building Our Future</span>
             </div>
             
@@ -311,7 +311,7 @@ export default function Home() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-stone-200/50 dark:border-gray-700/50"
             >
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Building className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+                <BuildingOfficeIcon className="w-8 h-8 text-slate-600 dark:text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Worship Sanctuary</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -327,7 +327,7 @@ export default function Home() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-stone-200/50 dark:border-gray-700/50"
             >
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+                <UserGroupIcon className="w-8 h-8 text-slate-600 dark:text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Children's Ministry</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -343,7 +343,7 @@ export default function Home() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-stone-200/50 dark:border-gray-700/50"
             >
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Target className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+                <AcademicCapIcon className="w-8 h-8 text-slate-600 dark:text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Youth Centre</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -361,7 +361,7 @@ export default function Home() {
           >
             <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-stone-200/50 dark:border-gray-700/50 max-w-4xl mx-auto">
               <div className="flex items-center justify-center mb-6">
-                <Heart className="w-6 h-6 text-slate-600 dark:text-slate-400 mr-3" />
+                <HeartIcon className="w-6 h-6 text-slate-600 dark:text-slate-400 mr-3" />
                 <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">
                   Partner With Us
                 </h3>
@@ -380,9 +380,9 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-gradient-to-r from-slate-600 to-stone-600 hover:from-slate-700 hover:to-stone-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
-                  <Heart className="w-5 h-5 mr-2" />
+                  <HeartIcon className="w-5 h-5 mr-2" />
                   <span>Give to Promise Land</span>
-                  <ArrowUpRight className="w-5 h-5 ml-2" />
+                  <ArrowTopRightOnSquareIcon className="w-5 h-5 ml-2" />
                 </Link>
                 
                 <Link
@@ -429,7 +429,7 @@ export default function Home() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 dark:border-gray-700/50"
             >
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Car className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+                <TruckIcon className="w-8 h-8 text-slate-600 dark:text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Book a Shared Ride</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
@@ -475,7 +475,7 @@ export default function Home() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 dark:border-gray-700/50"
             >
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <MessageSquare className="w-8 h-8 text-slate-600 dark:text-slate-400" />
+                <ChatBubbleLeftRightIcon className="w-8 h-8 text-slate-600 dark:text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Give a Testimony</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">

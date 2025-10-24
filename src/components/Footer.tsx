@@ -3,7 +3,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Heart, Users, MessageSquare, ArrowRight } from "lucide-react";
+import {
+  ArrowRightIcon,
+  HeartIcon,
+  UserGroupIcon,
+  ChatBubbleLeftRightIcon
+} from "@heroicons/react/24/outline";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon
+} from "@heroicons/react/24/solid";
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {
@@ -59,17 +70,14 @@ const Footer = () => {
             
             {/* Social Links */}
             <div className="flex space-x-4">
-              <a href="https://facebook.com/rccgbrantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Facebook">
-                <Facebook className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              <a href="https://www.facebook.com/share/19mkBkVF5S/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Facebook">
+                <FaFacebook className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
               </a>
-              <a href="https://instagram.com/rccgbrantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Instagram">
-                <Instagram className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              <a href="https://www.instagram.com/restorationhouse_brantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Instagram">
+                <FaInstagram className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
               </a>
-              <a href="https://youtube.com/@rccgbrantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Subscribe to our YouTube channel">
-                <Youtube className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
-              </a>
-              <a href="https://twitter.com/rccgbrantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Twitter">
-                <Twitter className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              <a href="https://www.youtube.com/@rccgrestorationhousebrantf8713" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Subscribe to our YouTube channel">
+                <FaYoutube className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
               </a>
             </div>
           </motion.div>
@@ -85,11 +93,11 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className="group flex items-center text-gray-300 hover:text-amber-400 transition-all duration-300 hover:translate-x-1"
                   >
-                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ArrowRightIcon className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -108,7 +116,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <Users className="w-5 h-5 text-amber-400" />
+                  <UserGroupIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="font-medium text-white">Sunday Service</p>
@@ -117,7 +125,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <MessageSquare className="w-5 h-5 text-amber-400" />
+                  <ChatBubbleLeftRightIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="font-medium text-white">Digging Deep</p>
@@ -126,7 +134,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <Heart className="w-5 h-5 text-amber-400" />
+                  <HeartIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="font-medium text-white">Faith Clinic</p>
@@ -147,7 +155,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center mt-0.5">
-                  <MapPin className="w-5 h-5 text-amber-400" />
+                  <MapPinIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="text-white font-medium">Visit Us</p>
@@ -159,7 +167,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-amber-400" />
+                  <PhoneIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="text-white font-medium">Call Us</p>
@@ -170,7 +178,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-amber-400" />
+                  <EnvelopeIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="text-white font-medium">Email Us</p>
@@ -226,8 +234,16 @@ const Footer = () => {
               </Link>
               <div className="flex items-center space-x-2 text-gray-500">
                 <span>Made with</span>
-                <Heart className="w-4 h-4 text-amber-500" />
-                <span>for our community</span>
+                <HeartIcon className="w-4 h-4 text-amber-500" />
+                <span>by</span>
+                <a
+                  href="https://cortexcreative.ca"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-500 hover:text-amber-400 font-medium transition-colors"
+                >
+                  Cortex Creative
+                </a>
               </div>
             </div>
           </div>

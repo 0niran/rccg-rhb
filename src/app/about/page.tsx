@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Building, Eye, Heart, Users, Calendar, MapPin, Star, Award, BookOpen, Compass } from "lucide-react";
+import { BuildingOfficeIcon, EyeIcon, HeartIcon, UserGroupIcon, CalendarIcon, MapPinIcon, StarIcon, TrophyIcon, BookOpenIcon, MapIcon } from "@heroicons/react/24/outline";
 
 export default function About() {
   // Executive Leadership
@@ -251,7 +251,7 @@ export default function About() {
               className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-8 border border-amber-200/50 dark:border-amber-800/50 text-center group hover:shadow-xl transition-all duration-300"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Compass className="w-8 h-8 text-white" />
+                <MapIcon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Our Mission</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -267,7 +267,7 @@ export default function About() {
               className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-2xl p-8 border border-orange-200/50 dark:border-orange-800/50 text-center group hover:shadow-xl transition-all duration-300"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Eye className="w-8 h-8 text-white" />
+                <EyeIcon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Our Vision</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -283,7 +283,7 @@ export default function About() {
               className="bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-2xl p-8 border border-yellow-200/50 dark:border-yellow-800/50 text-center group hover:shadow-xl transition-all duration-300"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Heart className="w-8 h-8 text-white" />
+                <HeartIcon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Our Values</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -522,7 +522,7 @@ export default function About() {
           >
             <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-3xl p-12 border border-amber-200/50 dark:border-amber-800/50 max-w-4xl mx-auto">
               <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-white" />
+                <UserGroupIcon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
                 Serving Together in Unity
@@ -564,7 +564,7 @@ export default function About() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Users className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <UserGroupIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Welcoming Community</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">A place where everyone belongs, regardless of background or life stage</p>
@@ -578,7 +578,7 @@ export default function About() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <BookOpenIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Biblical Teaching</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Sound, practical teaching that applies God's Word to everyday life</p>
@@ -592,7 +592,7 @@ export default function About() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <HeartIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Heartfelt Worship</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Authentic worship that connects hearts to God through music and prayer</p>
@@ -606,7 +606,7 @@ export default function About() {
               className="text-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Star className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <StarIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">Life Transformation</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">Witnessing lives changed through the power of God's love and grace</p>
@@ -638,7 +638,7 @@ export default function About() {
                 className="inline-flex items-center bg-white text-amber-600 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <span>Visit Us This Sunday</span>
-                <Calendar className="w-5 h-5 ml-2" />
+                <CalendarIcon className="w-5 h-5 ml-2" />
               </Link>
               <Link
                 href="/ministries"
