@@ -11,9 +11,7 @@ export interface Event {
   priority?: number;
 }
 
-// All events data
 export const allEvents: Event[] = [
-  // Weekly Events (highest frequency)
   {
     id: "sunday-service",
     title: "Sunday Service",
@@ -24,7 +22,7 @@ export const allEvents: Event[] = [
     description: "Join us for inspiring worship, powerful preaching, and fellowship with our church family. Experience transformative messages, uplifting music, and genuine community as we gather to honor God and grow together in faith.",
     location: "Church Auditorium, 7 Burnley Ave, Brantford",
     isRecurring: true,
-    priority: 1
+    priority: 10
   },
   {
     id: "digging-deep",
@@ -36,7 +34,7 @@ export const allEvents: Event[] = [
     description: "Dive deeper into God's Word with our interactive Bible study. Join us as we explore Scripture, ask meaningful questions, and discover how to apply biblical truths in our everyday lives. Perfect for both new believers and mature Christians seeking spiritual growth.",
     location: "Church Auditorium, 7 Burnley Ave, Brantford",
     isRecurring: true,
-    priority: 2
+    priority: 11
   },
   {
     id: "faith-clinic",
@@ -48,71 +46,67 @@ export const allEvents: Event[] = [
     description: "A powerful hour dedicated to prayer and intercession. Come and strengthen your faith as we pray together for personal needs, families, our church, and our community. Experience the healing power of collective prayer and witness God's faithfulness.",
     location: "Church Auditorium, 7 Burnley Ave, Brantford",
     isRecurring: true,
+    priority: 12
+  },
+  {
+    id: "christmas-carol-2025",
+    title: "Christmas Carol: O Little Town of Bethlehem!",
+    date: "2025-12-13",
+    time: "5:00 PM - 7:30 PM",
+    image: "/Media/Image/carol.png",
+    category: "Special Events",
+    description: "Join us for a heartwarming evening filled with the true spirit of Christmas! Come experience the beauty of Christmas through music, worship, and joyful celebration as we reflect on the birth of our Saviour. Bring your family and friends. It's a night you won't want to miss! Let's make this Christmas truly memorable together!",
+    location: "Church Auditorium, 7 Burnley Ave, Brantford",
+    isRecurring: false,
+    priority: 1
+  },
+  {
+    id: "youth-teens-christmas-dinner-2025",
+    title: "Youth & Teens Christmas Dinner",
+    date: "2025-12-20",
+    time: "4:00 PM",
+    image: "/Media/Image/Teenschristmas.jpeg",
+    category: "Youth & Young Adult",
+    description: "Join us for a festive evening filled with joy, laughter, and holiday cheer! Our Youth & Teens Christmas Dinner promises an unforgettable experience with music, delicious food, and fun games for everyone. Come together with family and friends to celebrate the season in a warm and welcoming atmosphere. Let's make this Christmas memorable!",
+    location: "7 Burnley Ave, Brantford, ON N3R 1T5",
+    isRecurring: false,
+    priority: 2
+  },
+  {
+    id: "ptp-3-2025",
+    title: "End of Year Praises Testimonies and Prayer (PTP 3.0) Event",
+    date: "2025-12-26",
+    time: "7:00 PM Daily",
+    image: "/Media/Image/ptp.jpeg",
+    category: "Special Events",
+    description: "Get ready for an unforgettable time of worship, testimonies, and powerful prayers at PTP 3.0! Join us as we lift our voices in praise, share testimonies of God's goodness, and pray together for a glorious new season. Dates: December 26 & 27.",
+    location: "RCCG Restoration House, Brantford, 7 Burnley Ave, Brantford, ON N3R 1T5, Canada",
+    isRecurring: false,
     priority: 3
   },
   {
-    id: "men-of-impact",
-    title: "Men of Impact",
-    date: "Every Tuesday",
-    time: "7:00 PM - 8:00 PM",
-    image: "/Media/Image/2.JPG",
-    category: "Weekly",
-    description: "A dynamic gathering for men to grow in faith, brotherhood, and purpose. Join us for inspiring discussions, mentorship opportunities, and practical teachings on being godly men in today's world. Build lasting friendships while strengthening your walk with Christ.",
-    location: "Church Auditorium, 7 Burnley Ave, Brantford",
-    isRecurring: true,
+    id: "24hrs-prayer-chain-2025",
+    title: "24hrs Prayer Chain",
+    date: "2025-12-30",
+    time: "6:00 AM - 6:00 AM (24 hours)",
+    image: "/Media/Image/prayerchain.png",
+    category: "Special Events",
+    description: "Join us for a powerful time in God's presence as we seek Him together in prayer! Starting at 6:00 AM on December 30th, 2025 and continuing until the early hours of December 31st, 2025. Theme: \"The God of All Flesh\" (Jeremiah 32:27). This is more than an event. It's an encounter! Come prepared for a life-changing experience as we dedicate 24 hours to prayer, worship, and intercession. Don't miss it! Invite your family and friends.",
+    location: "Church Auditorium, 7 Burnley Avenue, Brantford",
+    isRecurring: false,
     priority: 4
   },
-
-  // Special Events (most recent first)
-  {
-    id: "annual-thanksgiving-2025",
-    title: "Annual Thanksgiving",
-    date: "2025-10-12",
-    time: "10:00 AM - 12:00 PM",
-    image: "/Media/Events/Annual Thanksgiving.png",
-    category: "Special Events",
-    description: "Join us for our special Annual Thanksgiving service as we come together to express gratitude for God's countless blessings throughout the year. This meaningful celebration features testimonies, special music, and a message of thanksgiving that will inspire and encourage your heart.",
-    location: "Church Auditorium, 7 Burnley Ave, Brantford",
-    isRecurring: false,
-    priority: 10
-  },
-  {
-    id: "marriage-weekend-2025",
-    title: "Marriage Weekend",
-    date: "2025-11-07",
-    time: "Friday 7:00 PM - Sunday 4:00 PM",
-    image: "/Media/Events/Marriage Weekend.jpeg",
-    category: "Special Events",
-    description: "A special weekend retreat designed for married couples to strengthen their relationship, grow together in faith, and enjoy quality time with other couples in a beautiful, peaceful setting. Includes workshops, couple's activities, and spiritual enrichment sessions.",
-    location: "Retreat Center",
-    isRecurring: false,
-    priority: 11
-  },
-  {
-    id: "rhb-youth-week-2025",
-    title: "RHB Youth Week - Fresh Oil, New Flame",
-    date: "2025-09-19",
-    time: "Various Times",
-    image: "/Media/Events/Fresh Oil, New Flame.jpeg",
-    category: "Youth & Young Adult",
-    description: "3-Day Youth and Young Adult Program - Fresh Oil, New Flame. An exciting program featuring Friday 10 PM-2 AM: Prayer & Fellowship, Saturday 10 AM-3 PM: Community Outreach & Academic Talk with Barbecue, Sunday 10 AM: Special Youth Sunday Service.",
-    location: "50 Market Street, Brantford, ON N3T 2Z5",
-    isRecurring: false,
-    priority: 12
-  },
-
-  // Monthly Events
   {
     id: "monthly-vigil",
     title: "Monthly Vigil",
     date: "Every Last Friday of the Month",
     time: "11:00 PM - 1:00 AM",
-    image: "/Media/Events/Vigil.png",
+    image: "/Media/Image/December.png",
     category: "Monthly",
     description: "A powerful monthly all-night vigil filled with intense prayer, worship, and seeking God's face. Join us for two hours of spiritual warfare, intercession, and communion with the Almighty. Experience breakthrough and divine encounters in His presence.",
     location: "Church Auditorium, 7 Burnley Ave, Brantford",
     isRecurring: true,
-    priority: 5
+    priority: 20
   },
   {
     id: "good-morning-holy-ghost",
@@ -124,76 +118,64 @@ export const allEvents: Event[] = [
     description: "Start your Saturday morning with the Holy Spirit! Join us for an hour of worship, prayer, and fellowship with the Holy Ghost. Experience His presence, receive fresh anointing, and begin your day with spiritual renewal and divine connection.",
     location: "Church Auditorium, 7 Burnley Ave, Brantford",
     isRecurring: true,
-    priority: 6
+    priority: 21
   }
 ];
 
-// Helper function to parse dates (handles both ISO dates and recurring events)
 export function parseEventDate(event: Event): Date {
   if (event.isRecurring) {
-    // For recurring events, use current date for sorting
     return new Date();
   }
-  
-  // For special events with ISO dates
+
   if (event.date.includes('-') && event.date.length === 10) {
     return new Date(event.date);
   }
-  
-  // Fallback for other date formats
+
   return new Date();
 }
 
-// Get upcoming events sorted by priority (most recent special events first, then recurring)
 export function getUpcomingEvents(limit?: number): Event[] {
   const now = new Date();
-  
-  // Filter out past events and sort by priority and date
+
   const upcoming = allEvents
     .filter(event => {
-      if (event.isRecurring) return true; // Always show recurring events
-      
+      if (event.isRecurring) return true;
+
       const eventDate = parseEventDate(event);
-      return eventDate >= now; // Only show future special events
+      return eventDate >= now;
     })
     .sort((a, b) => {
-      // First, sort by whether it's a special event (lower priority number = higher importance)
       if (!a.isRecurring && !b.isRecurring) {
-        // Both special events - sort by date (closest first)
         const dateA = parseEventDate(a);
         const dateB = parseEventDate(b);
         return dateA.getTime() - dateB.getTime();
       }
-      
-      if (!a.isRecurring && b.isRecurring) return -1; // Special events first
-      if (a.isRecurring && !b.isRecurring) return 1;  // Recurring events second
-      
-      // Both recurring - sort by priority
+
+      if (!a.isRecurring && b.isRecurring) return -1;
+      if (a.isRecurring && !b.isRecurring) return 1;
+
       return (a.priority || 0) - (b.priority || 0);
     });
-  
+
   return limit ? upcoming.slice(0, limit) : upcoming;
 }
 
-// Get events filtered by category
 export function getEventsByCategory(category: string): Event[] {
   if (category === "All") return allEvents;
   return allEvents.filter(event => event.category === category);
 }
 
-// Get past events (for special events only)
 export function getPastEvents(): Event[] {
   const now = new Date();
-  
+
   return allEvents
     .filter(event => {
-      if (event.isRecurring) return false; // Don't include recurring events in past
-      
+      if (event.isRecurring) return false;
+
       const eventDate = parseEventDate(event);
       return eventDate < now;
     })
     .sort((a, b) => {
-      // Sort past events by date (most recent first)
       const dateA = parseEventDate(a);
       const dateB = parseEventDate(b);
       return dateB.getTime() - dateA.getTime();

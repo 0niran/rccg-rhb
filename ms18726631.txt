@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "rccgbrantford.com",
+  "Id": "47ae43fb-dc34-4bdb-931f-3dda5b3dc112"
+}
