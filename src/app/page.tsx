@@ -436,7 +436,7 @@ export default function Home() {
                 Can't make it to church? Our church bus ride share service is here to help! To arrange a pickup, just contact the church office.
               </p>
               <Link
-                href="https://forms.gle/kRa2fFayvNpGCNLCA"
+                href="https://forms.office.com/r/njnQSx8sF2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-700 dark:hover:text-slate-300 transition-colors duration-300"
