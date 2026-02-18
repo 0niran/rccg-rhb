@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRightIcon,
   HeartIcon,
-  UserGroupIcon,
-  ChatBubbleLeftRightIcon
+  UserGroupIcon
 } from "@heroicons/react/24/outline";
 import {
   EnvelopeIcon,
