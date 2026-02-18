@@ -24,6 +24,7 @@ const Footer = () => {
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "Ministries", href: "/ministries" },
+    { name: "Tax Clinic", href: "/tax-clinic" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" }
   ];
