@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import {
   PhoneIcon,
@@ -9,98 +8,75 @@ import {
   ClockIcon,
   MapPinIcon,
   DocumentTextIcon,
-  CurrencyDollarIcon,
-  UserGroupIcon,
   CheckIcon
 } from "@heroicons/react/24/outline";
 
 export default function TaxClinic() {
-  const services = [
-    {
-      icon: DocumentTextIcon,
-      title: "Tax Return Preparation",
-      description: "Complete preparation of personal income tax returns for individuals and families."
-    },
-    {
-      icon: CurrencyDollarIcon,
-      title: "Tax Planning & Advice",
-      description: "Strategic tax planning to help you maximize deductions and minimize tax liability."
-    },
-    {
-      icon: UserGroupIcon,
-      title: "Family Tax Services",
-      description: "Specialized tax services for families including child tax benefits and credits."
-    },
-    {
-      icon: CheckIcon,
-      title: "Tax Review & Filing",
-      description: "Professional review of your tax documents and electronic filing with CRA."
-    }
-  ];
-
-  const eligibilityRequirements = [
-    "Annual household income under $35,000",
-    "Simple tax situation (employment income, pensions, benefits)",
-    "Canadian resident for tax purposes",
-    "Have all required tax documents ready"
-  ];
-
-  const requiredDocuments = [
-    "T4 slips (employment income)",
-    "T4A slips (pension, employment insurance, etc.)",
-    "T5 slips (investment income)",
-    "Receipts for deductions (medical, donations, etc.)",
-    "Previous year's tax return",
-    "Social Insurance Number",
-    "Banking information for direct deposit"
-  ];
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-green-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-green-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
+      {/* Hero Section - Matching Screenshot Design */}
+      <section className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-900 to-blue-900 relative overflow-hidden">
+        {/* Background gradient elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800/90 via-slate-900/95 to-blue-900/90"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-green-500/10 rounded-full blur-3xl"></div>
 
-        <div className="max-w-6xl mx-auto px-6 text-center relative">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="space-y-8"
-          >
-            <div className="inline-flex items-center bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-full px-6 py-3 mb-8">
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 tracking-wide">Community Service</span>
-            </div>
+        <div className="relative z-10 flex items-center justify-center min-h-screen">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="space-y-8"
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center bg-teal-600/20 border border-teal-400/30 rounded-full px-6 py-3 mb-8">
+                <span className="w-2 h-2 bg-teal-400 rounded-full mr-3"></span>
+                <span className="text-teal-300 font-medium tracking-wide">Free Community Service</span>
+              </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-8 leading-tight">
-              Free <span className="text-blue-600">Tax Clinic</span>
-            </h1>
+              {/* Main Heading - Matching Screenshot */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="text-white">Free Tax Preparation</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-green-400">
+                  For Our Community
+                </span>
+              </h1>
 
-            <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Professional tax preparation services for low-income individuals and families.
-              Book your appointment today or call us directly.
-            </p>
+              {/* Description - Matching Screenshot */}
+              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
+                Restoration House Brantford offers free income tax preparation services for low
+                and modest-income individuals and families. Our certified volunteer preparers are
+                here to help you maximize your refund and ensure compliance.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Link
-                href="tel:+15193043600"
-                className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
-              >
-                <PhoneIcon className="w-5 h-5 mr-2" />
-                Call (519) 304-3600
-              </Link>
-              <button className="inline-flex items-center border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300">
-                <CalendarIcon className="w-5 h-5 mr-2" />
-                Book Appointment
-              </button>
-            </div>
-          </motion.div>
+              {/* CTA Button - Matching Screenshot */}
+              <div className="pt-6">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <button className="bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold px-12 py-4 rounded-full text-lg transition-all duration-300 shadow-2xl hover:shadow-teal-500/25">
+                    Learn More
+                  </button>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom Section Title */}
+        <div className="absolute bottom-20 left-0 right-0">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              Serving Our Community
+            </h2>
+          </div>
         </div>
       </section>
 
-      {/* Service Details */}
+      {/* Services Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
@@ -111,36 +87,55 @@ export default function TaxClinic() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-              Our Tax Services
+              What We Offer
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Professional, confidential, and completely free tax preparation services for qualifying individuals
+              Professional, confidential, and completely free tax preparation services
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-2xl p-6 border border-blue-200/50 dark:border-blue-800/50 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center mb-4">
-                  <service.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">{service.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{service.description}</p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-teal-50 to-green-50 dark:from-teal-900/20 dark:to-green-900/20 rounded-2xl p-8 border border-teal-200/50 dark:border-teal-800/50"
+            >
+              <DocumentTextIcon className="w-12 h-12 text-teal-600 mb-6" />
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Tax Return Preparation</h3>
+              <p className="text-gray-600 dark:text-gray-300">Complete preparation of personal income tax returns for individuals and families with simple tax situations.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-2xl p-8 border border-green-200/50 dark:border-green-800/50"
+            >
+              <CheckIcon className="w-12 h-12 text-green-600 mb-6" />
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Maximize Your Refund</h3>
+              <p className="text-gray-600 dark:text-gray-300">Our certified preparers help ensure you claim all eligible deductions and credits to maximize your tax refund.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 rounded-2xl p-8 border border-blue-200/50 dark:border-blue-800/50"
+            >
+              <DocumentTextIcon className="w-12 h-12 text-blue-600 mb-6" />
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Ensure Compliance</h3>
+              <p className="text-gray-600 dark:text-gray-300">Professional preparation ensures your tax return meets all CRA requirements and is filed correctly.</p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Schedule & Contact Info */}
-      <section className="py-20 bg-gradient-to-b from-white to-blue-50/30 dark:from-gray-900 dark:to-gray-800">
+      {/* Contact and Schedule Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-teal-50/30 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -150,28 +145,28 @@ export default function TaxClinic() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-8">
-                Schedule & Hours
+                Schedule Your Appointment
               </h2>
 
               <div className="space-y-6">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-blue-100/50 dark:border-gray-700/50">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-teal-100/50 dark:border-gray-700/50">
                   <div className="flex items-center mb-4">
-                    <ClockIcon className="w-6 h-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">Operating Hours</h3>
+                    <ClockIcon className="w-6 h-6 text-teal-600 mr-3" />
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">Tax Season Hours</h3>
                   </div>
                   <div className="space-y-2 text-gray-600 dark:text-gray-300">
                     <p><strong>Monday - Friday:</strong> 10:00 AM - 4:00 PM</p>
                     <p><strong>Saturday:</strong> 10:00 AM - 2:00 PM</p>
                     <p><strong>Sunday:</strong> Closed</p>
-                    <p className="text-sm text-blue-600 dark:text-blue-400 mt-3">
-                      *Available during tax season (February - April)
+                    <p className="text-sm text-teal-600 dark:text-teal-400 mt-3">
+                      *Available February through April
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-blue-100/50 dark:border-gray-700/50">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-teal-100/50 dark:border-gray-700/50">
                   <div className="flex items-center mb-4">
-                    <MapPinIcon className="w-6 h-6 text-blue-600 mr-3" />
+                    <MapPinIcon className="w-6 h-6 text-teal-600 mr-3" />
                     <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">Location</h3>
                   </div>
                   <div className="text-gray-600 dark:text-gray-300">
@@ -179,7 +174,7 @@ export default function TaxClinic() {
                     <p>7 Burnley Ave</p>
                     <p>Brantford, ON N3T 1T5</p>
                     <p className="mt-3">
-                      <strong>Phone:</strong> <a href="tel:+15193043600" className="text-blue-600 hover:text-blue-700">(519) 304-3600</a>
+                      <strong>Phone:</strong> <a href="tel:+15193043600" className="text-teal-600 hover:text-teal-700">(519) 304-3600</a>
                     </p>
                   </div>
                 </div>
@@ -192,7 +187,7 @@ export default function TaxClinic() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-gradient-to-br from-blue-600 to-green-600 rounded-3xl p-8 text-white">
+              <div className="bg-gradient-to-br from-teal-600 to-green-600 rounded-3xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-6">Ready to Get Started?</h3>
 
                 <div className="space-y-4 mb-8">
@@ -202,7 +197,7 @@ export default function TaxClinic() {
                   </div>
                   <div className="flex items-center">
                     <CheckIcon className="w-5 h-5 mr-3 text-green-200" />
-                    <span>Professional preparation</span>
+                    <span>Certified preparers</span>
                   </div>
                   <div className="flex items-center">
                     <CheckIcon className="w-5 h-5 mr-3 text-green-200" />
@@ -210,19 +205,21 @@ export default function TaxClinic() {
                   </div>
                   <div className="flex items-center">
                     <CheckIcon className="w-5 h-5 mr-3 text-green-200" />
-                    <span>Confidential service</span>
+                    <span>Maximize your refund</span>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <Link
                     href="tel:+15193043600"
-                    className="block w-full bg-white text-blue-600 font-semibold px-6 py-4 rounded-full text-center transition-all duration-300 hover:shadow-xl hover:scale-105"
+                    className="block w-full bg-white text-teal-600 font-semibold px-6 py-4 rounded-full text-center transition-all duration-300 hover:shadow-xl hover:scale-105"
                   >
-                    Call Now: (519) 304-3600
+                    <PhoneIcon className="w-5 h-5 inline mr-2" />
+                    Call (519) 304-3600
                   </Link>
-                  <button className="block w-full border-2 border-white text-white font-semibold px-6 py-4 rounded-full text-center transition-all duration-300 hover:bg-white hover:text-blue-600">
-                    Book Online Appointment
+                  <button className="block w-full border-2 border-white text-white font-semibold px-6 py-4 rounded-full text-center transition-all duration-300 hover:bg-white hover:text-teal-600">
+                    <CalendarIcon className="w-5 h-5 inline mr-2" />
+                    Book Appointment
                   </button>
                 </div>
               </div>
@@ -231,8 +228,8 @@ export default function TaxClinic() {
         </div>
       </section>
 
-      {/* Eligibility & Requirements */}
-      <section className="py-20 bg-blue-50/30 dark:bg-gray-800">
+      {/* Eligibility Section */}
+      <section className="py-20 bg-teal-50/30 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -242,10 +239,10 @@ export default function TaxClinic() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-              Eligibility & What to Bring
+              Who Can We Help?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Check if you qualify and see what documents you'll need for your appointment
+              Our free tax preparation services are available to qualifying individuals and families
             </p>
           </motion.div>
 
@@ -256,15 +253,25 @@ export default function TaxClinic() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-blue-100/50 dark:border-gray-700/50">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-teal-100/50 dark:border-gray-700/50">
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Eligibility Requirements</h3>
                 <ul className="space-y-4">
-                  {eligibilityRequirements.map((requirement, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckIcon className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">{requirement}</span>
-                    </li>
-                  ))}
+                  <li className="flex items-start">
+                    <CheckIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Annual household income under $35,000</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Simple tax situation (employment income, pensions, benefits)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Canadian resident for tax purposes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Have all required tax documents ready</span>
+                  </li>
                 </ul>
               </div>
             </motion.div>
@@ -275,15 +282,29 @@ export default function TaxClinic() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-blue-100/50 dark:border-gray-700/50">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Required Documents</h3>
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-teal-100/50 dark:border-gray-700/50">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">What to Bring</h3>
                 <ul className="space-y-4">
-                  {requiredDocuments.map((document, index) => (
-                    <li key={index} className="flex items-start">
-                      <DocumentTextIcon className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">{document}</span>
-                    </li>
-                  ))}
+                  <li className="flex items-start">
+                    <DocumentTextIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">T4 slips (employment income)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <DocumentTextIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">T4A slips (pension, employment insurance)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <DocumentTextIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Previous year's tax return</span>
+                  </li>
+                  <li className="flex items-start">
+                    <DocumentTextIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Receipts for deductions (medical, donations)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <DocumentTextIcon className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Social Insurance Number and banking info</span>
+                  </li>
                 </ul>
               </div>
             </motion.div>
@@ -292,7 +313,7 @@ export default function TaxClinic() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-green-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-teal-600 to-green-600 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -311,13 +332,13 @@ export default function TaxClinic() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center bg-white text-blue-600 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="inline-flex items-center bg-white text-teal-600 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
-                <span>Contact Us</span>
+                Contact Us
               </Link>
               <Link
                 href="/"
-                className="inline-flex items-center border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600"
+                className="inline-flex items-center border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-white hover:text-teal-600"
               >
                 Back to Home
               </Link>

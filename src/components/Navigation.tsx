@@ -23,14 +23,7 @@ const Navigation = () => {
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "Ministries", href: "/ministries" },
-    {
-      name: "Outreach",
-      href: "#",
-      dropdown: [
-        { name: "Tax Clinic", href: "/tax-clinic" },
-        { name: "Community Services", href: "/outreach" }
-      ]
-    },
+    { name: "Tax Clinic", href: "/tax-clinic" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
