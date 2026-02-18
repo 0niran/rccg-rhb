@@ -102,7 +102,7 @@ export default function TaxClinic() {
               className="space-y-8"
             >
               {/* Main Heading - Mobile Optimized */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <h1 className="text-hero-primary">
                 <span className="text-white">Free Tax Preparation</span>
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-green-400">
@@ -111,7 +111,7 @@ export default function TaxClinic() {
               </h1>
 
               {/* Description - Mobile Optimized */}
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light px-4">
+              <p className="text-body-primary text-gray-300 max-w-4xl mx-auto font-light px-4">
                 The tax clinic helps our community, where our volunteers file tax returns for people with modest incomes and a simple tax situation.
               </p>
 
@@ -148,7 +148,7 @@ export default function TaxClinic() {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
               Schedule Your Appointment
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -192,7 +192,7 @@ export default function TaxClinic() {
       <section className="py-20 bg-teal-50/30 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -259,10 +259,10 @@ export default function TaxClinic() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-section-heading">
               Ready to Get Started?
             </h2>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+            <p className="text-body-primary opacity-90 max-w-2xl mx-auto">
               Call us to schedule your free tax preparation appointment or visit our contact page for more information.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">

@@ -59,7 +59,7 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <h3 className="font-bold text-2xl text-white">
+                <h3 className="text-subsection-heading text-white">
                   Restoration House
                 </h3>
                 <p className="text-amber-400 font-medium">Brantford</p>
@@ -91,7 +91,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-semibold text-xl mb-6 text-white">Quick Links</h3>
+            <h3 className="text-card-heading text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -114,7 +114,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-semibold text-xl mb-6 text-white">Service Times</h3>
+            <h3 className="text-card-heading text-white mb-6">Service Times</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
@@ -153,7 +153,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-semibold text-xl mb-6 text-white">Get In Touch</h3>
+            <h3 className="text-card-heading text-white mb-6">Get In Touch</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center mt-0.5">

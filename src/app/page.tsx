@@ -33,7 +33,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight px-4"
+            className="text-hero-primary mb-6 px-4"
           >
             <span className="text-white">Restoration House</span>{" "}
             <span className="text-stone-200">Brantford</span>
@@ -137,7 +137,7 @@ export default function Home() {
                   <span className="text-sm font-medium text-stone-700 dark:text-stone-300 tracking-wide">From Our Pastor</span>
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-6 leading-relaxed">
+                <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-6">
                   A Warm Welcome to Our Church Family
                 </h2>
                 
@@ -194,7 +194,7 @@ export default function Home() {
             <div className="inline-flex items-center bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-full px-6 py-2 mb-6">
               <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Join Us</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4 leading-relaxed">
+            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
               Upcoming Events
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
@@ -288,7 +288,7 @@ export default function Home() {
               <span className="text-sm font-medium text-stone-700 dark:text-stone-300 tracking-wide">Building Our Future</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+            <h2 className="text-section-heading text-gray-900 dark:text-white mb-8">
               The Promise Land
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-stone-600">
                 Project
@@ -412,7 +412,7 @@ export default function Home() {
             <div className="inline-flex items-center bg-stone-100 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700 rounded-full px-6 py-2 mb-6">
               <span className="text-sm font-medium text-stone-700 dark:text-stone-400">Quick Access</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-4 leading-relaxed">
+            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
               Quick Links
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">

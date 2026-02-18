@@ -83,7 +83,7 @@ const Navigation = () => {
                       onMouseLeave={() => setOutreachDropdownOpen(false)}
                     >
                       <button
-                        className={`flex items-center font-medium tracking-wide transition-all duration-300 group ${
+                        className={`flex items-center text-nav-desktop tracking-wide transition-all duration-300 group ${
                           scrolled
                             ? 'text-gray-300 hover:text-amber-400'
                             : 'text-white/90 hover:text-white'
@@ -119,7 +119,7 @@ const Navigation = () => {
                   ) : (
                     <Link
                       href={item.href}
-                      className={`relative font-medium tracking-wide transition-all duration-300 group ${
+                      className={`relative text-nav-desktop tracking-wide transition-all duration-300 group ${
                         scrolled
                           ? 'text-gray-300 hover:text-amber-400'
                           : 'text-white/90 hover:text-white'
@@ -175,14 +175,14 @@ const Navigation = () => {
                     >
                       {item.dropdown ? (
                         <div className="space-y-3">
-                          <div className="text-2xl font-medium text-gray-100">{item.name}</div>
+                          <div className="text-nav-mobile text-gray-100">{item.name}</div>
                           <div className="pl-4 space-y-3">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
                               <Link
                                 key={dropdownItem.name}
                                 href={dropdownItem.href}
                                 onClick={() => setIsOpen(false)}
-                                className="block text-lg font-medium text-gray-300 hover:text-amber-400 transition-colors duration-300"
+                                className="block text-nav-desktop text-gray-300 hover:text-amber-400 transition-colors duration-300"
                               >
                                 {dropdownItem.name}
                               </Link>
@@ -193,7 +193,7 @@ const Navigation = () => {
                         <Link
                           href={item.href}
                           onClick={() => setIsOpen(false)}
-                          className="block text-2xl font-medium text-gray-100 hover:text-amber-400 transition-colors duration-300"
+                          className="block text-nav-mobile text-gray-100 hover:text-amber-400 transition-colors duration-300"
                         >
                           {item.name}
                         </Link>

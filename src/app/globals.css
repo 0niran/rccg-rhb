@@ -178,7 +178,70 @@
     backdrop-filter: blur(24px) saturate(200%) brightness(110%);
   }
 
-  /* Premium Typography Enhancements */
+  /* Standardized Typography Scale */
+  /* Hero Headings (H1) */
+  .text-hero-primary {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight;
+  }
+
+  /* Section Headings (H2) */
+  .text-section-heading {
+    @apply text-3xl md:text-4xl font-semibold leading-tight;
+  }
+
+  /* Subsection Headings (H3) */
+  .text-subsection-heading {
+    @apply text-xl md:text-2xl font-semibold leading-snug;
+  }
+
+  /* Card/Component Headings (H4) */
+  .text-card-heading {
+    @apply text-lg md:text-xl font-semibold leading-snug;
+  }
+
+  /* Primary Body Text */
+  .text-body-primary {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  /* Secondary Body Text */
+  .text-body-secondary {
+    @apply text-sm leading-relaxed;
+  }
+
+  /* Small Text/Captions */
+  .text-caption {
+    @apply text-xs leading-normal;
+  }
+
+  /* Button Text */
+  .text-button {
+    @apply text-base font-semibold;
+  }
+
+  /* Navigation Text */
+  .text-nav-desktop {
+    @apply text-base font-medium;
+  }
+
+  .text-nav-mobile {
+    @apply text-lg font-medium;
+  }
+
+  /* Form Text */
+  .text-form-label {
+    @apply text-sm font-medium;
+  }
+
+  .text-form-input {
+    @apply text-base;
+  }
+
+  .text-form-error {
+    @apply text-xs text-red-500;
+  }
+
+  /* Premium Typography Enhancements - Legacy (keeping for compatibility) */
   .text-display-2xl {
     @apply text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-display font-normal tracking-tight leading-none;
   }
