@@ -107,7 +107,7 @@ export default function Home() {
                 <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-stone-200/50 dark:border-gray-700/50">
                   <div className="aspect-[3/4] relative">
                     <Image
-                      src="/Media/Leadership/NewSeyi.jpg"
+                      src="/Media/Leadership/DSC_5343 (2) (1).jpg"
                       alt="Pastor Oluwaseyi Akinbiyi - Restoration House Brantford"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"

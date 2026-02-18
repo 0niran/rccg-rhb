@@ -11,7 +11,7 @@ export default function About() {
     {
       name: "Pastor Oluwaseyi Akinbiyi",
       role: "Lead Pastor",
-      image: "/Media/Leadership/NewSeyi.jpg",
+      image: "/Media/Leadership/DSC_5343 (2) (1).jpg",
       description: "Providing spiritual leadership and vision for our church family, with a heart for transformation and community building.",
       tier: "executive"
     },
@@ -204,7 +204,7 @@ export default function About() {
                 <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-amber-100/50 dark:border-gray-700/50">
                   <div className="aspect-[4/3] relative">
                     <Image
-                      src="/Media/Leadership/Pastor & Dr.jpg"
+                      src="/Media/Leadership/Dr & Pastor.jpg"
                       alt="Pastor Oluwaseyi and Dr. Tolulola Akinbiyi - Restoration House Brantford Leaders"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
