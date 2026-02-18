@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { BuildingOfficeIcon, EyeIcon, HeartIcon, UserGroupIcon, CalendarIcon, MapPinIcon, StarIcon, TrophyIcon, BookOpenIcon, MapIcon } from "@heroicons/react/24/outline";
+import { BuildingOfficeIcon, EyeIcon, HeartIcon, UserGroupIcon, CalendarIcon, MapPinIcon, StarIcon, TrophyIcon, MapIcon } from "@heroicons/react/24/outline";
 
 export default function About() {
   // Executive Leadership

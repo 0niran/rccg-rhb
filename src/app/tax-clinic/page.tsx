@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   PhoneIcon,
   CalendarIcon,
   ChevronDownIcon,
   ChevronUpIcon
 } from "@heroicons/react/24/outline";
+import { CONTACT_INFO } from "@/lib/constants";
 
 const FAQ_DATA = [
   {
@@ -80,9 +81,9 @@ Note: We may adjust these income limits based on local economic conditions and o
 export default function TaxClinic() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
+  const toggleFAQ = useCallback((index: number) => {
+    setOpenFAQ(prev => prev === index ? null : index);
+  }, []);
 
   return (
     <>
@@ -130,11 +131,11 @@ export default function TaxClinic() {
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
-                    href="tel:+15193043600"
+                    href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`}
                     className="inline-flex items-center justify-center w-full sm:w-auto border-2 border-teal-400 text-teal-300 hover:bg-teal-400 hover:text-slate-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300"
                   >
                     <PhoneIcon className="w-5 h-5 mr-2" />
-                    Call (519) 304-3600
+                    Call {CONTACT_INFO.phone}
                   </Link>
                 </motion.div>
               </div>
@@ -184,9 +185,9 @@ export default function TaxClinic() {
               <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Location & Contact</h3>
               <div className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                 <p>RCCG Restoration House Brantford</p>
-                <p>7 Burnley Ave, Brantford, ON N3T 1T5</p>
+                <p>{CONTACT_INFO.address.main}</p>
                 <p className="mt-3">
-                  <strong>Phone:</strong> <a href="tel:+15193043600" className="text-teal-600 hover:text-teal-700 break-all">(519) 304-3600</a>
+                  <strong>Phone:</strong> <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`} className="text-teal-600 hover:text-teal-700 break-all">{CONTACT_INFO.phone}</a>
                 </p>
                 <p>
                   <strong>Email:</strong> <a href="mailto:taxclinic@rccgbrantford.com" className="text-teal-600 hover:text-teal-700 break-all">taxclinic@rccgbrantford.com</a>
@@ -285,11 +286,11 @@ export default function TaxClinic() {
                 Book Appointment
               </Link>
               <Link
-                href="tel:+15193043600"
+                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`}
                 className="inline-flex items-center justify-center w-full sm:w-auto border-2 border-white text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 hover:bg-white hover:text-teal-600"
               >
                 <PhoneIcon className="w-5 h-5 mr-2" />
-                Call (519) 304-3600
+                Call {CONTACT_INFO.phone}
               </Link>
             </div>
 
