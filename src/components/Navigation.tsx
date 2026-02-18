@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [outreachDropdownOpen, setOutreachDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,14 @@ const Navigation = () => {
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "Ministries", href: "/ministries" },
+    {
+      name: "Outreach",
+      href: "#",
+      dropdown: [
+        { name: "Tax Clinic", href: "/tax-clinic" },
+        { name: "Community Services", href: "/outreach" }
+      ]
+    },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -63,18 +72,61 @@ const Navigation = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="relative group"
                 >
-                  <Link
-                    href={item.href}
-                    className={`relative font-medium tracking-wide transition-all duration-300 group ${
-                      scrolled 
-                        ? 'text-gray-300 hover:text-amber-400' 
-                        : 'text-white/90 hover:text-white'
-                    }`}
-                  >
-                    {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
+                  {item.dropdown ? (
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setOutreachDropdownOpen(true)}
+                      onMouseLeave={() => setOutreachDropdownOpen(false)}
+                    >
+                      <button
+                        className={`flex items-center font-medium tracking-wide transition-all duration-300 group ${
+                          scrolled
+                            ? 'text-gray-300 hover:text-amber-400'
+                            : 'text-white/90 hover:text-white'
+                        }`}
+                      >
+                        {item.name}
+                        <ChevronDownIcon className={`w-4 h-4 ml-1 transition-transform duration-300 ${outreachDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                      </button>
+
+                      <AnimatePresence>
+                        {outreachDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 py-2 z-50"
+                          >
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <Link
+                                key={dropdownItem.name}
+                                href={dropdownItem.href}
+                                className="block px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`relative font-medium tracking-wide transition-all duration-300 group ${
+                        scrolled
+                          ? 'text-gray-300 hover:text-amber-400'
+                          : 'text-white/90 hover:text-white'
+                      }`}
+                    >
+                      {item.name}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -119,13 +171,31 @@ const Navigation = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block text-2xl font-medium text-gray-100 hover:text-amber-400 transition-colors duration-300"
-                      >
-                        {item.name}
-                      </Link>
+                      {item.dropdown ? (
+                        <div className="space-y-3">
+                          <div className="text-2xl font-medium text-gray-100">{item.name}</div>
+                          <div className="pl-4 space-y-3">
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <Link
+                                key={dropdownItem.name}
+                                href={dropdownItem.href}
+                                onClick={() => setIsOpen(false)}
+                                className="block text-lg font-medium text-gray-300 hover:text-amber-400 transition-colors duration-300"
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block text-2xl font-medium text-gray-100 hover:text-amber-400 transition-colors duration-300"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>
