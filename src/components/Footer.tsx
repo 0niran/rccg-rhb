@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import {
   ArrowRightIcon,
   HeartIcon,
-  UserGroupIcon
+  UserGroupIcon,
+  BookOpenIcon
 } from "@heroicons/react/24/outline";
 import {
   EnvelopeIcon,
@@ -126,7 +127,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <ChatBubbleLeftRightIcon className="w-5 h-5 text-amber-400" />
+                  <BookOpenIcon className="w-5 h-5 text-amber-400" />
                 </div>
                 <div>
                   <p className="font-medium text-white">Digging Deep</p>
