@@ -27,8 +27,7 @@ const Navigation = () => {
       name: "Outreach",
       href: "#",
       dropdown: [
-        { name: "Tax Clinic", href: "/tax-clinic" },
-        { name: "Community Services", href: "/outreach" }
+        { name: "Tax Clinic", href: "/tax-clinic" }
       ]
     },
     { name: "About Us", href: "/about" },
