@@ -160,14 +160,19 @@ export default function TaxClinic() {
             {/* Hours */}
             <div className="bg-gradient-to-br from-teal-50 to-green-50 dark:from-teal-900/20 dark:to-green-900/20 rounded-2xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/50">
               <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Tax Season Hours</h3>
-              <div className="space-y-2 text-sm md:text-base text-gray-600 dark:text-gray-300">
-                <p>
-                  <strong className="inline sm:hidden">Tue, Thu, Fri:</strong>
-                  <strong className="hidden sm:inline">Tuesday, Thursday, Friday:</strong>
-                  {" "}12:00 PM - 4:00 PM
-                </p>
-                <p><strong>Saturday:</strong> 10:00 AM - 3:00 PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
+              <div className="space-y-3 text-sm md:text-base text-gray-600 dark:text-gray-300">
+                <div>
+                  <div className="font-semibold text-gray-800 dark:text-gray-100">Tuesday, Thursday, Friday</div>
+                  <div className="text-teal-600 dark:text-teal-400">12:00 PM - 4:00 PM</div>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800 dark:text-gray-100">Saturday</div>
+                  <div className="text-teal-600 dark:text-teal-400">10:00 AM - 3:00 PM</div>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800 dark:text-gray-100">Sunday</div>
+                  <div className="text-teal-600 dark:text-teal-400">Closed</div>
+                </div>
                 <p className="text-xs md:text-sm text-teal-600 dark:text-teal-400 mt-3">
                   *March 2nd - April 30th, 2026
                 </p>
