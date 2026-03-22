@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { HeartIcon, CalendarIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { ministries } from "@/data/ministries";
 
 export default function Ministries() {
@@ -63,8 +63,8 @@ export default function Ministries() {
                     <div className="space-y-6">
                       {/* Icon and Title */}
                       <div className="flex items-center space-x-4">
-                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${ministry.gradient}`}>
-                          <IconComponent className="w-8 h-8 text-white" />
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-amber-200/20 dark:border-amber-800/20">
+                          <IconComponent className="w-8 h-8 text-amber-600 dark:text-amber-400" />
                         </div>
                         <div>
                           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100">
@@ -88,8 +88,8 @@ export default function Ministries() {
                         </h3>
                         <ul className="space-y-2">
                           {ministry.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-center space-x-3">
-                              <HeartIcon className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                            <li key={featureIndex} className="flex items-start space-x-3">
+                              <div className="w-1.5 h-1.5 bg-amber-600 dark:bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
                               <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                             </li>
                           ))}

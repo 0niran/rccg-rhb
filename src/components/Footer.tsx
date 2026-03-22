@@ -14,7 +14,7 @@ import {
   PhoneIcon,
   MapPinIcon
 } from "@heroicons/react/24/solid";
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {

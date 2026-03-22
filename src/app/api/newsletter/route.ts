@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { newsletterSchema, type FormResponse } from '@/lib/schemas';
-import { CONTACT_INFO } from '@/lib/constants';
 import { mailchimpService } from '@/lib/mailchimp';
 import { rateLimit, getRateLimitIdentifier } from '@/lib/rateLimit';
 

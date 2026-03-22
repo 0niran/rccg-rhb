@@ -2,23 +2,43 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { CalendarIcon, ClockIcon, MapPinIcon, UserGroupIcon, HeartIcon, ChatBubbleLeftRightIcon, XMarkIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { getEventsByCategory, getUpcomingEvents, getPastEvents, Event, parseEventDate } from "@/lib/events";
+import { CalendarIcon, ClockIcon, MapPinIcon, XMarkIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
+import { getAllEvents, getUpcomingEvents, getPastEvents, Event, parseEventDate } from "@/lib/sanity-events";
+import { getImageUrl, shouldOptimizeImage } from "@/lib/sanity-image";
 
 export default function Events() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
   const eventCategories = ["All", "Weekly", "Monthly", "Youth & Young Adult", "Special Events"];
-  
-  const upcomingEvents = getUpcomingEvents(); // Get all upcoming events sorted by priority
-  const pastEvents = getPastEvents(); // Get past events
-  const allEvents = [...upcomingEvents, ...pastEvents]; // Combine with upcoming first
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const events = await getAllEvents();
+        setAllEvents(events);
+      } catch (error) {
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch events:', error);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEvents();
+  }, []);
+
+  const upcomingEvents = getUpcomingEvents(allEvents);
+  const pastEvents = getPastEvents(allEvents);
+  const eventsToShow = [...upcomingEvents, ...pastEvents];
 
   // Filter events based on selected category
-  const filteredEvents = selectedCategory === "All" 
-    ? allEvents 
-    : allEvents.filter(event => event.category === selectedCategory);
+  const filteredEvents = selectedCategory === "All"
+    ? eventsToShow
+    : eventsToShow.filter(event => event.category === selectedCategory);
 
   // Helper function to check if event is past
   const isPastEvent = (event: Event): boolean => {
@@ -61,6 +81,12 @@ export default function Events() {
       {/* Integrated Filter & Content Section */}
       <section className="py-12 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600"></div>
+            </div>
+          ) : (
+            <>
           {/* Category Filter - More compact and integrated */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -130,9 +156,10 @@ export default function Events() {
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={event.image}
+                    src={getImageUrl(event.image, event.imageFallback)}
                     alt={event.title}
                     fill
+                    unoptimized={!shouldOptimizeImage(event.image)}
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
@@ -166,20 +193,42 @@ export default function Events() {
                       <span>{event.location || "7 Burnley Ave, Brantford, ON"}</span>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => setSelectedEvent(event)}
-                    className={`w-full font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105 ${
-                      isPastEvent(event)
-                        ? 'bg-gray-500 hover:bg-gray-600 text-white cursor-default'
-                        : 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white'
-                    }`}
-                  >
-                    {isPastEvent(event) ? 'Past Event' : 'Learn More'}
-                  </button>
+                  {!isPastEvent(event) && event.registrationUrl ? (
+                    <div className="flex gap-2">
+                      <a
+                        href={event.registrationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105 text-center flex items-center justify-center"
+                      >
+                        <span>{event.linkText || 'Register Now'}</span>
+                        <ArrowTopRightOnSquareIcon className="w-4 h-4 ml-2" />
+                      </a>
+                      <button
+                        onClick={() => setSelectedEvent(event)}
+                        className="px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg"
+                      >
+                        Info
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setSelectedEvent(event)}
+                      className={`w-full font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105 ${
+                        isPastEvent(event)
+                          ? 'bg-gray-500 hover:bg-gray-600 text-white cursor-default'
+                          : 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white'
+                      }`}
+                    >
+                      {isPastEvent(event) ? 'Past Event' : 'Learn More'}
+                    </button>
+                  )}
                 </div>
               </motion.div>
             ))}
           </motion.div>
+            </>
+          )}
         </div>
       </section>
 
@@ -204,9 +253,10 @@ export default function Events() {
               {/* Modal Header */}
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src={selectedEvent.image}
+                  src={getImageUrl(selectedEvent.image, selectedEvent.imageFallback)}
                   alt={selectedEvent.title}
                   fill
+                  unoptimized={!shouldOptimizeImage(selectedEvent.image)}
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>

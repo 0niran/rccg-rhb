@@ -14,7 +14,7 @@ export default function Contact() {
         {/* Background Elements */}
         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-orange-400/10 to-amber-400/10 rounded-full blur-3xl"></div>
-        
+
         <div className="max-w-6xl mx-auto px-6 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -25,14 +25,14 @@ export default function Contact() {
             <div className="inline-flex items-center bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-full px-6 py-3 mb-8">
               <span className="text-sm font-medium text-amber-700 dark:text-amber-400 tracking-wide">We'd Love to Meet You</span>
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-8 leading-tight">
               Connect With Our
               <span className="block text-amber-600">Church Family</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Whether you're planning your first visit, have questions about our faith community, 
+              Whether you're planning your first visit, have questions about our faith community,
               or need prayer support, we're here for you with open hearts and open arms.
             </p>
           </motion.div>
@@ -108,7 +108,7 @@ export default function Contact() {
                     src="https://www.google.com/maps?q=43.150684217397675,-80.26277720274693&hl=en&z=16&output=embed&markers=color:purple%7C43.150684217397675,-80.26277720274693"
                     width="100%"
                     height="100%"
-                    style={{ 
+                    style={{
                       border: 0,
                       filter: 'grayscale(0.3) contrast(1.1) brightness(0.95)'
                     }}

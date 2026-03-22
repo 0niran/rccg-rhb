@@ -26,7 +26,15 @@ export const SITE_CONFIG = {
     "faith community brantford",
     "prayer meeting brantford",
     "youth church brantford",
-    "7 burnley ave brantford"
+    "house fellowship brantford",
+    "digging deep bible study",
+    "faith clinic prayer meeting",
+    "burnley avenue church",
+    "christian fellowship ontario",
+    "church events brantford",
+    "sunday worship brantford",
+    "community church brantford",
+    "pentecostal church brantford"
   ],
   author: "Restoration House Brantford"
 } as const;
@@ -75,7 +83,7 @@ export const IMAGES = {
     "/Media/Image/6.JPG?v=2024"
   ],
   leadership: {
-    pastor: "/Media/Leadership/Pst Seyi.png",
+    pastor: "/Media/Leadership/Pst. Oluwaseyi Akinbiyi.jpg",
     youth: "/Media/Leadership/Youth.jpeg"
   },
   ministries: {

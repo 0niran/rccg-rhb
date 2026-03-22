@@ -3,12 +3,34 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarIcon, UserGroupIcon, BookOpenIcon, ClockIcon, TruckIcon, HomeIcon, ChatBubbleLeftRightIcon, ArrowTopRightOnSquareIcon, BuildingOfficeIcon, HeartIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, UserGroupIcon, ClockIcon, TruckIcon, HomeIcon, ChatBubbleLeftRightIcon, ArrowTopRightOnSquareIcon, BuildingOfficeIcon, HeartIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import HeroSlideshow from "@/components/HeroSlideshow";
-import { getUpcomingEvents } from "@/lib/events";
+import { getAllEvents, getUpcomingEvents, Event } from "@/lib/sanity-events";
+import { getImageUrl, shouldOptimizeImage } from "@/lib/sanity-image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  const upcomingEvents = getUpcomingEvents(3); // Get top 3 upcoming events
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const allEvents = await getAllEvents();
+        const upcoming = getUpcomingEvents(allEvents, 3); // Get top 3 upcoming events
+        setUpcomingEvents(upcoming);
+      } catch (error) {
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch events for homepage:', error);
+        }
+        setUpcomingEvents([]); // Set empty array as fallback
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEvents();
+  }, []);
 
   return (
     <>
@@ -107,7 +129,7 @@ export default function Home() {
                 <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-stone-200/50 dark:border-gray-700/50">
                   <div className="aspect-[3/4] relative">
                     <Image
-                      src="/Media/Leadership/DSC_5343 (2) (1).jpg"
+                      src="/Media/Leadership/Pst. Oluwaseyi Akinbiyi.jpg"
                       alt="Pastor Oluwaseyi Akinbiyi - Restoration House Brantford"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -203,7 +225,23 @@ export default function Home() {
           </motion.div>
           
           <div className="grid lg:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
+            {loading ? (
+              // Loading skeleton
+              Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-amber-100/50 dark:border-gray-700/50">
+                  <div className="h-64 bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-3"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-4"></div>
+                    <div className="flex justify-between">
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-20"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-16"></div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : upcomingEvents.length > 0 ? (
+              upcomingEvents.map((event, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -214,10 +252,11 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <Image
-                    src={event.image}
+                    src={getImageUrl(event.image, event.imageFallback)}
                     alt={event.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    unoptimized={!shouldOptimizeImage(event.image)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1">
@@ -248,7 +287,15 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            ))
+            ) : (
+              // Empty state
+              <div className="col-span-3 text-center py-12">
+                <CalendarIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">No Events Available</h3>
+                <p className="text-gray-500 dark:text-gray-500">Check back soon for upcoming events and activities.</p>
+              </div>
+            )}
           </div>
           
           <motion.div

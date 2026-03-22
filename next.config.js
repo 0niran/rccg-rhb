@@ -10,7 +10,14 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 
   headers: async () => {
@@ -44,7 +51,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.recaptcha.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.resend.com https://*.mailchimp.com https://www.google.com https://www.google-analytics.com; frame-src 'self' https://www.google.com https://recaptcha.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; media-src 'self'; worker-src 'self'; manifest-src 'self';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://*.sanity.io https://cdn.sanity.io https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: https://*.clarity.ms https://c.bing.com https://cdn.sanity.io; connect-src 'self' https://api.resend.com https://*.mailchimp.com https://www.google.com https://*.sanity.io wss://*.sanity.io https://*.clarity.ms https://c.bing.com; frame-src 'self' https://www.google.com https://recaptcha.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; media-src 'self'; worker-src 'self'; manifest-src 'self';",
           },
           {
             key: 'Cross-Origin-Embedder-Policy',

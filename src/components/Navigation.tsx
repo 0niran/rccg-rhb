@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [outreachDropdownOpen, setOutreachDropdownOpen] = useState(false);
+  const [communityDropdownOpen, setCommunityDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +24,10 @@ const Navigation = () => {
     { name: "Events", href: "/events" },
     { name: "Ministries", href: "/ministries" },
     {
-      name: "Outreach",
+      name: "Community",
       href: "#",
       dropdown: [
+        { name: "Fellowship", href: "/fellowship" },
         { name: "Tax Clinic", href: "/tax-clinic" }
       ]
     },
@@ -76,8 +77,8 @@ const Navigation = () => {
                   {item.dropdown ? (
                     <div
                       className="relative"
-                      onMouseEnter={() => setOutreachDropdownOpen(true)}
-                      onMouseLeave={() => setOutreachDropdownOpen(false)}
+                      onMouseEnter={() => setCommunityDropdownOpen(true)}
+                      onMouseLeave={() => setCommunityDropdownOpen(false)}
                     >
                       <button
                         className={`flex items-center text-nav-desktop tracking-wide transition-all duration-300 group ${
@@ -87,12 +88,12 @@ const Navigation = () => {
                         }`}
                       >
                         {item.name}
-                        <ChevronDownIcon className={`w-4 h-4 ml-1 transition-transform duration-300 ${outreachDropdownOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDownIcon className={`w-4 h-4 ml-1 transition-transform duration-300 ${communityDropdownOpen ? 'rotate-180' : ''}`} />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
                       </button>
 
                       <AnimatePresence>
-                        {outreachDropdownOpen && (
+                        {communityDropdownOpen && (
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}

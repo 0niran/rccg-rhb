@@ -70,6 +70,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
               type="text"
               placeholder="Your Name (Optional)"
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-sm"
+              data-clarity-mask="true"
               disabled={isSubmitting}
             />
             {errors.firstName && (
@@ -83,6 +84,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
               type="email"
               placeholder="Enter your email *"
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-sm"
+              data-clarity-mask="true"
               disabled={isSubmitting}
             />
             {errors.email && (

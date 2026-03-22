@@ -1,10 +1,10 @@
-import { FaBaby, FaGraduationCap } from "react-icons/fa";
-import { UserGroupIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import { UserGroupIcon, HeartIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 
 export interface Ministry {
   title: string;
   subtitle?: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   image: string;
   description: string;
   features: string[];
@@ -19,7 +19,7 @@ export const ministries: Ministry[] = [
   {
     title: "Children Church",
     subtitle: "Ages 18 months - 12 years",
-    icon: FaBaby,
+    icon: HeartIcon,
     image: "/Media/Image/Kids.jpg",
     description: "A vibrant, safe, and nurturing environment where children discover God's love through age-appropriate worship, interactive lessons, and fun activities that help them grow in faith.",
     features: [
@@ -38,7 +38,7 @@ export const ministries: Ministry[] = [
   {
     title: "Youth & Young Adult Church",
     subtitle: "Ages 13-25",
-    icon: FaGraduationCap,
+    icon: AcademicCapIcon,
     image: "/Media/Leadership/Youth.jpeg",
     description: "Empowering the next generation through dynamic worship, relevant teachings, and authentic community that helps young people navigate life's challenges with faith and purpose.",
     features: [
