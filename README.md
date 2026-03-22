@@ -29,11 +29,16 @@ Open [http://localhost:4000](http://localhost:4000) in your browser.
 Copy `.env.example` to `.env.local` and configure:
 
 ```bash
-MAILCHIMP_API_KEY=your_key
-MAILCHIMP_AUDIENCE_ID=your_id
-RESEND_API_KEY=your_key
-FROM_EMAIL=noreply@rccgbrantford.com
-TO_EMAIL=hello@rccgbrantford.com
+# Email Configuration
+EMAIL_SERVICE_API_KEY=your_email_service_key
+EMAIL_FROM=noreply@yourdomain.com
+EMAIL_TO=hello@yourdomain.com
+
+# Marketing Configuration
+MARKETING_API_KEY=your_marketing_key
+MARKETING_AUDIENCE_ID=your_audience_id
+
+# Add other required environment variables as needed
 ```
 
 ## Deployment
