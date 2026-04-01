@@ -327,53 +327,7 @@ export default function HomeClient({ upcomingEvents }: { upcomingEvents: Event[]
         </div>
       </section>
 
-      {/* Section 6 - Get Involved */}
-      <section className="section-light section-spacing">
-        <div className="container-width section-padding">
-          <div className="text-center mb-12">
-            <div className="section-label">GET INVOLVED</div>
-            <h2 className="section-heading">Ways to Connect & Grow</h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {[
-              { title: "Sunday Service", category: "Weekly", image: "/Media/Image/1.JPG", href: "/ministries" },
-              { title: "Digging Deep", category: "Bible Study", image: "/Media/Events/Digging Deep.jpeg", href: "/ministries" },
-              { title: "Faith Clinic", category: "Prayer", image: "/Media/Events/Faith Clinic.jpeg", href: "/ministries" },
-              { title: "Men of Impact", category: "Men", image: "/Media/Image/1.JPG", href: "/ministries" },
-              { title: "Monthly Vigil", category: "Prayer", image: "/Media/Events/Vigil.png", href: "/ministries" },
-              { title: "Good Morning Holy Ghost", category: "Worship", image: "/Events/Good morning holy ghost.png", href: "/ministries" },
-            ].map((ministry, index) => (
-              <Link
-                key={index}
-                href={ministry.href}
-                className="relative rounded-2xl overflow-hidden aspect-[4/3] group cursor-pointer"
-              >
-                <div className="relative h-full overflow-hidden">
-                  <Image
-                    src={ministry.image}
-                    alt={ministry.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div className="section-label text-gold-muted">{ministry.category}</div>
-                  <h3 className="font-heading text-xl text-cream font-semibold mt-1">{ministry.title}</h3>
-                  <div className="btn-text text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
-                    Learn More →
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 7 - Promise Land Project */}
+      {/* Section 6 - Promise Land Project */}
       <section className="section-spacing text-cream relative overflow-hidden">
         <Image
           src="/Media/Image/1.JPG"

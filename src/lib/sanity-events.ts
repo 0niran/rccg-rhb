@@ -48,9 +48,7 @@ export async function getAllEvents(): Promise<Event[]> {
     const events = await client.fetch(eventsQuery)
     return events
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error fetching events from Sanity:', error)
-    }
+    console.error('[sanity] Failed to fetch events:', error instanceof Error ? error.message : error)
     return []
   }
 }
