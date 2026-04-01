@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   poweredByHeader: false,
   compress: true,
   
@@ -26,6 +25,10 @@ const nextConfig = {
         source: '/(.*)',
         headers: [
           {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
@@ -39,11 +42,7 @@ const nextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), payment=()',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
           {
             key: 'Strict-Transport-Security',
@@ -51,7 +50,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://*.sanity.io https://cdn.sanity.io https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: https://*.clarity.ms https://c.bing.com https://cdn.sanity.io; connect-src 'self' https://api.resend.com https://*.mailchimp.com https://www.google.com https://*.sanity.io wss://*.sanity.io https://*.clarity.ms https://c.bing.com; frame-src 'self' https://www.google.com https://recaptcha.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; media-src 'self'; worker-src 'self'; manifest-src 'self';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://*.sanity.io https://cdn.sanity.io https://*.clarity.ms https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: https://*.clarity.ms https://c.bing.com https://cdn.sanity.io https://*.stripe.com https://www.google-analytics.com; connect-src 'self' https://api.resend.com https://*.mailchimp.com https://www.google.com https://*.sanity.io wss://*.sanity.io https://*.clarity.ms https://c.bing.com https://api.stripe.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; frame-src 'self' https://www.google.com https://recaptcha.google.com https://js.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; media-src 'self'; worker-src 'self'; manifest-src 'self';",
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
@@ -59,15 +58,11 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            value: 'same-origin-allow-popups',
           },
           {
             key: 'Cross-Origin-Resource-Policy',
             value: 'same-origin',
-          },
-          {
-            key: 'Expect-CT',
-            value: 'max-age=86400, enforce',
           },
         ],
       },
@@ -93,7 +88,7 @@ const nextConfig = {
   },
   
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['@heroicons/react', 'framer-motion'],
   },
 }
 

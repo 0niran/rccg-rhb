@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Remove reCAPTCHA token from body before validation
-    const { recaptchaToken, ...formData } = body;
+    const { recaptchaToken: _recaptchaToken, ...formData } = body;
 
     // Validate the form data
     const validationResult = contactSchema.safeParse(formData);
@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json<FormResponse>({
       success: false,
-      message: 'Something went wrong. Please try again later or call us directly at ' + CONTACT_INFO.phone + '.',
+      message: `Something went wrong. Please try again later or call us directly at ${CONTACT_INFO.phone}.`,
     }, { status: 500 });
   }
 }

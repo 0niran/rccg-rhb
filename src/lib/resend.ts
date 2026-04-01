@@ -133,14 +133,94 @@ class ResendService {
         userEmailId: userEmail.data?.id,
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Resend email error:', error);
-      
+
       return {
         success: false,
         message: 'Unable to send your message at this time. Please try again later or call us directly at (519) 304-3600.',
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       };
+    }
+  }
+
+  async sendGivingNotification(data: {
+    eventType: 'succeeded' | 'failed' | 'processing';
+    amount: number; // in cents
+    currency: string;
+    category: string;
+    frequency: string;
+    donorName: string;
+    donorEmail: string;
+    note?: string;
+    stripeId: string;
+    timestamp: string;
+    failureReason?: string;
+  }) {
+    if (!this.resend) {
+      console.warn('[resend] RESEND_API_KEY not set — skipping giving notification');
+      return { success: false, message: 'Email service not configured' };
+    }
+
+    const { eventType, amount, currency, category, frequency, donorName, donorEmail, note, stripeId, timestamp, failureReason } = data;
+    const formatted = new Intl.NumberFormat('en-CA', { style: 'currency', currency: currency.toUpperCase() }).format(amount / 100);
+    const freqLabel: Record<string, string> = { one_time: 'One-time', weekly: 'Weekly', biweekly: 'Bi-weekly', monthly: 'Monthly' };
+
+    const statusMap = {
+      succeeded: { label: '✅ Payment Confirmed', colour: '#2d7a3a', bg: '#f0faf1' },
+      failed:    { label: '❌ Payment Failed',    colour: '#b91c1c', bg: '#fef2f2' },
+      processing:{ label: '⏳ Payment Processing', colour: '#92600a', bg: '#fffbeb' },
+    };
+    const { label: statusLabel, colour, bg } = statusMap[eventType];
+
+    const subjectMap = {
+      succeeded:  `Giving Received — ${formatted} (${category})`,
+      failed:     `Giving Failed — ${formatted} (${category})`,
+      processing: `Giving Processing — ${formatted} (${category})`,
+    };
+
+    const html = `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#2C2C2C;">
+        <div style="background:#1C1C1C;padding:24px 32px;">
+          <h1 style="color:#C9A84C;margin:0;font-size:20px;font-weight:600;">Restoration House Brantford</h1>
+          <p style="color:#ffffff80;margin:4px 0 0;font-size:13px;">Giving Notification</p>
+        </div>
+        <div style="background:${bg};border-left:4px solid ${colour};padding:16px 32px;margin:0;">
+          <p style="color:${colour};font-weight:700;margin:0;font-size:15px;">${statusLabel}</p>
+          ${failureReason ? `<p style="color:${colour};margin:6px 0 0;font-size:13px;">${failureReason}</p>` : ''}
+        </div>
+        <div style="padding:24px 32px;background:#ffffff;border:1px solid #e5e5e5;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <tr><td style="padding:8px 0;color:#666;width:140px;">Amount</td><td style="padding:8px 0;font-weight:600;">${formatted}</td></tr>
+            <tr><td style="padding:8px 0;color:#666;">Category</td><td style="padding:8px 0;">${category}</td></tr>
+            <tr><td style="padding:8px 0;color:#666;">Frequency</td><td style="padding:8px 0;">${freqLabel[frequency] ?? frequency}</td></tr>
+            <tr><td style="padding:8px 0;color:#666;">Donor</td><td style="padding:8px 0;">${donorName}</td></tr>
+            <tr><td style="padding:8px 0;color:#666;">Email</td><td style="padding:8px 0;">${donorEmail}</td></tr>
+            ${note ? `<tr><td style="padding:8px 0;color:#666;vertical-align:top;">Note</td><td style="padding:8px 0;">${note}</td></tr>` : ''}
+            <tr><td style="padding:8px 0;color:#666;">Date</td><td style="padding:8px 0;">${new Date(timestamp).toLocaleString('en-CA', { timeZone: 'America/Toronto' })}</td></tr>
+            <tr><td style="padding:8px 0;color:#666;">Stripe ID</td><td style="padding:8px 0;font-family:monospace;font-size:12px;color:#888;">${stripeId}</td></tr>
+          </table>
+        </div>
+        <div style="padding:16px 32px;background:#f9f9f7;border:1px solid #e5e5e5;border-top:none;">
+          <p style="color:#888;font-size:12px;margin:0;">
+            Restoration House Brantford · 7 Burnley Ave, Brantford, ON N3T 1T5<br>
+            This is an automated notification from your Stripe giving integration.
+          </p>
+        </div>
+      </div>
+    `;
+
+    try {
+      const result = await this.resend.emails.send({
+        from: this.fromEmail,
+        to: this.toEmail,
+        subject: subjectMap[eventType],
+        html,
+      });
+      return { success: true, emailId: result.data?.id };
+    } catch (err: unknown) {
+      console.error('[resend] sendGivingNotification error:', err);
+      return { success: false, message: err instanceof Error ? err.message : 'Unknown error' };
     }
   }
 
@@ -161,13 +241,13 @@ class ResendService {
         toEmail: this.toEmail.substring(0, 3) + '***', // Partial email for security
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Resend connection test failed:', error);
 
       return {
         success: false,
         message: 'Resend connection failed',
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
   }

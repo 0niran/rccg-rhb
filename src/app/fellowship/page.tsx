@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { MapPinIcon, PhoneIcon, ClockIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
@@ -101,15 +102,15 @@ export default function Fellowship() {
       subtitle: "Understanding our intimate community gatherings",
       content: (
         <div className="space-y-6">
-          <div className="prose prose-gray dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          <div className="max-w-none">
+            <p className="text-body-primary text-muted leading-relaxed">
               House fellowship is where believers gather in homes across Brantford and surrounding areas for intimate worship,
               prayer, Bible study, and fellowship. These smaller gatherings complement our Sunday services by creating
               opportunities for deeper relationships and spiritual growth in a family atmosphere.
             </p>
           </div>
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl p-6 border-l-4 border-amber-500">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="bg-gold/5 rounded-xl p-6 border-l-4 border-gold">
+            <p className="text-body-primary text-charcoal leading-relaxed">
               Each fellowship cell is hosted by dedicated members who open their homes to create a welcoming space for
               spiritual community, making faith more personal and accessible in neighborhood settings.
             </p>
@@ -123,8 +124,8 @@ export default function Fellowship() {
       content: (
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Spiritual Activities</h4>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+            <h4 className="text-card-heading text-charcoal mb-3">Spiritual Activities</h4>
+            <ul className="space-y-2 text-body-secondary text-muted">
               <li>• Bible study and discussion</li>
               <li>• Worship and praise</li>
               <li>• Prayer and intercession</li>
@@ -132,8 +133,8 @@ export default function Fellowship() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Community Focus</h4>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+            <h4 className="text-card-heading text-charcoal mb-3">Community Focus</h4>
+            <ul className="space-y-2 text-body-secondary text-muted">
               <li>• Pastoral care and support</li>
               <li>• Community outreach planning</li>
               <li>• Life application discussions</li>
@@ -149,16 +150,16 @@ export default function Fellowship() {
       content: (
         <div className="space-y-4">
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Deeper Relationships</h4>
-            <p className="text-gray-600 dark:text-gray-300">Build meaningful connections with fellow believers in an intimate setting.</p>
+            <h4 className="text-card-heading text-charcoal mb-2">Deeper Relationships</h4>
+            <p className="text-body-secondary text-muted">Build meaningful connections with fellow believers in an intimate setting.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Family Atmosphere</h4>
-            <p className="text-gray-600 dark:text-gray-300">Experience warmth and comfort in neighborhood homes where faith feels personal.</p>
+            <h4 className="text-card-heading text-charcoal mb-2">Family Atmosphere</h4>
+            <p className="text-body-secondary text-muted">Experience warmth and comfort in neighborhood homes where faith feels personal.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Spiritual Growth</h4>
-            <p className="text-gray-600 dark:text-gray-300">Grow in faith through interactive study and consistent spiritual community.</p>
+            <h4 className="text-card-heading text-charcoal mb-2">Spiritual Growth</h4>
+            <p className="text-body-secondary text-muted">Grow in faith through interactive study and consistent spiritual community.</p>
           </div>
         </div>
       )
@@ -167,42 +168,74 @@ export default function Fellowship() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-[220px] pb-20 bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      {/* Hero */}
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+        <Image
+          src="/Media/Image/6.JPG"
+          alt="House Fellowship"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/65 to-charcoal/30" />
+
+        <div className="relative z-10 container-width section-padding pb-16 sm:pb-24 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="max-w-2xl"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              House Fellowship
+            <div className="section-label text-gold mb-4">COMMUNITY</div>
+            <h1 className="section-heading-lg text-cream">
+              House
+              <span className="block text-gold">Fellowship</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Join a fellowship cell near you for intimate worship, prayer, and community in homes across Brantford.
+            <p className="text-cream/75 text-body-primary mt-4 sm:mt-6 max-w-xl leading-relaxed">
+              Join a fellowship cell near you for intimate worship, prayer, and community
+              in homes across Brantford and surrounding areas.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Interactive House Fellowship Information */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* Info Strip */}
+      <section className="bg-charcoal border-t border-border-dark py-5">
+        <div className="container-width section-padding">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-cream/80 text-body-secondary">
+            <div className="flex items-center space-x-2">
+              <MapPinIcon className="w-4 h-4 text-gold" />
+              <span>8 Fellowship Cells</span>
+            </div>
+            <div className="w-px h-4 bg-border-dark hidden sm:block" />
+            <div className="flex items-center space-x-2">
+              <ClockIcon className="w-4 h-4 text-gold" />
+              <span>Sunday Evenings · 5-7 PM</span>
+            </div>
+            <div className="w-px h-4 bg-border-dark hidden sm:block" />
+            <div className="flex items-center space-x-2">
+              <MapPinIcon className="w-4 h-4 text-gold" />
+              <span>Brantford, West Brant & Paris</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Accordion Section */}
+      <section className="section-spacing bg-white">
+        <div className="container-width section-padding">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Learn About House Fellowship
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              <h2 className="section-heading text-charcoal mb-4">Learn About House Fellowship</h2>
+              <p className="text-body-primary text-muted max-w-2xl mx-auto">
                 Discover what makes our house fellowship special. Click on any section below to explore.
               </p>
             </div>
 
-            {/* Accordion */}
             <div className="space-y-4">
               {accordionData.map((item, index) => (
                 <motion.div
@@ -210,39 +243,38 @@ export default function Fellowship() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden transition-all duration-300 ${
+                  className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                     openAccordion === index
-                      ? 'shadow-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-200 dark:border-amber-700'
-                      : 'shadow-md bg-white dark:bg-gray-800 hover:shadow-lg'
+                      ? "shadow-luxury bg-gold/5 border-gold/20"
+                      : "premium-card hover:shadow-lg"
                   }`}
                 >
-                  {/* Accordion Header */}
                   <button
                     onClick={() => toggleAccordion(index)}
-                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-300 group"
+                    className="w-full px-5 sm:px-8 py-5 sm:py-6 text-left flex items-center justify-between hover:bg-cream-50/50 transition-colors duration-300 group"
                   >
                     <div className="flex-1 space-y-1">
                       <div className="flex items-center space-x-4">
-                        <div className={`w-1 h-8 transition-all duration-300 rounded-full ${
-                          openAccordion === index
-                            ? 'bg-gradient-to-b from-amber-500 to-orange-500 shadow-lg'
-                            : 'bg-gray-300 dark:bg-gray-600 group-hover:bg-amber-400'
-                        }`}></div>
-                        <h3 className={`text-xl font-bold transition-colors duration-300 ${
-                          openAccordion === index
-                            ? 'text-transparent bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text'
-                            : 'text-gray-800 dark:text-gray-200 group-hover:text-amber-600 dark:group-hover:text-amber-400'
-                        }`}>
+                        <div
+                          className={`w-1 h-8 transition-all duration-300 rounded-full ${
+                            openAccordion === index ? "bg-gold shadow-lg" : "bg-border group-hover:bg-gold/60"
+                          }`}
+                        />
+                        <h3
+                          className={`text-card-heading transition-colors duration-300 ${
+                            openAccordion === index ? "text-gold" : "text-charcoal group-hover:text-gold"
+                          }`}
+                        >
                           {item.title}
                         </h3>
                       </div>
                       <div className="flex items-center space-x-4">
-                        <div className="w-1"></div>
-                        <p className={`text-sm transition-colors duration-300 ${
-                          openAccordion === index
-                            ? 'text-gray-600 dark:text-gray-400'
-                            : 'text-gray-500 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400'
-                        }`}>
+                        <div className="w-1" />
+                        <p
+                          className={`text-body-secondary transition-colors duration-300 ${
+                            openAccordion === index ? "text-muted" : "text-muted group-hover:text-charcoal"
+                          }`}
+                        >
                           {item.subtitle}
                         </p>
                       </div>
@@ -250,17 +282,12 @@ export default function Fellowship() {
                     <motion.div
                       animate={{ rotate: openAccordion === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className={`flex-shrink-0 ${
-                        openAccordion === index
-                          ? 'text-amber-600 dark:text-amber-400'
-                          : 'text-gray-400 dark:text-gray-600'
-                      }`}
+                      className={`flex-shrink-0 ${openAccordion === index ? "text-gold" : "text-muted"}`}
                     >
                       <ChevronDownIcon className="w-6 h-6" />
                     </motion.div>
                   </button>
 
-                  {/* Accordion Content */}
                   <motion.div
                     initial={false}
                     animate={{
@@ -271,9 +298,11 @@ export default function Fellowship() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6 pt-2">
-                      <div className={`transition-all duration-300 ${
-                        openAccordion === index ? 'translate-y-0' : 'translate-y-4'
-                      }`}>
+                      <div
+                        className={`transition-all duration-300 ${
+                          openAccordion === index ? "translate-y-0" : "translate-y-4"
+                        }`}
+                      >
                         {item.content}
                       </div>
                     </div>
@@ -285,47 +314,52 @@ export default function Fellowship() {
         </div>
       </section>
 
-      {/* Fellowship Cells */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* Fellowship Cells Grid */}
+      <section className="section-spacing section-alt">
+        <div className="container-width section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-heading text-charcoal mb-4">Find a Cell Near You</h2>
+            <p className="text-body-primary text-muted max-w-2xl mx-auto">
+              We have fellowship cells across Brantford, West Brant, and Paris. Find the one closest to you.
+            </p>
+          </motion.div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {fellowshipCells.map((cell, index) => (
               <motion.div
                 key={cell.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow"
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="premium-card p-6"
               >
-                {/* Area */}
-                <div className="text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wide mb-3">
-                  {cell.area}
-                </div>
+                <div className="section-label mb-3">{cell.area}</div>
 
-                {/* Cell Name */}
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                  {cell.name}
-                </h3>
+                <h3 className="text-card-heading text-charcoal mb-4">{cell.name}</h3>
 
-                {/* Address */}
-                <div className="flex items-start space-x-2 mb-3 text-sm text-gray-600 dark:text-gray-400">
-                  <MapPinIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <div className="flex items-start space-x-2 mb-3 text-body-secondary text-muted">
+                  <MapPinIcon className="w-4 h-4 mt-0.5 flex-shrink-0 text-gold" />
                   <span>{cell.address}</span>
                 </div>
 
-                {/* Meeting Time */}
                 {cell.meetingTime && (
-                  <div className="flex items-start space-x-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                    <ClockIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start space-x-2 mb-4 text-body-secondary text-muted">
+                    <ClockIcon className="w-4 h-4 mt-0.5 flex-shrink-0 text-gold" />
                     <span>{cell.meetingTime}</span>
                   </div>
                 )}
 
-                {/* Contact */}
                 <div className="space-y-2">
                   <a
                     href={`tel:${cell.contact}`}
-                    className="flex items-center space-x-2 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 text-sm font-medium"
+                    className="flex items-center space-x-2 text-gold hover:text-gold/80 text-body-secondary font-medium transition-colors duration-200"
                   >
                     <PhoneIcon className="w-4 h-4" />
                     <span>{cell.contact}</span>
@@ -334,7 +368,7 @@ export default function Fellowship() {
                   {cell.contact2 && (
                     <a
                       href={`tel:${cell.contact2}`}
-                      className="flex items-center space-x-2 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 text-sm font-medium"
+                      className="flex items-center space-x-2 text-gold hover:text-gold/80 text-body-secondary font-medium transition-colors duration-200"
                     >
                       <PhoneIcon className="w-4 h-4" />
                       <span>{cell.contact2}</span>
@@ -347,30 +381,22 @@ export default function Fellowship() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+      {/* CTA */}
+      <section className="section-spacing section-dark">
+        <div className="container-width section-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Do you have questions or need help finding a House Fellowship cell? Call or send us an email:
+            <h2 className="section-heading text-cream mb-6">Find Your Fellowship Home</h2>
+            <p className="text-body-primary text-cream/80 mb-8 max-w-2xl mx-auto">
+              Do you have questions or need help finding a House Fellowship cell? Call or send us an email.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:+1-519-304-3600"
-                className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
-              >
-                (519) 304-3600
-              </a>
-              <a
-                href="mailto:hello@rccgbrantford.com"
-                className="border border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white font-medium py-3 px-6 rounded-lg transition-colors"
-              >
-                hello@rccgbrantford.com
-              </a>
+              <a href="tel:+1-519-304-3600" className="btn-primary">(519) 304-3600</a>
+              <a href="mailto:hello@rccgbrantford.com" className="btn-outline-light">hello@rccgbrantford.com</a>
             </div>
           </motion.div>
         </div>

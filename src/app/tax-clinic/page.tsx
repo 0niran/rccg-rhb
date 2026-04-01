@@ -1,256 +1,387 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import {
   PhoneIcon,
   CalendarIcon,
+  ClockIcon,
+  MapPinIcon,
   ChevronDownIcon,
-  ChevronUpIcon
 } from "@heroicons/react/24/outline";
 import { CONTACT_INFO } from "@/lib/constants";
 
 const FAQ_DATA = [
   {
     question: "What does our Tax Clinic cover?",
-    answer: `Our Tax Clinic is part of the Canada Revenue Agency's Community Volunteer Income Tax Program (CVITP). We provide free tax preparation for individuals and families with modest incomes and simple tax situations.
-
-Simple tax situations include:
-• Employment income (T4 slips)
-• Pension income
-• Government benefits (CPP, OAS, EI, social assistance)
-• RRSP withdrawals
-• Scholarships, fellowships, bursaries
-• Interest income under $1,200
-
-We do NOT prepare returns with self-employment, business income, rental income, or capital gains.`
+    subtitle: "Services included under the CRA CVITP program",
+    answer: (
+      <div className="space-y-4">
+        <p className="text-body-primary text-muted leading-relaxed">
+          Our Tax Clinic is part of the Canada Revenue Agency&apos;s Community Volunteer
+          Income Tax Program (CVITP). We provide free tax preparation for individuals
+          and families with modest incomes and simple tax situations.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <h4 className="text-card-heading text-charcoal mb-2">We prepare returns with</h4>
+            <ul className="space-y-1.5 text-body-secondary text-muted">
+              {[
+                "Employment income (T4 slips)",
+                "Pension income",
+                "Government benefits (CPP, OAS, EI)",
+                "RRSP withdrawals",
+                "Scholarships & bursaries",
+                "Interest income under $1,200",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-gold rounded-full mt-1.5 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-red-50 border border-red-100 rounded-xl p-4">
+            <h4 className="text-card-heading text-red-700 mb-2">We do NOT prepare</h4>
+            <ul className="space-y-1.5 text-body-secondary text-red-600">
+              {[
+                "Self-employment income",
+                "Business income",
+                "Rental income",
+                "Capital gains",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     question: "Why should I file my taxes?",
-    answer: `Filing your taxes is important even if you don't owe any tax because:
-
-• You may be entitled to refunds and credits like the GST/HST credit, Canada Child Benefit, or Working Income Tax Benefit
-• You need to file to maintain eligibility for government benefits
-• Filing establishes your income for benefit calculations
-• You can carry forward unused credits and deductions
-• It's required by law if you owe taxes or if the CRA requests it
-
-Even if you have no income, filing can help you receive benefit payments you're entitled to.`
+    subtitle: "Benefits even if you owe nothing",
+    answer: (
+      <div className="space-y-4">
+        <p className="text-body-primary text-muted leading-relaxed">
+          Filing your taxes is important even if you don&apos;t owe any tax. Here&apos;s why:
+        </p>
+        <ul className="space-y-2">
+          {[
+            "You may be entitled to refunds, GST/HST credit, Canada Child Benefit, or Working Income Tax Benefit",
+            "You need to file to maintain eligibility for government benefits",
+            "Filing establishes your income for benefit calculations",
+            "You can carry forward unused credits and deductions",
+            "It&apos;s required by law if you owe taxes or if the CRA requests it",
+            "Even with no income, filing can unlock benefit payments you&apos;re entitled to",
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-body-secondary text-muted">
+              <span className="w-1.5 h-1.5 bg-gold rounded-full mt-1.5 flex-shrink-0" />
+              <span dangerouslySetInnerHTML={{ __html: item }} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    ),
   },
   {
     question: "Do I qualify for our Tax Clinic?",
-    answer: `To qualify for our free tax clinic, you must have:
-
-**Modest Income (Total Family Income):**
-• 1 person: $40,000 or less
-• 2 people: $55,000 or less
-• 3 people: $60,000 or less
-• 4 people: $65,000 or less
-• 5 people: $70,000 or less
-• More than 5: $70,000 + $5,000 per additional person
-
-**Simple Tax Situation** (see first FAQ for details)
-
-Note: We may adjust these income limits based on local economic conditions and our community's needs.`
+    subtitle: "Income, limits and eligibility criteria",
+    answer: (
+      <div className="space-y-5">
+        <p className="text-body-primary text-muted leading-relaxed">
+          To qualify, your household must have a <strong>modest income</strong> and a{" "}
+          <strong>simple tax situation</strong> (see the first FAQ for details on tax situations).
+        </p>
+        <div>
+          <h4 className="text-card-heading text-charcoal mb-3">Income limits (total family income)</h4>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {[
+              ["1 person", "$40,000"],
+              ["2 people", "$55,000"],
+              ["3 people", "$60,000"],
+              ["4 people", "$65,000"],
+              ["5 people", "$70,000"],
+              ["5+ people", "$70k + $5k each"],
+            ].map(([size, limit]) => (
+              <div key={size} className="bg-gold/5 border border-gold/20 rounded-xl p-3 text-center">
+                <p className="text-body-secondary text-muted">{size}</p>
+                <p className="text-card-heading text-gold mt-0.5">{limit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     question: "What documents should I bring?",
-    answer: `Please bring all relevant tax documents:
-
-**Income Documents:**
-• T4 slips (employment income)
-• T4A slips (pension, EI, other income)
-• T5 slips (investment income)
-• RRSP withdrawal slips
-
-**Deduction/Credit Documents:**
-• Medical receipts
-• Donation receipts
-• Tuition receipts
-• Child care receipts
-
-**Personal Information:**
-• Social Insurance Number
-• Previous year's tax return (if available)
-• Banking information for direct deposit
-• Government-issued photo ID`
-  }
+    subtitle: "Preparing for your appointment",
+    answer: (
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-card-heading text-charcoal mb-3">Income documents</h4>
+          <ul className="space-y-1.5 text-body-secondary text-muted">
+            {["T4 slips (employment)", "T4A slips (pension, EI, other)", "T5 slips (investment income)", "RRSP withdrawal slips"].map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gold rounded-full mt-1.5 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-card-heading text-charcoal mb-3">Deduction & personal</h4>
+          <ul className="space-y-1.5 text-body-secondary text-muted">
+            {["Medical & donation receipts", "Tuition & child care receipts", "Social Insurance Number", "Last year's tax return", "Banking info for direct deposit", "Government-issued photo ID"].map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gold rounded-full mt-1.5 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ),
+  },
 ];
 
 export default function TaxClinic() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const toggleFAQ = useCallback((index: number) => {
-    setOpenFAQ(prev => prev === index ? null : index);
+    setOpenFAQ((prev) => (prev === index ? null : index));
   }, []);
 
   return (
     <>
-      {/* Hero Section - Compact and Mobile-Friendly */}
-      <section className="pt-64 pb-20 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-900 relative overflow-hidden">
-        {/* Background gradient elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-800/90 via-slate-900/95 to-blue-900/90"></div>
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-green-500/10 rounded-full blur-3xl"></div>
+      {/* Hero — matches all other inner pages */}
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+        <Image
+          src="/Media/Image/4.JPG"
+          alt="Tax Clinic — Restoration House Brantford"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/65 to-charcoal/30" />
 
-        <div className="relative z-10">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="relative z-10 container-width section-padding pb-16 sm:pb-24 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl"
+          >
+            <div className="section-label text-gold mb-4">COMMUNITY SERVICE</div>
+            <h1 className="section-heading-lg text-cream">
+              Free Tax Preparation
+              <span className="block text-gold">For Our Community</span>
+            </h1>
+            <p className="text-cream/75 text-body-primary mt-4 sm:mt-6 max-w-xl leading-relaxed">
+              Our volunteers file tax returns for individuals and families with modest incomes
+              and simple tax situations, completely free of charge.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mt-8">
+              <Link
+                href="https://outlook.office.com/book/CVITPTaxClinicRestorationHouseBrantford1@rccgbrantford.com/?ismsaljsauthenabled"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                <CalendarIcon className="w-5 h-5 mr-2" />
+                Book Appointment
+              </Link>
+              <Link href={`tel:${CONTACT_INFO.phone.replace(/[\s()]/g, "")}`} className="btn-outline-light">
+                <PhoneIcon className="w-5 h-5 mr-2" />
+                Call {CONTACT_INFO.phone}
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Info strip */}
+      <section className="bg-charcoal border-t border-border-dark py-5">
+        <div className="container-width section-padding">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-cream/80 text-body-secondary">
+            <div className="flex items-center space-x-2">
+              <CalendarIcon className="w-4 h-4 text-gold" />
+              <span>March 2 – April 30, 2026</span>
+            </div>
+            <div className="w-px h-4 bg-border-dark hidden sm:block" />
+            <div className="flex items-center space-x-2">
+              <ClockIcon className="w-4 h-4 text-gold" />
+              <span>Tue / Thu / Fri 12–4 PM · Sat 10 AM–3 PM</span>
+            </div>
+            <div className="w-px h-4 bg-border-dark hidden sm:block" />
+            <div className="flex items-center space-x-2">
+              <MapPinIcon className="w-4 h-4 text-gold" />
+              <span>7 Burnley Ave, Brantford</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Schedule & Contact */}
+      <section className="section-spacing bg-white">
+        <div className="container-width section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-heading text-charcoal mb-4">Schedule Your Appointment</h2>
+            <p className="text-body-primary text-muted max-w-2xl mx-auto">
+              Free tax preparation available throughout tax season
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Hours */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="space-y-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="premium-card p-6 md:p-8"
             >
-              {/* Main Heading - Mobile Optimized */}
-              <h1 className="text-hero-primary">
-                <span className="text-white">Free Tax Preparation</span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-green-400">
-                  For Our Community
-                </span>
-              </h1>
+              <h3 className="text-subsection-heading text-charcoal mb-6 font-heading">Tax Season Hours</h3>
+              <div className="space-y-4">
+                {[
+                  { days: "Tuesday, Thursday & Friday", time: "12:00 PM – 4:00 PM" },
+                  { days: "Saturday", time: "10:00 AM – 3:00 PM" },
+                  { days: "Sunday & Monday", time: "Closed" },
+                ].map(({ days, time }) => (
+                  <div key={days} className="flex items-start justify-between gap-4 py-3 border-b border-border-light last:border-0">
+                    <p className="text-body-primary font-medium text-charcoal">{days}</p>
+                    <p className={`text-body-primary font-semibold flex-shrink-0 ${time === "Closed" ? "text-muted" : "text-gold"}`}>{time}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-body-secondary text-muted mt-4 italic">* March 2 – April 30, 2026</p>
+            </motion.div>
 
-              {/* Description - Mobile Optimized */}
-              <p className="text-body-primary text-gray-300 max-w-4xl mx-auto font-light px-4">
-                The tax clinic helps our community, where our volunteers file tax returns for people with modest incomes and a simple tax situation.
-              </p>
-
-              {/* CTA Buttons - Mobile Optimized */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-6 px-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="https://outlook.office.com/book/CVITPTaxClinicRestorationHouseBrantford1@rccgbrantford.com/?ismsaljsauthenabled"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 shadow-2xl hover:shadow-teal-500/25"
-                  >
-                    <CalendarIcon className="w-5 h-5 mr-2" />
-                    Book Appointment
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`}
-                    className="inline-flex items-center justify-center w-full sm:w-auto border-2 border-teal-400 text-teal-300 hover:bg-teal-400 hover:text-slate-900 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300"
-                  >
-                    <PhoneIcon className="w-5 h-5 mr-2" />
-                    Call {CONTACT_INFO.phone}
-                  </Link>
-                </motion.div>
+            {/* Contact */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="premium-card p-6 md:p-8"
+            >
+              <h3 className="text-subsection-heading text-charcoal mb-6 font-heading">Location & Contact</h3>
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPinIcon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-body-primary font-semibold text-charcoal">Address</p>
+                    <p className="text-body-secondary text-muted">RCCG Restoration House Brantford</p>
+                    <p className="text-body-secondary text-muted">{CONTACT_INFO.address.main}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <PhoneIcon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-body-primary font-semibold text-charcoal">Phone</p>
+                    <a href={`tel:${CONTACT_INFO.phone.replace(/[\s()]/g, "")}`} className="text-gold hover:text-gold/80 transition-colors text-body-secondary">
+                      {CONTACT_INFO.phone}
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <CalendarIcon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-body-primary font-semibold text-charcoal">Tax Clinic Email</p>
+                    <a href="mailto:taxclinic@rccgbrantford.com" className="text-gold hover:text-gold/80 transition-colors text-body-secondary break-all">
+                      taxclinic@rccgbrantford.com
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
-
       </section>
 
-      {/* Schedule & Contact Section - Simplified */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
-              Schedule Your Appointment
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Free tax preparation available during tax season
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {/* Hours */}
-            <div className="bg-gradient-to-br from-teal-50 to-green-50 dark:from-teal-900/20 dark:to-green-900/20 rounded-2xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/50">
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Tax Season Hours</h3>
-              <div className="space-y-3 text-sm md:text-base text-gray-600 dark:text-gray-300">
-                <div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-100">Tuesday, Thursday, Friday</div>
-                  <div className="text-teal-600 dark:text-teal-400">12:00 PM - 4:00 PM</div>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-100">Saturday</div>
-                  <div className="text-teal-600 dark:text-teal-400">10:00 AM - 3:00 PM</div>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-100">Sunday</div>
-                  <div className="text-teal-600 dark:text-teal-400">Closed</div>
-                </div>
-                <p className="text-xs md:text-sm text-teal-600 dark:text-teal-400 mt-3">
-                  *March 2nd - April 30th, 2026
-                </p>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <div className="bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-2xl p-6 md:p-8 border border-green-200/50 dark:border-green-800/50">
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Location & Contact</h3>
-              <div className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                <p>RCCG Restoration House Brantford</p>
-                <p>{CONTACT_INFO.address.main}</p>
-                <p className="mt-3">
-                  <strong>Phone:</strong> <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`} className="text-teal-600 hover:text-teal-700 break-all">{CONTACT_INFO.phone}</a>
-                </p>
-                <p>
-                  <strong>Email:</strong> <a href="mailto:taxclinic@rccgbrantford.com" className="text-teal-600 hover:text-teal-700 break-all">taxclinic@rccgbrantford.com</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-teal-50/30 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-section-heading text-gray-800 dark:text-gray-100 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+      {/* FAQ */}
+      <section className="section-spacing section-alt">
+        <div className="container-width section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-heading text-charcoal mb-4">Frequently Asked Questions</h2>
+            <p className="text-body-primary text-muted max-w-2xl mx-auto">
               Everything you need to know about our free tax preparation service
             </p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-4">
+          <div className="max-w-4xl mx-auto space-y-4">
             {FAQ_DATA.map((faq, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-teal-100/50 dark:border-gray-700/50 overflow-hidden"
+                className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+                  openFAQ === index
+                    ? "shadow-luxury bg-gold/5 border-gold/20"
+                    : "premium-card hover:shadow-lg"
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full text-left px-6 py-6 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-inset"
+                  className="w-full px-6 sm:px-8 py-5 sm:py-6 text-left flex items-center justify-between hover:bg-cream-50/50 transition-colors duration-300 group"
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 pr-4">
-                      {faq.question}
-                    </h3>
-                    <div className="flex-shrink-0">
-                      {openFAQ === index ? (
-                        <ChevronUpIcon className="w-5 h-5 text-teal-600" />
-                      ) : (
-                        <ChevronDownIcon className="w-5 h-5 text-teal-600" />
-                      )}
+                  <div className="flex-1 space-y-1">
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-1 h-8 rounded-full transition-all duration-300 ${openFAQ === index ? "bg-gold shadow-lg" : "bg-border group-hover:bg-gold/60"}`} />
+                      <h3 className={`text-card-heading transition-colors duration-300 ${openFAQ === index ? "text-gold" : "text-charcoal group-hover:text-gold"}`}>
+                        {faq.question}
+                      </h3>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <div className="w-1" />
+                      <p className={`text-body-secondary transition-colors duration-300 ${openFAQ === index ? "text-muted" : "text-muted group-hover:text-charcoal"}`}>
+                        {faq.subtitle}
+                      </p>
                     </div>
                   </div>
+                  <motion.div
+                    animate={{ rotate: openFAQ === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`flex-shrink-0 ml-4 ${openFAQ === index ? "text-gold" : "text-muted"}`}
+                  >
+                    <ChevronDownIcon className="w-6 h-6" />
+                  </motion.div>
                 </button>
 
                 <motion.div
                   initial={false}
-                  animate={{
-                    height: openFAQ === index ? "auto" : 0,
-                    opacity: openFAQ === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  animate={{ height: openFAQ === index ? "auto" : 0, opacity: openFAQ === index ? 1 : 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6">
-                    <div className="text-gray-600 dark:text-gray-300 whitespace-pre-line leading-relaxed">
-                      {faq.answer}
-                    </div>
+                  <div className="px-6 sm:px-8 pb-6 pt-2">
+                    {faq.answer}
                   </div>
                 </motion.div>
               </motion.div>
@@ -259,9 +390,9 @@ export default function TaxClinic() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-600 to-green-600 text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      {/* CTA */}
+      <section className="section-spacing section-dark">
+        <div className="container-width section-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -269,42 +400,33 @@ export default function TaxClinic() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-section-heading">
-              Ready to Get Started?
-            </h2>
-            <p className="text-body-primary opacity-90 max-w-2xl mx-auto">
-              Call us to schedule your free tax preparation appointment or visit our contact page for more information.
+            <h2 className="section-heading text-cream">Ready to Get Started?</h2>
+            <p className="text-body-primary text-cream/80 max-w-2xl mx-auto font-body">
+              Book online or call us to schedule your free tax preparation appointment.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
               <Link
                 href="https://outlook.office.com/book/CVITPTaxClinicRestorationHouseBrantford1@rccgbrantford.com/?ismsaljsauthenabled"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full sm:w-auto bg-white text-teal-600 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="btn-primary"
               >
                 <CalendarIcon className="w-5 h-5 mr-2" />
                 Book Appointment
               </Link>
-              <Link
-                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '').replace(/[()]/g, '')}`}
-                className="inline-flex items-center justify-center w-full sm:w-auto border-2 border-white text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 hover:bg-white hover:text-teal-600"
-              >
+              <Link href={`tel:${CONTACT_INFO.phone.replace(/[\s()]/g, "")}`} className="btn-outline-light">
                 <PhoneIcon className="w-5 h-5 mr-2" />
                 Call {CONTACT_INFO.phone}
               </Link>
             </div>
-
-            {/* Learn More Link */}
-            <div className="mt-6 px-4">
-              <Link
-                href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white underline underline-offset-4 transition-colors duration-300 text-sm sm:text-base"
-              >
-                Learn more about the CRA Community Volunteer Income Tax Program
-              </Link>
-            </div>
+            <Link
+              href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-text text-cream/60 mt-2 inline-block"
+            >
+              Learn about the CRA Community Volunteer Income Tax Program →
+            </Link>
           </motion.div>
         </div>
       </section>

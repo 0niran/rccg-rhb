@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   name: "Restoration House Brantford",
   description: "RCCG Restoration House Brantford - A welcoming Christian church serving Brantford, Paris, Cambridge, and surrounding communities. Join us for Sunday worship, Bible study, prayer meetings, and family ministries.",
   url: "https://rccgbrantford.com",
-  ogImage: "/Media/RHB Logos/RCCG Restoration House Brantford-White.svg",
+  ogImage: "/Media/Image/1.JPG",
   keywords: [
     "church brantford",
     "churches near me brantford",
@@ -43,6 +43,7 @@ export const SITE_CONFIG = {
 export const CONTACT_INFO = {
   phone: "+1 (519) 304-3600",
   email: "hello@rccgbrantford.com",
+  givingEmail: "giving.rhhbrantford@gmail.com",
   address: {
     main: "7 Burnley Ave, Brantford, ON N3T 1T5",
     youth: "50 Market Street, Brantford, ON N3T 2Z5"
@@ -53,7 +54,7 @@ export const CONTACT_INFO = {
 export const SOCIAL_LINKS = {
   facebook: "https://facebook.com/rccgbrantford",
   instagram: "https://instagram.com/rccgbrantford", 
-  youtube: "https://youtube.com/@rccgbrantford",
+  youtube: "https://www.youtube.com/@rccgrestorationhousebrantf8713",
   twitter: "https://twitter.com/rccgbrantford"
 } as const;
 

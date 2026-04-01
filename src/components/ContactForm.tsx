@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { contactSchema, type ContactForm as ContactFormType, type FormResponse } from '@/lib/schemas';
+import { trackContactFormSubmit } from '@/lib/analytics';
 
 const subjectOptions = [
   { value: '', label: 'How can we help you?' },
@@ -108,6 +109,7 @@ export default function ContactForm() {
           type: 'success',
           text: result.message,
         });
+        trackContactFormSubmit(data.subject);
         reset(); // Clear the form
       } else {
         setSubmitMessage({
@@ -126,18 +128,18 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-amber-100/50 dark:border-gray-700/50">
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Send Us a Message</h3>
+    <div className="bg-white rounded-2xl p-8 border border-border-light shadow-soft">
+      <h3 className="text-subsection-heading text-charcoal mb-6 font-heading">Send Us a Message</h3>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Name Fields */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <input
               {...register('firstName')}
               type="text"
               placeholder="First Name *"
-              className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
+              className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted transition-all duration-200 font-body"
               disabled={isSubmitting}
             />
             {errors.firstName && (
@@ -149,7 +151,7 @@ export default function ContactForm() {
               {...register('lastName')}
               type="text"
               placeholder="Last Name *"
-              className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
+              className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted transition-all duration-200 font-body"
               disabled={isSubmitting}
             />
             {errors.lastName && (
@@ -164,7 +166,7 @@ export default function ContactForm() {
             {...register('email')}
             type="email"
             placeholder="your@email.com *"
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
+            className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted transition-all duration-200 font-body"
             disabled={isSubmitting}
           />
           {errors.email && (
@@ -178,7 +180,7 @@ export default function ContactForm() {
             {...register('phone')}
             type="tel"
             placeholder="Phone Number (Optional)"
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
+            className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted transition-all duration-200 font-body"
             disabled={isSubmitting}
           />
           {errors.phone && (
@@ -190,7 +192,7 @@ export default function ContactForm() {
         <div>
           <select 
             {...register('subject')}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 transition-all duration-300"
+            className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted transition-all duration-200 font-body"
             disabled={isSubmitting}
           >
             {subjectOptions.map((option) => (
@@ -210,7 +212,7 @@ export default function ContactForm() {
             {...register('message')}
             rows={4}
             placeholder="Share your prayer requests, questions, or how we can support you... *"
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 dark:text-gray-100 resize-none transition-all duration-300"
+            className="w-full px-4 py-3 bg-cream-50 border border-border-light rounded-xl focus:ring-2 focus:ring-gold/30 focus:border-gold text-charcoal placeholder:text-muted resize-none transition-all duration-200 font-body"
             disabled={isSubmitting}
           />
           {errors.message && (
@@ -239,7 +241,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600 disabled:bg-amber-600/50 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:shadow-lg disabled:cursor-not-allowed"
+          className="btn-primary w-full justify-center py-4 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <div className="flex items-center justify-center space-x-2">
@@ -254,10 +256,10 @@ export default function ContactForm() {
 
       {/* Success/Error Message */}
       {submitMessage && (
-        <div className={`mt-6 p-4 rounded-lg text-sm ${
-          submitMessage.type === 'success' 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800' 
-            : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
+        <div className={`mt-6 p-4 rounded-xl text-sm font-body ${
+          submitMessage.type === 'success'
+            ? 'bg-gold/10 text-charcoal border border-gold/30'
+            : 'bg-red-50 text-red-700 border border-red-200'
         }`}>
           {submitMessage.text}
         </div>

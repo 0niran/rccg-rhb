@@ -59,10 +59,8 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Log successful subscription
+    // Log successful subscription — do not log PII (email/name)
     console.log('Newsletter Subscription Success:', {
-      email,
-      firstName,
       mailchimpId: subscriptionResult.mailchimpId,
       timestamp: new Date().toISOString(),
     });

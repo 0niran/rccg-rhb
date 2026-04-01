@@ -67,5 +67,8 @@ export function generateMetadata({
       images: [image],
       creator: '@rccgbrantford',
     },
+    verification: {
+      google: '_VPGqopsTZjXYk_WNtNSCAYKE5UL7tomTJLUC5GUnpY',
+    },
   };
 }

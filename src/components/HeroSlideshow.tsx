@@ -11,10 +11,8 @@ export default function HeroSlideshow() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const progressRef = useRef<NodeJS.Timeout | null>(null);
 
 
   const SLIDE_DURATION = 5000; // 5 seconds
@@ -22,17 +20,10 @@ export default function HeroSlideshow() {
 
   const goToPrevious = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
-    setProgress(0);
   }, []);
 
   const goToNext = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
-    setProgress(0);
-  }, []);
-
-  const goToSlide = useCallback((index: number) => {
-    setCurrentSlide(index);
-    setProgress(0);
   }, []);
 
   const togglePlayPause = useCallback(() => {
@@ -56,24 +47,12 @@ export default function HeroSlideshow() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goToPrevious, goToNext, togglePlayPause]);
 
-  // Auto-advance slides with progress tracking
+  // Auto-advance slides
   useEffect(() => {
     if (!isPlaying || isHovered) return;
 
-    // Clear existing intervals
+    // Clear existing interval
     if (intervalRef.current) clearInterval(intervalRef.current);
-    if (progressRef.current) clearInterval(progressRef.current);
-
-    // Reset progress
-    setProgress(0);
-
-    // Progress update interval
-    progressRef.current = setInterval(() => {
-      setProgress((prev) => {
-        const newProgress = prev + (PROGRESS_INTERVAL / SLIDE_DURATION) * 100;
-        return newProgress >= 100 ? 100 : newProgress;
-      });
-    }, PROGRESS_INTERVAL);
 
     // Slide change interval
     intervalRef.current = setInterval(() => {
@@ -82,7 +61,6 @@ export default function HeroSlideshow() {
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      if (progressRef.current) clearInterval(progressRef.current);
     };
   }, [isPlaying, isHovered, currentSlide, goToNext]);
 
@@ -145,7 +123,7 @@ export default function HeroSlideshow() {
       {/* Minimalist navigation arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-3 sm:p-4 rounded-full transition-all duration-500 opacity-60 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
         aria-label="Previous image"
       >
         <ChevronLeftIcon className="w-6 h-6" />
@@ -153,37 +131,12 @@ export default function HeroSlideshow() {
 
       <button
         onClick={goToNext}
-        className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white p-3 sm:p-4 rounded-full transition-all duration-500 opacity-60 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-110 border border-white/10 z-30"
         aria-label="Next image"
       >
         <ChevronRightIcon className="w-6 h-6" />
       </button>
       
-      {/* Elegant dots indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
-        <div className="flex space-x-4">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`relative transition-all duration-500 ${
-                index === currentSlide 
-                  ? 'w-12 h-1 bg-white rounded-full' 
-                  : 'w-1 h-1 bg-white/40 hover:bg-white/70 rounded-full'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            >
-              {/* Smooth progress bar */}
-              {index === currentSlide && (
-                <div 
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full transition-all duration-100 ease-linear"
-                  style={{ width: `${progress}%` }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

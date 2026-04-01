@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import mailchimp from '@mailchimp/mailchimp_marketing';
 
 interface MailchimpConfig {
@@ -6,16 +7,36 @@ interface MailchimpConfig {
   serverPrefix: string;
 }
 
-interface SubscriberData {
+export interface SubscriberData {
   email: string;
   firstName?: string;
   lastName?: string;
 }
 
-interface MailchimpError {
-  status: number;
-  title?: string;
-  detail?: string;
+interface MailchimpApiError {
+  status?: number;
+  response?: {
+    body?: { title?: string; detail?: string };
+    text?: string;
+  };
+  message?: string;
+}
+
+function isMailchimpError(error: unknown): error is MailchimpApiError {
+  return typeof error === 'object' && error !== null;
+}
+
+interface MailchimpMember {
+  id?: string;
+  email_address?: string;
+  status?: string;
+  merge_fields?: { FNAME?: string; LNAME?: string };
+  timestamp_opt?: string;
+}
+
+interface MailchimpList {
+  name?: string;
+  stats?: { member_count?: number };
 }
 
 class MailchimpService {
@@ -51,33 +72,32 @@ class MailchimpService {
 
       const { email, firstName, lastName } = subscriberData;
 
-      // Prepare merge fields for Mailchimp
       const mergeFields: Record<string, string> = {};
       if (firstName) mergeFields.FNAME = firstName;
       if (lastName) mergeFields.LNAME = lastName;
 
-      // Add subscriber to the audience
       const response = await mailchimp.lists.addListMember(this.config.audienceId, {
         email_address: email,
         status: 'subscribed' as const,
         merge_fields: mergeFields,
-        tags: ['Website Signup'], // Tag to identify website subscriptions
+        tags: ['Website Signup'],
       });
 
+      const member = response as MailchimpMember;
       return {
         success: true,
         message: 'Successfully subscribed to newsletter!',
-        mailchimpId: (response as any).id || 'unknown',
+        mailchimpId: member.id ?? 'unknown',
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Mailchimp subscription error:', error);
 
-      // Handle specific Mailchimp errors
-      if (error.status === 400) {
-        // Check if user is already subscribed
-        if (error.response?.body?.title === 'Member Exists' || 
-            error.response?.text?.includes('Member Exists')) {
+      if (isMailchimpError(error) && error.status === 400) {
+        const body = error.response?.body;
+        const text = error.response?.text ?? '';
+
+        if (body?.title === 'Member Exists' || text.includes('Member Exists')) {
           return {
             success: false,
             message: 'This email is already subscribed to our newsletter.',
@@ -85,9 +105,7 @@ class MailchimpService {
           };
         }
 
-        // Invalid email format
-        if (error.response?.body?.detail?.includes('valid email') ||
-            error.response?.text?.includes('valid email')) {
+        if (body?.detail?.includes('valid email') || text.includes('valid email')) {
           return {
             success: false,
             message: 'Please enter a valid email address.',
@@ -96,7 +114,6 @@ class MailchimpService {
         }
       }
 
-      // Generic error handling
       return {
         success: false,
         message: 'Unable to subscribe at this time. Please try again later or contact us directly.',
@@ -111,27 +128,25 @@ class MailchimpService {
 
       const subscriberHash = this.getSubscriberHash(email);
       const mergeFields: Record<string, string> = {};
-      
+
       if (updateData.firstName) mergeFields.FNAME = updateData.firstName;
       if (updateData.lastName) mergeFields.LNAME = updateData.lastName;
 
       const response = await mailchimp.lists.updateListMember(
         this.config.audienceId,
         subscriberHash,
-        {
-          merge_fields: mergeFields,
-        }
+        { merge_fields: mergeFields }
       );
 
+      const member = response as MailchimpMember;
       return {
         success: true,
         message: 'Subscriber information updated successfully.',
-        mailchimpId: (response as any).id || 'unknown',
+        mailchimpId: member.id ?? 'unknown',
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Mailchimp update error:', error);
-      
       return {
         success: false,
         message: 'Unable to update subscriber information.',
@@ -150,22 +165,22 @@ class MailchimpService {
         subscriberHash
       );
 
-      const typedResponse = response as any;
+      const member = response as MailchimpMember;
       return {
         success: true,
         subscriber: {
-          email: typedResponse.email_address || '',
-          status: typedResponse.status || 'unknown',
-          firstName: typedResponse.merge_fields?.FNAME || '',
-          lastName: typedResponse.merge_fields?.LNAME || '',
-          subscribedAt: typedResponse.timestamp_opt || '',
+          email: member.email_address ?? '',
+          status: member.status ?? 'unknown',
+          firstName: member.merge_fields?.FNAME ?? '',
+          lastName: member.merge_fields?.LNAME ?? '',
+          subscribedAt: member.timestamp_opt ?? '',
         },
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Mailchimp get subscriber error:', error);
 
-      if (error.status === 404) {
+      if (isMailchimpError(error) && error.status === 404) {
         return {
           success: false,
           message: 'Subscriber not found.',
@@ -182,38 +197,32 @@ class MailchimpService {
   }
 
   private getSubscriberHash(email: string): string {
-    // Mailchimp uses MD5 hash of lowercase email as subscriber ID
-    const crypto = require('crypto');
     return crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
   }
 
-  // Health check method to verify configuration
   async testConnection() {
     try {
       this.initialize();
 
-      // Try to get audience info to test connection
-      const response = await (mailchimp.lists as any).getList(this.config.audienceId);
+      const response = await (mailchimp.lists as unknown as { getList: (id: string) => Promise<MailchimpList> })
+        .getList(this.config.audienceId);
 
       return {
         success: true,
         message: 'Mailchimp connection successful.',
-        audienceName: response?.name || 'Unknown',
-        memberCount: response?.stats?.member_count || 0,
+        audienceName: response?.name ?? 'Unknown',
+        memberCount: response?.stats?.member_count ?? 0,
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Mailchimp connection test failed:', error);
-      
       return {
         success: false,
         message: 'Mailchimp connection failed. Please check your configuration.',
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
   }
 }
 
-// Export singleton instance
 export const mailchimpService = new MailchimpService();
-export type { SubscriberData };

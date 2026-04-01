@@ -95,6 +95,12 @@ export function getUpcomingEvents(events: Event[], limit?: number): Event[] {
   return limit ? upcoming.slice(0, limit) : upcoming
 }
 
+// Determine if a single event is in the past
+export function isPastEvent(event: Event): boolean {
+  if (event.isRecurring) return false;
+  return parseEventDate(event) < new Date();
+}
+
 // Get past events
 export function getPastEvents(events: Event[]): Event[] {
   const now = new Date()

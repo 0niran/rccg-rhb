@@ -14,92 +14,104 @@ import {
   PhoneIcon,
   MapPinIcon
 } from "@heroicons/react/24/solid";
-import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import NewsletterForm from "./NewsletterForm";
+
+const QUICK_LINKS = [
+  { name: "Home", href: "/" },
+  { name: "Events", href: "/events" },
+  { name: "Ministries", href: "/ministries" },
+  { name: "Tax Clinic", href: "/tax-clinic" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "Events", href: "/events" },
-    { name: "Ministries", href: "/ministries" },
-    { name: "Tax Clinic", href: "/tax-clinic" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact Us", href: "/contact" }
-  ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-600/5 to-orange-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-orange-600/5 to-amber-600/5 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="relative max-w-7xl mx-auto px-6 py-20">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Church Info & Branding */}
+    <footer className="section-dark overflow-hidden">
+      <div className="container-width section-padding py-16 lg:py-24">
+
+        {/* 4-column grid — each section gets its own breathing room */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12 mb-16">
+
+          {/* Col 1 — Branding */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-1"
           >
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="relative w-16 h-16 bg-amber-100/10 rounded-2xl p-3">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="relative w-14 h-14 bg-white/10 rounded-xl flex-shrink-0">
                 <Image
                   src="/Media/RHB Logos/RCCG Restoration House Brantford-White.svg"
                   alt="Restoration House Brantford Logo"
                   fill
-                  sizes="64px"
-                  className="object-contain p-1"
+                  sizes="56px"
+                  className="object-contain p-2"
                 />
               </div>
               <div>
-                <h3 className="text-subsection-heading text-white">
-                  Restoration House
-                </h3>
-                <p className="text-amber-400 font-medium">Brantford</p>
+                <h3 className="text-lg font-heading font-semibold text-white leading-tight">Restoration House</h3>
+                <p className="text-gold font-medium font-body text-sm">Brantford</p>
               </div>
             </div>
-            <p className="text-gray-300 leading-relaxed mb-6">
-              A vibrant community of faith committed to spiritual growth, worship, and service. 
-              Come as you are - you belong here.
+
+            <p className="text-white/70 text-sm leading-relaxed mb-8 font-body">
+              A vibrant community of faith committed to spiritual growth, worship, and service.
+              Come as you are, you belong here.
             </p>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/share/19mkBkVF5S/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Facebook">
-                <FaFacebook className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+
+            <div className="flex space-x-3">
+              <a
+                href="https://www.facebook.com/share/19mkBkVF5S/?mibextid=wwXIfr"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="group bg-white/10 hover:bg-gold p-2.5 rounded-lg transition-all duration-200 border border-white/20 hover:border-gold"
+              >
+                <svg className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
               </a>
-              <a href="https://www.instagram.com/restorationhouse_brantford" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Follow us on Instagram">
-                <FaInstagram className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              <a
+                href="https://www.instagram.com/restorationhouse_brantford"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="group bg-white/10 hover:bg-gold p-2.5 rounded-lg transition-all duration-200 border border-white/20 hover:border-gold"
+              >
+                <svg className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
               </a>
-              <a href="https://www.youtube.com/@rccgrestorationhousebrantf8713" target="_blank" rel="noopener noreferrer" className="group bg-white/5 hover:bg-amber-600 p-3 rounded-xl transition-all duration-300 hover:scale-110 border border-white/10 hover:border-amber-500" aria-label="Subscribe to our YouTube channel">
-                <FaYoutube className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              <a
+                href="https://www.youtube.com/@rccgrestorationhousebrantf8713"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="group bg-white/10 hover:bg-gold p-2.5 rounded-lg transition-all duration-200 border border-white/20 hover:border-gold"
+              >
+                <svg className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
               </a>
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Col 2 — Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-card-heading text-white mb-6">Quick Links</h3>
+            <h3 className="text-base font-heading font-semibold text-white mb-6 uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
+              {QUICK_LINKS.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="group flex items-center text-gray-300 hover:text-amber-400 transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-2 text-white/70 hover:text-gold transition-colors duration-200 font-body text-sm"
                   >
-                    <ArrowRightIcon className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ArrowRightIcon className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" />
                     {link.name}
                   </Link>
                 </li>
@@ -107,112 +119,92 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Ministries & Service Times */}
+          {/* Col 3 — Connect With Us */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-card-heading text-white mb-6">Service Times</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 group">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <UserGroupIcon className="w-5 h-5 text-amber-400" />
+            <h3 className="text-base font-heading font-semibold text-white mb-6 uppercase tracking-wider">Connect With Us</h3>
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPinIcon className="w-4 h-4 text-gold" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">Sunday Service</p>
-                  <p className="text-gray-400 text-sm">10:00 AM - 12:00 PM</p>
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Visit Us</p>
+                  <p className="text-white/60 text-sm font-body leading-snug">7 Burnley Ave, Brantford<br />ON N3T 1T5</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 group">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <BookOpenIcon className="w-5 h-5 text-amber-400" />
-                </div>
-                <div>
-                  <p className="font-medium text-white">Digging Deep</p>
-                  <p className="text-gray-400 text-sm">Tue 7:00 PM - 8:00 PM</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3 group">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center group-hover:bg-amber-600/30 transition-colors">
-                  <HeartIcon className="w-5 h-5 text-amber-400" />
-                </div>
-                <div>
-                  <p className="font-medium text-white">Faith Clinic</p>
-                  <p className="text-gray-400 text-sm">Thu 7:00 PM - 8:00 PM</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-card-heading text-white mb-6">Get In Touch</h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center mt-0.5">
-                  <MapPinIcon className="w-5 h-5 text-amber-400" />
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <PhoneIcon className="w-4 h-4 text-gold" />
                 </div>
                 <div>
-                  <p className="text-white font-medium">Visit Us</p>
-                  <p className="text-gray-300">
-                    7 Burnley Ave<br />
-                    Brantford, ON N3T 1T5
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center">
-                  <PhoneIcon className="w-5 h-5 text-amber-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">Call Us</p>
-                  <a href="tel:+15193043600" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Call Us</p>
+                  <a href="tel:+15193043600" className="text-white/60 hover:text-gold transition-colors text-sm font-body">
                     (519) 304-3600
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-amber-600/20 rounded-lg flex items-center justify-center">
-                  <EnvelopeIcon className="w-5 h-5 text-amber-400" />
+
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <EnvelopeIcon className="w-4 h-4 text-gold" />
                 </div>
                 <div>
-                  <p className="text-white font-medium">Email Us</p>
-                  <a href="mailto:hello@rccgbrantford.com" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Email Us</p>
+                  <a href="mailto:hello@rccgbrantford.com" className="text-white/60 hover:text-gold transition-colors text-sm font-body">
                     hello@rccgbrantford.com
                   </a>
                 </div>
               </div>
             </div>
           </motion.div>
-        </div>
 
-        {/* Newsletter Signup */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 mb-12"
-        >
-          <div className="bg-gradient-to-r from-amber-600/10 to-orange-600/10 backdrop-blur-sm rounded-2xl p-8 border border-amber-500/20">
-            <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Stay Connected With Our Community
-              </h3>
-              <p className="text-gray-300 mb-6">
-                Get updates on upcoming events, inspiring messages, and ways to get involved in our church family.
-              </p>
-              <NewsletterForm />
+          {/* Col 4 — Service Times */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-base font-heading font-semibold text-white mb-6 uppercase tracking-wider">Service Times</h3>
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <UserGroupIcon className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Sunday Service</p>
+                  <p className="text-white/60 text-sm font-body">10:00 AM - 12:00 PM</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <BookOpenIcon className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Digging Deep</p>
+                  <p className="text-white/60 text-sm font-body">Tuesday 7:00 - 8:00 PM</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <HeartIcon className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="text-white text-sm font-medium font-body mb-0.5">Faith Clinic</p>
+                  <p className="text-white/60 text-sm font-body">Thursday 7:00 - 8:00 PM</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Bottom Bar */}
         <motion.div
@@ -220,29 +212,27 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="border-t border-gray-700/50 pt-8"
+          className="border-t border-white/10 pt-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-left">
-              <p className="text-gray-400">&copy; {currentYear} Restoration House Brantford. All rights reserved.</p>
-              <p className="text-gray-500 text-sm mt-1">Member of the Redeemed Christian Church of God</p>
+              <p className="text-white/50 text-sm font-body">
+                &copy; {currentYear} Restoration House Brantford. All rights reserved.
+              </p>
+              <p className="text-white/35 text-xs mt-1 font-body">
+                Member of the Redeemed Christian Church of God
+              </p>
             </div>
-            <div className="flex items-center space-x-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-amber-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-amber-400 transition-colors">
-                Terms of Service
-              </Link>
-              <div className="flex items-center space-x-2 text-gray-500">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+              <div className="flex items-center gap-1.5 text-white/35 font-body text-xs">
                 <span>Made with</span>
-                <HeartIcon className="w-4 h-4 text-amber-500" />
+                <HeartIcon className="w-3.5 h-3.5 text-gold" />
                 <span>by</span>
                 <a
                   href="https://cortexcreative.ca"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-amber-500 hover:text-amber-400 font-medium transition-colors"
+                  className="text-gold hover:text-gold/80 font-medium transition-colors"
                 >
                   Cortex Creative
                 </a>

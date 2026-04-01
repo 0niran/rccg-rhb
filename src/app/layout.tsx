@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { inter, cormorant } from "@/lib/fonts";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { generateMetadata } from "@/lib/metadata";
 import Script from "next/script";
 import ClarityAnalytics from "@/components/ClarityAnalytics";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   ...generateMetadata(),
@@ -75,7 +78,7 @@ export default function RootLayout({
         "sameAs": [
           "https://facebook.com/rccgbrantford",
           "https://instagram.com/rccgbrantford",
-          "https://youtube.com/@rccgbrantford",
+          "https://www.youtube.com/@rccgrestorationhousebrantf8713",
           "https://twitter.com/rccgbrantford"
         ],
         "hasOfferCatalog": {
@@ -117,23 +120,15 @@ export default function RootLayout({
         "description": "Official website of RCCG Restoration House Brantford",
         "publisher": {
           "@id": "https://rccgbrantford.com/#church"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://rccgbrantford.com/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
         }
       }
     ]
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className="font-sans antialiased bg-gray-900 text-gray-100"
+        className={`antialiased ${inter.variable} ${cormorant.variable}`}
         suppressHydrationWarning={true}
       >
 
@@ -147,9 +142,18 @@ export default function RootLayout({
         />
 
         <ClarityAnalytics />
+        <GoogleAnalytics />
 
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-gold focus:text-charcoal focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus:text-sm"
+        >
+          Skip to content
+        </a>
+
+        <AnnouncementBar />
         <Navigation />
-        <main className="min-h-screen">
+        <main id="main-content" className="min-h-screen">
           {children}
         </main>
         <Footer />
