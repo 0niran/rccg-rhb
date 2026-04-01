@@ -7,7 +7,7 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: '2024-03-15',
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false, // CDN does not support auth tokens — required for private dataset
   token: process.env.SANITY_READ_TOKEN,
   perspective: 'published',
 })
