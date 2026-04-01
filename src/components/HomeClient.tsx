@@ -176,7 +176,58 @@ export default function HomeClient({ upcomingEvents }: { upcomingEvents: Event[]
         </div>
       </section>
 
-      {/* Section 4 - Upcoming Events */}
+      {/* Section 4 - From Our Pastor */}
+      <section className="section-dark section-spacing">
+        <div className="container-width section-padding">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
+              <div className="section-label">FROM OUR PASTOR</div>
+              <h2 className="section-heading text-cream mt-3">A Warm Welcome to Our Church Family</h2>
+
+              <div className="text-cream/70 mt-6 leading-relaxed space-y-4 font-body">
+                <p>
+                  Welcome to Restoration House Brantford! I'm Pastor Oluwaseyi Akinbiyi, and along with my husband Dr. Tolulola Akinbiyi, we are blessed to serve this wonderful congregation.
+                </p>
+                <p>
+                  Since April 1, 2018, God has been faithful in building this community of believers. What started in a conference room has grown into a thriving church family where lives are transformed by God's love and power.
+                </p>
+                <p>
+                  Our heart's desire is to see every person who walks through our doors experience the restoring power of Jesus Christ. Whether you're seeking healing, hope, or simply a place to belong, you'll find a home here with us.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-gold pl-6 mt-8">
+                <p className="font-heading italic text-xl text-gold-muted">
+                  "Manifesting Power and Impacting Lives with the Enriching Word of God"
+                </p>
+                <p className="text-sm text-cream/50 mt-2 font-body">- Our Church Motto</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link href="/give" className="btn-outline-light">
+                  Give Online
+                </Link>
+                <Link href="/about" className="btn-text text-gold">
+                  Learn More About Us →
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-2 ring-gold/30 ring-offset-4 ring-offset-charcoal">
+                <Image
+                  src="/Media/Leadership/Dr-And-Pastor.jpg"
+                  alt="Pastor Oluwaseyi Akinbiyi and Dr. Tolulola Akinbiyi - Restoration House Brantford"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5 - Upcoming Events */}
       <section className="section-alt section-spacing">
         <div className="container-width section-padding">
           <div className="mb-16">
@@ -272,57 +323,6 @@ export default function HomeClient({ upcomingEvents }: { upcomingEvents: Event[]
             <Link href="/events" className="btn-secondary">
               View All Events
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5 - From Our Pastor */}
-      <section className="section-dark section-spacing">
-        <div className="container-width section-padding">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-7">
-              <div className="section-label">FROM OUR PASTOR</div>
-              <h2 className="section-heading text-cream mt-3">A Warm Welcome to Our Church Family</h2>
-
-              <div className="text-cream/70 mt-6 leading-relaxed space-y-4 font-body">
-                <p>
-                  Welcome to Restoration House Brantford! I'm Pastor Oluwaseyi Akinbiyi, and along with my husband Dr. Tolulola Akinbiyi, we are blessed to serve this wonderful congregation.
-                </p>
-                <p>
-                  Since April 1, 2018, God has been faithful in building this community of believers. What started in a conference room has grown into a thriving church family where lives are transformed by God's love and power.
-                </p>
-                <p>
-                  Our heart's desire is to see every person who walks through our doors experience the restoring power of Jesus Christ. Whether you're seeking healing, hope, or simply a place to belong, you'll find a home here with us.
-                </p>
-              </div>
-
-              <div className="border-l-4 border-gold pl-6 mt-8">
-                <p className="font-heading italic text-xl text-gold-muted">
-                  "Manifesting Power and Impacting Lives with the Enriching Word of God"
-                </p>
-                <p className="text-sm text-cream/50 mt-2 font-body">- Our Church Motto</p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <Link href="/give" className="btn-outline-light">
-                  Give Online
-                </Link>
-                <Link href="/about" className="btn-text text-gold">
-                  Learn More About Us →
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-2 ring-gold/30 ring-offset-4 ring-offset-charcoal">
-                <Image
-                  src="/Media/Leadership/Dr-And-Pastor.jpg"
-                  alt="Pastor Oluwaseyi Akinbiyi and Dr. Tolulola Akinbiyi - Restoration House Brantford"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
