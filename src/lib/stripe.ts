@@ -2,7 +2,8 @@ import Stripe from "stripe";
 
 // Defer the error to runtime (API route call) rather than build time
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2026-02-25.clover",
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  apiVersion: "2025-02-24.acacia" as any,
 });
 
 export default stripe;

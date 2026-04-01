@@ -97,13 +97,13 @@ export async function POST(req: NextRequest) {
         save_default_payment_method: "on_subscription",
         payment_method_types: ["card"],
       },
-      // Expand latest_invoice to access confirmation_secret (API 2026-02-25+)
-      expand: ["latest_invoice"],
+      expand: ["latest_invoice.payment_intent"],
       metadata: { category, frequency, ...(note ? { note } : {}) },
     });
 
-    const invoice = subscription.latest_invoice as Stripe.Invoice;
-    const clientSecret = invoice?.confirmation_secret?.client_secret;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const invoice = subscription.latest_invoice as any;
+    const clientSecret = (invoice?.payment_intent as Stripe.PaymentIntent)?.client_secret;
 
     if (!clientSecret) {
       throw new Error("Subscription created but payment could not be initialised. Please contact us.");
