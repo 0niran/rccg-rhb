@@ -112,11 +112,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ clientSecret, subscriptionId: subscription.id });
   } catch (err) {
     console.error("[give/route]", err);
-    // Never leak raw Stripe messages to the client in production
-    const isDev = process.env.NODE_ENV === "development";
-    const message = isDev && err instanceof Error
-      ? err.message
-      : "Payment processing failed. Please try again or contact us.";
+    const message = err instanceof Error ? err.message : "Payment processing failed. Please try again or contact us.";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
