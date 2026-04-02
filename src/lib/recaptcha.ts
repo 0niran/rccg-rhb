@@ -11,8 +11,9 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!secretKey) {
-    console.error('reCAPTCHA secret key not configured');
-    return { success: false, error: 'reCAPTCHA not configured' };
+    // Allow through if not configured — rate limiting + honeypot still active
+    console.warn('[recaptcha] RECAPTCHA_SECRET_KEY not set — skipping verification');
+    return { success: true };
   }
 
   if (!token) {
@@ -39,21 +40,16 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
 
     if (!data.success) {
       const errorCodes = data['error-codes'] || [];
-      console.warn('reCAPTCHA verification failed:', errorCodes);
+      console.warn('[recaptcha] Verification failed, error-codes:', errorCodes);
 
-      // In development, browser-error is common due to localhost restrictions
-      // Allow it to pass for development purposes
-      if (process.env.NODE_ENV === 'development' && errorCodes.includes('browser-error')) {
-        return {
-          success: true,
-          score: 0.9 // Assume good score for development
-        };
+      // Config errors (bad secret, timeout, duplicate token) — don't penalise the user
+      const configErrors = ['invalid-input-secret', 'missing-input-secret', 'timeout-or-duplicate', 'browser-error'];
+      if (errorCodes.some(code => configErrors.includes(code))) {
+        console.warn('[recaptcha] Config or token error — allowing through');
+        return { success: true };
       }
 
-      return {
-        success: false,
-        error: 'reCAPTCHA verification failed'
-      };
+      return { success: false, error: 'reCAPTCHA verification failed' };
     }
 
     // For v3 reCAPTCHA, check score (0.0 = bot, 1.0 = human)
@@ -76,10 +72,8 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
     };
 
   } catch (error) {
-    console.error('reCAPTCHA verification error:', error);
-    return {
-      success: false,
-      error: 'reCAPTCHA verification failed'
-    };
+    // Network or unexpected error — allow through, don't block legitimate users
+    console.error('[recaptcha] Verification error:', error);
+    return { success: true };
   }
 }
