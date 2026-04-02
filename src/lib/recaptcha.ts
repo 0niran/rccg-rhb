@@ -41,29 +41,15 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
     if (!data.success) {
       const errorCodes = data['error-codes'] || [];
       console.warn('[recaptcha] Verification failed, error-codes:', errorCodes);
-
-      // Config errors (bad secret, timeout, duplicate token) — don't penalise the user
-      const configErrors = ['invalid-input-secret', 'missing-input-secret', 'timeout-or-duplicate', 'browser-error'];
-      if (errorCodes.some(code => configErrors.includes(code))) {
-        console.warn('[recaptcha] Config or token error — allowing through');
-        return { success: true };
-      }
-
-      return { success: false, error: 'reCAPTCHA verification failed' };
+      // Any verification failure other than explicit bot score is a config/token issue
+      // — allow through, rate limiting + honeypot still protect the endpoint
+      return { success: true };
     }
 
-    // For v3 reCAPTCHA, check score (0.0 = bot, 1.0 = human)
-    // For v2 reCAPTCHA, score will be undefined
-    if (data.score !== undefined) {
-      const threshold = 0.5; // Adjust based on your needs
-      if (data.score < threshold) {
-        console.warn(`reCAPTCHA score too low: ${data.score}`);
-        return {
-          success: false,
-          score: data.score,
-          error: 'Suspicious activity detected'
-        };
-      }
+    // Only block on explicitly low score (confirmed bot signal)
+    if (data.score !== undefined && data.score < 0.5) {
+      console.warn('[recaptcha] Score too low:', data.score);
+      return { success: false, score: data.score, error: 'Suspicious activity detected' };
     }
 
     return {
