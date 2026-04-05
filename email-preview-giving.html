@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Giving Notification Preview</title>
+<style>
+  body { background:#EDEAE5; margin:0; padding:40px 20px; font-family:Arial,sans-serif; }
+  .preview-label { font-size:11px; color:#999; letter-spacing:2px; text-transform:uppercase; margin:0 0 12px; }
+  .spacer { height:64px; }
+</style>
+</head>
+<body>
+
+<!-- CONFIRMED -->
+<p class="preview-label">Payment Confirmed</p>
+<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1A1612;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.12);">
+  <div style="background:#1A1612;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 5px;">Restoration House Brantford</p>
+      <h1 style="color:#ffffff;font-size:20px;font-weight:700;margin:0;line-height:1.2;">Giving Receipt</h1>
+    </div>
+    <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;flex-shrink:0;"></div>
+  </div>
+  <div style="background:#D1FAE5;padding:12px 40px;border-bottom:1px solid #A7F3D0;">
+    <span style="color:#065F46;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Payment Confirmed</span>
+  </div>
+  <div style="background:#ffffff;padding:40px 40px 32px;text-align:center;border-bottom:1px solid #F0EDE8;">
+    <p style="color:#999;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin:0 0 12px;">Amount Received</p>
+    <p style="color:#1A1612;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;margin:0;">$100.00</p>
+    <p style="color:#C8963A;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:8px 0 16px;">CAD &nbsp;·&nbsp; One-time</p>
+    <span style="display:inline-block;background:#FDF8F0;border:1px solid #E8D9B8;border-radius:100px;padding:5px 18px;color:#92600a;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Tithes</span>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 0;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Donor Information</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Full Name</td>
+          <td style="padding:14px 20px;color:#1A1612;font-weight:600;">John Doe</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Email</td>
+          <td style="padding:14px 20px;color:#1A1612;">john.doe@example.com</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;vertical-align:top;">Note</td>
+          <td style="padding:14px 20px;color:#666;font-style:italic;">First fruits offering</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 32px;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Transaction Details</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Date and Time</td>
+          <td style="padding:14px 20px;color:#1A1612;">April 5, 2026 at 10:32 AM EDT</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Frequency</td>
+          <td style="padding:14px 20px;color:#1A1612;">One-time</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Stripe ID</td>
+          <td style="padding:14px 20px;color:#bbb;font-family:monospace;font-size:11px;">pi_3Qnj6bFVsc1234abcd</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#FDF8F0;border-top:1px solid #F0EDE8;border-bottom:1px solid #F0EDE8;padding:28px 40px;text-align:center;">
+    <p style="color:#92600a;font-size:14px;font-style:italic;line-height:1.8;margin:0;">"Each of you should give what you have decided in your heart to give,<br>not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+    <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:10px 0 0;">2 Corinthians 9:7</p>
+  </div>
+  <div style="background:#1A1612;padding:22px 40px;text-align:center;">
+    <p style="color:rgba(255,255,255,0.35);font-size:11px;line-height:2;margin:0;">
+      Restoration House Brantford &nbsp;·&nbsp; 7 Burnley Ave, Brantford, ON N3T 1T5<br>
+      <a href="https://rccgbrantford.com" style="color:#C8963A;text-decoration:none;">rccgbrantford.com</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="mailto:hello@rccgbrantford.com" style="color:#C8963A;text-decoration:none;">hello@rccgbrantford.com</a>
+    </p>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- FAILED -->
+<p class="preview-label">Payment Failed</p>
+<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1A1612;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.12);">
+  <div style="background:#1A1612;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 5px;">Restoration House Brantford</p>
+      <h1 style="color:#ffffff;font-size:20px;font-weight:700;margin:0;line-height:1.2;">Giving Notification</h1>
+    </div>
+    <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;flex-shrink:0;"></div>
+  </div>
+  <div style="background:#FEE2E2;padding:12px 40px;border-bottom:1px solid #FECACA;">
+    <span style="color:#991B1B;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Payment Failed</span>
+  </div>
+  <div style="background:#ffffff;padding:40px 40px 32px;text-align:center;border-bottom:1px solid #F0EDE8;">
+    <p style="color:#999;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin:0 0 12px;">Amount</p>
+    <p style="color:#1A1612;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;margin:0;">$250.00</p>
+    <p style="color:#991B1B;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:8px 0 16px;">CAD &nbsp;·&nbsp; Monthly</p>
+    <span style="display:inline-block;background:#FDF8F0;border:1px solid #E8D9B8;border-radius:100px;padding:5px 18px;color:#92600a;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Promise Land</span>
+    <div style="margin-top:20px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:12px 20px;">
+      <p style="color:#991B1B;font-size:13px;margin:0;line-height:1.5;">Your card was declined. Please check your card details and try again.</p>
+    </div>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 0;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Donor Information</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Full Name</td>
+          <td style="padding:14px 20px;color:#1A1612;font-weight:600;">Jane Smith</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Email</td>
+          <td style="padding:14px 20px;color:#1A1612;">jane.smith@example.com</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 32px;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Transaction Details</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Date and Time</td>
+          <td style="padding:14px 20px;color:#1A1612;">April 5, 2026 at 11:15 AM EDT</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Stripe ID</td>
+          <td style="padding:14px 20px;color:#bbb;font-family:monospace;font-size:11px;">pi_3Qnj6bFVsc5678efgh</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#1A1612;padding:22px 40px;text-align:center;">
+    <p style="color:rgba(255,255,255,0.35);font-size:11px;line-height:2;margin:0;">
+      Restoration House Brantford &nbsp;·&nbsp; 7 Burnley Ave, Brantford, ON N3T 1T5<br>
+      <a href="https://rccgbrantford.com" style="color:#C8963A;text-decoration:none;">rccgbrantford.com</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="mailto:hello@rccgbrantford.com" style="color:#C8963A;text-decoration:none;">hello@rccgbrantford.com</a>
+    </p>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- PROCESSING -->
+<p class="preview-label">Payment Processing</p>
+<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1A1612;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.12);">
+  <div style="background:#1A1612;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 5px;">Restoration House Brantford</p>
+      <h1 style="color:#ffffff;font-size:20px;font-weight:700;margin:0;line-height:1.2;">Giving Notification</h1>
+    </div>
+    <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;flex-shrink:0;"></div>
+  </div>
+  <div style="background:#FFFBEB;padding:12px 40px;border-bottom:1px solid #FDE68A;">
+    <span style="color:#92400E;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Payment Processing</span>
+  </div>
+  <div style="background:#ffffff;padding:40px 40px 32px;text-align:center;border-bottom:1px solid #F0EDE8;">
+    <p style="color:#999;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin:0 0 12px;">Amount</p>
+    <p style="color:#1A1612;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;margin:0;">$50.00</p>
+    <p style="color:#92400E;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:8px 0 16px;">CAD &nbsp;·&nbsp; Weekly</p>
+    <span style="display:inline-block;background:#FDF8F0;border:1px solid #E8D9B8;border-radius:100px;padding:5px 18px;color:#92600a;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Love Offering</span>
+    <div style="margin-top:20px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px 20px;">
+      <p style="color:#92400E;font-size:13px;margin:0;line-height:1.5;">This payment is being processed. A confirmation will follow shortly.</p>
+    </div>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 0;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Donor Information</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Full Name</td>
+          <td style="padding:14px 20px;color:#1A1612;font-weight:600;">Michael Brown</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Email</td>
+          <td style="padding:14px 20px;color:#1A1612;">michael.brown@example.com</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#ffffff;padding:24px 40px 32px;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Transaction Details</p>
+    <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="border-bottom:1px solid #F7F5F2;">
+          <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Date and Time</td>
+          <td style="padding:14px 20px;color:#1A1612;">April 5, 2026 at 2:45 PM EDT</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 20px;color:#999;font-size:12px;">Stripe ID</td>
+          <td style="padding:14px 20px;color:#bbb;font-family:monospace;font-size:11px;">pi_3Qnj6bFVsc9012ijkl</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="background:#1A1612;padding:22px 40px;text-align:center;">
+    <p style="color:rgba(255,255,255,0.35);font-size:11px;line-height:2;margin:0;">
+      Restoration House Brantford &nbsp;·&nbsp; 7 Burnley Ave, Brantford, ON N3T 1T5<br>
+      <a href="https://rccgbrantford.com" style="color:#C8963A;text-decoration:none;">rccgbrantford.com</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="mailto:hello@rccgbrantford.com" style="color:#C8963A;text-decoration:none;">hello@rccgbrantford.com</a>
+    </p>
+  </div>
+</div>
+
+<div class="spacer"></div>
+</body>
+</html>

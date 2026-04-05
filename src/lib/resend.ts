@@ -160,7 +160,7 @@ class ResendService {
     failureReason?: string;
   }) {
     if (!this.resend) {
-      console.warn('[resend] RESEND_API_KEY not set — skipping giving notification');
+      console.warn('[resend] RESEND_API_KEY not set, skipping giving notification');
       return { success: false, message: 'Email service not configured' };
     }
 
@@ -191,7 +191,7 @@ class ResendService {
             <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 5px;">Restoration House Brantford</p>
             <h1 style="color:#ffffff;font-size:20px;font-weight:700;margin:0;line-height:1.2;">${eventType === 'succeeded' ? 'Giving Receipt' : 'Giving Notification'}</h1>
           </div>
-          <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#10022;</div>
+          <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;flex-shrink:0;"></div>
         </div>
 
         <div style="background:${bg};padding:12px 40px;border-bottom:1px solid ${border};">
