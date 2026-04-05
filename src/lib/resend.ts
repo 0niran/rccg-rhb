@@ -13,6 +13,7 @@ class ResendService {
   private resend: Resend | null = null;
   private fromEmail: string;
   private toEmail: string;
+  private toGivingEmail: string;
 
   constructor() {
     const apiKey = process.env.RESEND_API_KEY;
@@ -34,6 +35,7 @@ class ResendService {
 
     this.fromEmail = fromEmail;
     this.toEmail = toEmail;
+    this.toGivingEmail = process.env.TO_GIVING_EMAIL ?? toEmail;
   }
 
   private ensureInitialized() {
@@ -213,7 +215,7 @@ class ResendService {
     try {
       const result = await this.resend.emails.send({
         from: this.fromEmail,
-        to: this.toEmail,
+        to: this.toGivingEmail,
         subject: subjectMap[eventType],
         html,
       });
