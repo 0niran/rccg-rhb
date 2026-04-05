@@ -169,46 +169,96 @@ class ResendService {
     const freqLabel: Record<string, string> = { one_time: 'One-time', weekly: 'Weekly', biweekly: 'Bi-weekly', monthly: 'Monthly' };
 
     const statusMap = {
-      succeeded: { label: '✅ Payment Confirmed', colour: '#2d7a3a', bg: '#f0faf1' },
-      failed:    { label: '❌ Payment Failed',    colour: '#b91c1c', bg: '#fef2f2' },
-      processing:{ label: '⏳ Payment Processing', colour: '#92600a', bg: '#fffbeb' },
+      succeeded: { label: 'Payment Confirmed', colour: '#065F46', bg: '#D1FAE5', border: '#A7F3D0' },
+      failed:    { label: 'Payment Failed',    colour: '#991B1B', bg: '#FEE2E2', border: '#FECACA' },
+      processing:{ label: 'Payment Processing', colour: '#92400E', bg: '#FFFBEB', border: '#FDE68A' },
     };
-    const { label: statusLabel, colour, bg } = statusMap[eventType];
+    const { label: statusLabel, colour, bg, border } = statusMap[eventType];
 
     const subjectMap = {
-      succeeded:  `Giving Received — ${formatted} (${category})`,
-      failed:     `Giving Failed — ${formatted} (${category})`,
-      processing: `Giving Processing — ${formatted} (${category})`,
+      succeeded:  `Giving Received: ${formatted} (${category})`,
+      failed:     `Giving Failed: ${formatted} (${category})`,
+      processing: `Giving Processing: ${formatted} (${category})`,
     };
 
+    const freqColour = eventType === 'failed' ? '#991B1B' : eventType === 'processing' ? '#92400E' : '#C8963A';
+
     const html = `
-      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#2C2C2C;">
-        <div style="background:#1C1C1C;padding:24px 32px;">
-          <h1 style="color:#C9A84C;margin:0;font-size:20px;font-weight:600;">Restoration House Brantford</h1>
-          <p style="color:#ffffff80;margin:4px 0 0;font-size:13px;">Giving Notification</p>
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1A1612;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.10);">
+
+        <div style="background:#1A1612;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0 0 5px;">Restoration House Brantford</p>
+            <h1 style="color:#ffffff;font-size:20px;font-weight:700;margin:0;line-height:1.2;">${eventType === 'succeeded' ? 'Giving Receipt' : 'Giving Notification'}</h1>
+          </div>
+          <div style="width:44px;height:44px;background:#C8963A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#10022;</div>
         </div>
-        <div style="background:${bg};border-left:4px solid ${colour};padding:16px 32px;margin:0;">
-          <p style="color:${colour};font-weight:700;margin:0;font-size:15px;">${statusLabel}</p>
-          ${failureReason ? `<p style="color:${colour};margin:6px 0 0;font-size:13px;">${failureReason}</p>` : ''}
+
+        <div style="background:${bg};padding:12px 40px;border-bottom:1px solid ${border};">
+          <span style="color:${colour};font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${statusLabel}</span>
         </div>
-        <div style="padding:24px 32px;background:#ffffff;border:1px solid #e5e5e5;">
-          <table style="width:100%;border-collapse:collapse;font-size:14px;">
-            <tr><td style="padding:8px 0;color:#666;width:140px;">Amount</td><td style="padding:8px 0;font-weight:600;">${formatted}</td></tr>
-            <tr><td style="padding:8px 0;color:#666;">Category</td><td style="padding:8px 0;">${category}</td></tr>
-            <tr><td style="padding:8px 0;color:#666;">Frequency</td><td style="padding:8px 0;">${freqLabel[frequency] ?? frequency}</td></tr>
-            <tr><td style="padding:8px 0;color:#666;">Donor</td><td style="padding:8px 0;">${donorName}</td></tr>
-            <tr><td style="padding:8px 0;color:#666;">Email</td><td style="padding:8px 0;">${donorEmail}</td></tr>
-            ${note ? `<tr><td style="padding:8px 0;color:#666;vertical-align:top;">Note</td><td style="padding:8px 0;">${note}</td></tr>` : ''}
-            <tr><td style="padding:8px 0;color:#666;">Date</td><td style="padding:8px 0;">${new Date(timestamp).toLocaleString('en-CA', { timeZone: 'America/Toronto' })}</td></tr>
-            <tr><td style="padding:8px 0;color:#666;">Stripe ID</td><td style="padding:8px 0;font-family:monospace;font-size:12px;color:#888;">${stripeId}</td></tr>
-          </table>
+
+        <div style="background:#ffffff;padding:40px 40px 32px;text-align:center;border-bottom:1px solid #F0EDE8;">
+          <p style="color:#999;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin:0 0 12px;">Amount ${eventType === 'succeeded' ? 'Received' : ''}</p>
+          <p style="color:#1A1612;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;margin:0;">${formatted}</p>
+          <p style="color:${freqColour};font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:8px 0 16px;">${currency.toUpperCase()} &nbsp;·&nbsp; ${freqLabel[frequency] ?? frequency}</p>
+          <span style="display:inline-block;background:#FDF8F0;border:1px solid #E8D9B8;border-radius:100px;padding:5px 18px;color:#92600a;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${category}</span>
+          ${failureReason ? `<div style="margin-top:20px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:12px 20px;"><p style="color:#991B1B;font-size:13px;margin:0;line-height:1.5;">${failureReason}</p></div>` : ''}
+          ${eventType === 'processing' ? `<div style="margin-top:20px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px 20px;"><p style="color:#92400E;font-size:13px;margin:0;line-height:1.5;">This payment is being processed. A confirmation will follow shortly.</p></div>` : ''}
         </div>
-        <div style="padding:16px 32px;background:#f9f9f7;border:1px solid #e5e5e5;border-top:none;">
-          <p style="color:#888;font-size:12px;margin:0;">
-            Restoration House Brantford · 7 Burnley Ave, Brantford, ON N3T 1T5<br>
-            This is an automated notification from your Stripe giving integration.
+
+        <div style="background:#ffffff;padding:24px 40px 0;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Donor Information</p>
+          <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr style="border-bottom:1px solid #F7F5F2;">
+                <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Full Name</td>
+                <td style="padding:14px 20px;color:#1A1612;font-weight:600;">${donorName}</td>
+              </tr>
+              <tr${note ? ` style="border-bottom:1px solid #F7F5F2;"` : ''}>
+                <td style="padding:14px 20px;color:#999;font-size:12px;">Email</td>
+                <td style="padding:14px 20px;color:#1A1612;">${donorEmail}</td>
+              </tr>
+              ${note ? `<tr><td style="padding:14px 20px;color:#999;font-size:12px;vertical-align:top;">Note</td><td style="padding:14px 20px;color:#666;font-style:italic;">${note}</td></tr>` : ''}
+            </table>
+          </div>
+        </div>
+
+        <div style="background:#ffffff;padding:24px 40px 32px;">
+          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;margin:0 0 12px;">Transaction Details</p>
+          <div style="border:1px solid #F0EDE8;border-radius:10px;overflow:hidden;">
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr style="border-bottom:1px solid #F7F5F2;">
+                <td style="padding:14px 20px;color:#999;font-size:12px;width:120px;">Date and Time</td>
+                <td style="padding:14px 20px;color:#1A1612;">${new Date(timestamp).toLocaleString('en-CA', { timeZone: 'America/Toronto', dateStyle: 'long', timeStyle: 'short' })}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #F7F5F2;">
+                <td style="padding:14px 20px;color:#999;font-size:12px;">Frequency</td>
+                <td style="padding:14px 20px;color:#1A1612;">${freqLabel[frequency] ?? frequency}</td>
+              </tr>
+              <tr>
+                <td style="padding:14px 20px;color:#999;font-size:12px;">Stripe ID</td>
+                <td style="padding:14px 20px;color:#bbb;font-family:monospace;font-size:11px;">${stripeId}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        ${eventType === 'succeeded' ? `
+        <div style="background:#FDF8F0;border-top:1px solid #F0EDE8;border-bottom:1px solid #F0EDE8;padding:28px 40px;text-align:center;">
+          <p style="color:#92600a;font-size:14px;font-style:italic;line-height:1.8;margin:0;">"Each of you should give what you have decided in your heart to give,<br>not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+          <p style="color:#C8963A;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:10px 0 0;">2 Corinthians 9:7</p>
+        </div>` : ''}
+
+        <div style="background:#1A1612;padding:22px 40px;text-align:center;">
+          <p style="color:rgba(255,255,255,0.35);font-size:11px;line-height:2;margin:0;">
+            Restoration House Brantford &nbsp;·&nbsp; 7 Burnley Ave, Brantford, ON N3T 1T5<br>
+            <a href="https://rccgbrantford.com" style="color:#C8963A;text-decoration:none;">rccgbrantford.com</a>
+            &nbsp;&nbsp;·&nbsp;&nbsp;
+            <a href="mailto:hello@rccgbrantford.com" style="color:#C8963A;text-decoration:none;">hello@rccgbrantford.com</a>
           </p>
         </div>
+
       </div>
     `;
 
